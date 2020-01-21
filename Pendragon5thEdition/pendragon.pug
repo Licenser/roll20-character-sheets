@@ -138,22 +138,22 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .header
         h1(data-i18n='attributes')
       .row.size
-        h2.text-uppercase(data-i18n='siz')
-        +textInput('size')
+        +attributeButton('size')
+        +numberInput('size')
         span.font-weight-bold(data-i18n='(Knockdown)')
       .row.2autocolumn
-        h2.text-uppercase(data-i18n='dex')
-        +textInput('dexterity')
+        +attributeButton('dexterity')
+        +numberInput('dexterity')
       .row.2autocolumn
-        h2.text-uppercase(data-i18n='str')
-        +textInput('strength')
+        +attributeButton('strength')
+        +numberInput('strength')
       .row.constitution
-        h2.text-uppercase(data-i18n='con')
-        +textInput('constitution')
-        span.font-weight-bold(data-i18n='(MajorWound)')
+        +attributeButton('constitution')
+        +numberInput('constitution')
+        span.font-weight-bold(data-i18n='(Major Wound)')
       .row.2autocolumn
-        h2.text-uppercase(data-i18n='app')
-        +textInput('appearance')
+        +attributeButton('appearance')
+        +numberInput('appearance')
       .row.damage
         +damageButton('damage')
         +numberInput('damage')
@@ -194,7 +194,7 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       each val in ['first aid', 'battle', 'horsemanship']
         - const attrName = val.replace(/ /g, '_');
         .row.3autocolumn
-          button(data-i18n=val name=`roll_${attrName}` type='roll' value!=`&{template:rolls}{{header=^{${val}}}}{{dice=[[1d20]]}}`)
+          button.text-capitalize(data-i18n=val name=`roll_${attrName}` type='roll' value!=`&{template:rolls}{{header=^{${val}}}}{{dice=[[1d20]]}}`)
           label(data-i18n-title=`enter ${val}` title=`enter ${val}`)
             input(name=`attr_squire_${val}` placeholder='#' title=`@{squire_${attrName}}` type='number' value='')
           +checkboxInput(`squire ${val} check`)

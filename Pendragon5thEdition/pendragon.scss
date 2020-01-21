@@ -207,6 +207,10 @@
         text-transform: uppercase;
     }
 
+    .sheet-text-capitalize {
+        text-transform: capitalize;
+    }
+
     div.sheet-2column {
         grid-template-columns: 1fr 1fr; 
     }
@@ -274,10 +278,6 @@ div.sheet-tabs {
     ============================= */
 div.sheet-pc {
     grid-template-columns: 1.5fr 1fr 1fr;
-
-    button[type='roll'] {
-        text-transform: capitalize;
-    }
 
     h2 {
         padding-top: 5%;

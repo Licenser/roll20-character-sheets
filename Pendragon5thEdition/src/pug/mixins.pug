@@ -13,16 +13,21 @@ mixin checkboxInput(name)
 	label(data-i18n-title=`check ${name}` title=`check ${name}`)
 		input(name=`attr_${attrName}` title=`@{${attrName}}` type='checkbox' value=name)
 
+mixin attributeButton(name)
+	- const buttonName = name.replace(/ /g, '-');
+	- const attrName = name.replace(/ /g, '_');
+	button.text-uppercase(data-i18n=`${name.slice(0, 3)}` name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}{{desc=[[@{${attrName}}]]}}`)
+
 mixin rollButton(name)
 	- const buttonName = name.replace(/ /g, '-');
 	- const attrName = name.replace(/ /g, '_');
-	button(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}{{desc=[[@{${attrName}}]]}}`)
+	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}{{desc=[[@{${attrName}}]]}}`)
 	//-button(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20<@{${attrName}}cs@{${attrName}}cf20]]}}{{desc=[[@{${attrName}}]]}}`)
 
 mixin damageButton(name)
 	- const buttonName = name.replace(/ /g, '-');
 	- const attrName = name.replace(/ /g, '_');
-	button(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[@{${attrName}}d6]]}}`)
+	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[@{${attrName}}d6]]}}`)
 
 mixin repeatingRollButton(name)
 	- const buttonName = name.replace(/ /g, '-');
