@@ -211,12 +211,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         h1(data-i18n='squire')
       each val in ['name', 'age']
         .row.2autocolumn
-          h2(data-i18n=val)
-          +textInput(val)
+          h2(data-i18n=`squire ${val}`)
+          +textInput(`squire ${val}`)
       each val in ['first aid', 'battle', 'horsemanship']
         .row.3autocolumn
-          +rollButton(val)
-          +numberInput(val)
+          +rollButton(`squire ${val}`)
+          +numberInput(`squire ${val}`)
       .repeating-container
         fieldset(class='repeating_squire')
           .row
