@@ -225,14 +225,24 @@
 
     div.sheet-gold-left-border {
         border-left: 0.2em solid $secondary;
-        padding-left: 2%;
+        padding-left: 1%;
     }
 
     div.sheet-gold-bottom-border {
         border-bottom: 0.2em solid $secondary;
         padding-bottom: 2%;
     }
-    
+  
+
+    div.sheet-header {
+        text-align: center;
+        background: #fefcea; /* Old browsers */
+        background: -moz-linear-gradient(top,  #fefcea 0%, #ede4b4 50%, #fefcea 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(top,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#fefcea',GradientType=0 ); /* IE6-9 */
+    }
+  
     
 /* TAB
     ============================= */
@@ -285,12 +295,6 @@ div.sheet-pc {
         border-top: 2px solid $primary;
         border-bottom: 2px solid $primary;
         margin-top: 2%;
-        text-align: center;
-        background: #fefcea; /* Old browsers */
-        background: -moz-linear-gradient(top,  #fefcea 0%, #ede4b4 50%, #fefcea 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#fefcea',GradientType=0 ); /* IE6-9 */
     }
 
     div.sheet-personality-traits {
@@ -300,7 +304,7 @@ div.sheet-pc {
 
         div.sheet-repeating-container {
             div.sheet-row {
-                grid-template-columns: auto 1fr 5% 10%;
+                grid-template-columns: auto 2fr 1fr 5% 10%;
             }
         }
     }
@@ -313,7 +317,7 @@ div.sheet-pc {
 
         div.sheet-repeating-container {
             div.sheet-row {
-                grid-template-columns: 1fr 5% 10%;
+                grid-template-columns: 1fr 20% 5% 10%;
             }
         }
 
@@ -356,13 +360,13 @@ div.sheet-pc {
     }
 
     div.sheet-skills {
-        div.sheet-read, div.sheet-play, div.sheet-religion{
+        div.sheet-read, div.sheet-play, div.sheet-religion {
             grid-template-columns: auto 2fr 1fr 5%;
         }
 
         div.sheet-repeating-container {
             div.sheet-row {
-                grid-template-columns: 1fr 5% 10%;
+                grid-template-columns: 2fr 1fr 5% 10%;
             }
         }
     }
@@ -370,7 +374,7 @@ div.sheet-pc {
     div.sheet-squire {
         div.sheet-repeating-container {
             div.sheet-row {
-                grid-template-columns: 1fr 5% 10%;
+                grid-template-columns: 2fr 1fr 5% 10%;
             }
         }
     }
@@ -393,7 +397,7 @@ div.sheet-pc {
     div.sheet-combat-skills {
         div.sheet-repeating-container {
             div.sheet-row {
-                grid-template-columns: 1fr 5% 10%;
+                grid-template-columns: 2fr 1fr 5% 10%;
             }
         }  
     }
@@ -461,7 +465,7 @@ div.sheet-holdings {
         }
 
         div.sheet-events {
-            grid-template-columns: 2fr 4fr 1fr 1fr;
+            grid-template-columns: 1fr 3fr 0.8fr 0.8fr;
         }
     }
 }
@@ -530,10 +534,11 @@ input:checked + .sheet-slider:before {
 
 .sheet-rolltemplate-rolls {
     div.sheet-template-container {
-        border: 2px solid $primary;
+        border: 2px solid $dark;
         border-radius: 0.3em;
         box-shadow: inset 0px 0px 3px 1px $primary;
         text-align: center;
+        font-family: 'fantasy';
 
         /* DICE ROLL STYLES
         ----------------------------- */
@@ -550,41 +555,28 @@ input:checked + .sheet-slider:before {
         .inlinerollresult {
             background-color: transparent;
             border: none;
-            font-weight: unset; //reset defaults
-            font-size: unset; //reset defaults
-            padding: unset; //reset defaults
+            font-size: 2em; 
+            padding: unset;
         }
 
 
         div.sheet-template-header {
-            background-color: $primary;
-            border-bottom: 2px solid $gray   ;
+            @extend div.sheet-header; 
+
+            color: $primary;
+            font-weight: bold;
+            font-size: 1.5em; 
+            border-bottom: 2px solid $dark;
             padding: 2%;
             text-transform: capitalize;
-
-            h1, h2 {
-                display: inline;
-                line-height: 1.2em;
-            }
-
-            h1 {
-                color: $primary;
-                font-variant: small-caps;
-                font-size: 1.6em;
-            }
-
-            h2 {
-                color: $dark;
-                font-size: 1.15em;
-            }
         }
 
         div.sheet-template-body {
             div.sheet-template-row {
-                background-color: $primary;
+                background-color: $white;
                 padding: 3%;
 
-                &:nth-child(2n+0) { background-color: $secondary; }
+                &:nth-child(2n+0) { background-color: $light; }
 
                 a[href^="~"] {
                     background-color: $light !important;
@@ -604,16 +596,17 @@ input:checked + .sheet-slider:before {
                 span {
                     &.sheet-inlinerollresult  {
                         color: $primary;
-                        font-size: 1.5em;
+                        font-size: 2em;
                         font-weight: bold;
                         cursor: help;
                         padding: 0 3px 0 3px;
+                        font-weight: bold;
                     }
 
                     &.sheet-percent,
                     &.sheet-template-desc {
                         color: $primary;
-                        font-size: 1.2em;
+                        font-size: 1em;
                     }
                 }
             }
