@@ -1,0 +1,1562 @@
+
+<input name="attr_version" type="hidden" value="1"/>
+<input class="type" name="attr_sheet_type" type="hidden" value="knight"/>
+<input class="display_string" name="attr_toggles" type="hidden" value=""/>
+<div class="npc">
+  <div class="box npc-flex">
+    <p>NPC STUFF</p>
+  </div>
+  <div class="box npc-flex">
+    <p>MORE NPC STUFF </p>
+  </div>
+</div>
+<div class="knight pc grid">
+  <div class="col">
+    <div class="row">
+      <h1 data-i18n="King Arthur Pendragon"></h1>
+      <h2 data-i18n="Knight's Character Sheet"></h2>
+    </div>
+    <div class="row 2autocolumn">
+      <h2 data-i18n="Player:"></h2>
+      <label data-i18n-title="enter player name" title="enter player name">
+        <input data-i18n-placeholder="player name" name="attr_player_name" placeholder="player name" title="@{player_name}" type="text" value=""/>
+      </label>
+    </div>
+    <div class="personal-data">
+      <div class="header">
+        <h1 data-i18n="personal data"></h1>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="name"></h2>
+        <label data-i18n-title="enter name" title="enter name">
+          <input data-i18n-placeholder="name" name="attr_name" placeholder="name" title="@{name}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2column">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="age"></h2>
+          <label data-i18n-title="enter age" title="enter age">
+            <input name="attr_age" placeholder="#" title="@{age}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="son number"></h2>
+          <label data-i18n-title="enter son number" title="enter son number">
+            <input data-i18n-placeholder="son number" name="attr_son_number" placeholder="son number" title="@{son_number}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="homeland"></h2>
+        <label data-i18n-title="enter homeland" title="enter homeland">
+          <input data-i18n-placeholder="homeland" name="attr_homeland" placeholder="homeland" title="@{homeland}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2column">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="culture"></h2>
+          <label data-i18n-title="enter culture" title="enter culture">
+            <input data-i18n-placeholder="culture" name="attr_culture" placeholder="culture" title="@{culture}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="religion"></h2>
+          <label data-i18n-title="enter religion" title="enter religion">
+            <input data-i18n-placeholder="religion" name="attr_religion" placeholder="religion" title="@{religion}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row 2autocolumn lord">
+        <h2 data-i18n="lord"></h2>
+        <label data-i18n-title="enter lord" title="enter lord">
+          <input data-i18n-placeholder="lord" name="attr_lord" placeholder="lord" title="@{lord}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn current-class">
+        <h2 data-i18n="current class"></h2>
+        <label data-i18n-title="enter current class" title="enter current class">
+          <input data-i18n-placeholder="current class" name="attr_current_class" placeholder="current class" title="@{current_class}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn current-home">
+        <h2 data-i18n="current home"></h2>
+        <label data-i18n-title="enter current home" title="enter current home">
+          <input data-i18n-placeholder="current home" name="attr_current_home" placeholder="current home" title="@{current_home}" type="text" value=""/>
+        </label>
+      </div>
+    </div>
+    <div class="personality-traits">
+      <div class="header">
+        <h1 data-i18n="personality traits"></h1>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="ChivalryBonus[*](total=80+)"></h2>
+        <label data-i18n-title="enter chivalry bonus" title="enter chivalry bonus">
+          <input data-i18n-placeholder="chivalry bonus" name="attr_chivalry_bonus" placeholder="chivalry bonus" title="@{chivalry_bonus}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="ReligiousBonus(underlined traits all 16+)"></h2>
+        <label data-i18n-title="enter religious bonus" title="enter religious bonus">
+          <input data-i18n-placeholder="religious bonus" name="attr_religious_bonus" placeholder="religious bonus" title="@{religious_bonus}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check chaste_check" title="check chaste_check">
+            <input name="attr_chaste_check" title="@{chaste_check}" type="checkbox" value="chaste_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="chaste" name="roll_chaste" type="roll" value="&amp;{template:rolls}{{header=^{chaste}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter chaste" title="enter chaste">
+            <input name="attr_chaste" placeholder="#" title="@{chaste}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter chaste" title="enter chaste">
+            <input name="attr_chaste" placeholder="#" title="@{chaste}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="lustful" name="roll_lustful" type="roll" value="&amp;{template:rolls}{{header=^{lustful}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check lustful check" title="check lustful check">
+            <input name="attr_lustful_check" title="@{lustful_check}" type="checkbox" value="lustful check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold"><span>*</span>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check energetic_check" title="check energetic_check">
+            <input name="attr_energetic_check" title="@{energetic_check}" type="checkbox" value="energetic_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="energetic" name="roll_energetic" type="roll" value="&amp;{template:rolls}{{header=^{energetic}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter energetic" title="enter energetic">
+            <input name="attr_energetic" placeholder="#" title="@{energetic}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter energetic" title="enter energetic">
+            <input name="attr_energetic" placeholder="#" title="@{energetic}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="lazy" name="roll_lazy" type="roll" value="&amp;{template:rolls}{{header=^{lazy}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check lazy check" title="check lazy check">
+            <input name="attr_lazy_check" title="@{lazy_check}" type="checkbox" value="lazy check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check forgiving_check" title="check forgiving_check">
+            <input name="attr_forgiving_check" title="@{forgiving_check}" type="checkbox" value="forgiving_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="forgiving" name="roll_forgiving" type="roll" value="&amp;{template:rolls}{{header=^{forgiving}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter forgiving" title="enter forgiving">
+            <input name="attr_forgiving" placeholder="#" title="@{forgiving}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter forgiving" title="enter forgiving">
+            <input name="attr_forgiving" placeholder="#" title="@{forgiving}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="vengeful" name="roll_vengeful" type="roll" value="&amp;{template:rolls}{{header=^{vengeful}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check vengeful check" title="check vengeful check">
+            <input name="attr_vengeful_check" title="@{vengeful_check}" type="checkbox" value="vengeful check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold"><span>*</span>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check generous_check" title="check generous_check">
+            <input name="attr_generous_check" title="@{generous_check}" type="checkbox" value="generous_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="generous" name="roll_generous" type="roll" value="&amp;{template:rolls}{{header=^{generous}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter generous" title="enter generous">
+            <input name="attr_generous" placeholder="#" title="@{generous}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter generous" title="enter generous">
+            <input name="attr_generous" placeholder="#" title="@{generous}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="selfish" name="roll_selfish" type="roll" value="&amp;{template:rolls}{{header=^{selfish}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check selfish check" title="check selfish check">
+            <input name="attr_selfish_check" title="@{selfish_check}" type="checkbox" value="selfish check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check honest_check" title="check honest_check">
+            <input name="attr_honest_check" title="@{honest_check}" type="checkbox" value="honest_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="honest" name="roll_honest" type="roll" value="&amp;{template:rolls}{{header=^{honest}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter honest" title="enter honest">
+            <input name="attr_honest" placeholder="#" title="@{honest}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter honest" title="enter honest">
+            <input name="attr_honest" placeholder="#" title="@{honest}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="deceitful" name="roll_deceitful" type="roll" value="&amp;{template:rolls}{{header=^{deceitful}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check deceitful check" title="check deceitful check">
+            <input name="attr_deceitful_check" title="@{deceitful_check}" type="checkbox" value="deceitful check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold"><span>*</span>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check just_check" title="check just_check">
+            <input name="attr_just_check" title="@{just_check}" type="checkbox" value="just_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="just" name="roll_just" type="roll" value="&amp;{template:rolls}{{header=^{just}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter just" title="enter just">
+            <input name="attr_just" placeholder="#" title="@{just}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter just" title="enter just">
+            <input name="attr_just" placeholder="#" title="@{just}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="arbitrary" name="roll_arbitrary" type="roll" value="&amp;{template:rolls}{{header=^{arbitrary}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check arbitrary check" title="check arbitrary check">
+            <input name="attr_arbitrary_check" title="@{arbitrary_check}" type="checkbox" value="arbitrary check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold"><span>*</span>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check merciful_check" title="check merciful_check">
+            <input name="attr_merciful_check" title="@{merciful_check}" type="checkbox" value="merciful_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="merciful" name="roll_merciful" type="roll" value="&amp;{template:rolls}{{header=^{merciful}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter merciful" title="enter merciful">
+            <input name="attr_merciful" placeholder="#" title="@{merciful}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter merciful" title="enter merciful">
+            <input name="attr_merciful" placeholder="#" title="@{merciful}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="cruel" name="roll_cruel" type="roll" value="&amp;{template:rolls}{{header=^{cruel}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check cruel check" title="check cruel check">
+            <input name="attr_cruel_check" title="@{cruel_check}" type="checkbox" value="cruel check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold"><span>*</span>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check modest_check" title="check modest_check">
+            <input name="attr_modest_check" title="@{modest_check}" type="checkbox" value="modest_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="modest" name="roll_modest" type="roll" value="&amp;{template:rolls}{{header=^{modest}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter modest" title="enter modest">
+            <input name="attr_modest" placeholder="#" title="@{modest}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter modest" title="enter modest">
+            <input name="attr_modest" placeholder="#" title="@{modest}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="proud" name="roll_proud" type="roll" value="&amp;{template:rolls}{{header=^{proud}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check proud check" title="check proud check">
+            <input name="attr_proud_check" title="@{proud_check}" type="checkbox" value="proud check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check prudent_check" title="check prudent_check">
+            <input name="attr_prudent_check" title="@{prudent_check}" type="checkbox" value="prudent_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="prudent" name="roll_prudent" type="roll" value="&amp;{template:rolls}{{header=^{prudent}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter prudent" title="enter prudent">
+            <input name="attr_prudent" placeholder="#" title="@{prudent}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter prudent" title="enter prudent">
+            <input name="attr_prudent" placeholder="#" title="@{prudent}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="reckless" name="roll_reckless" type="roll" value="&amp;{template:rolls}{{header=^{reckless}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check reckless check" title="check reckless check">
+            <input name="attr_reckless_check" title="@{reckless_check}" type="checkbox" value="reckless check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check spiritual_check" title="check spiritual_check">
+            <input name="attr_spiritual_check" title="@{spiritual_check}" type="checkbox" value="spiritual_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="spiritual" name="roll_spiritual" type="roll" value="&amp;{template:rolls}{{header=^{spiritual}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter spiritual" title="enter spiritual">
+            <input name="attr_spiritual" placeholder="#" title="@{spiritual}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter spiritual" title="enter spiritual">
+            <input name="attr_spiritual" placeholder="#" title="@{spiritual}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="wordly" name="roll_wordly" type="roll" value="&amp;{template:rolls}{{header=^{wordly}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check wordly check" title="check wordly check">
+            <input name="attr_wordly_check" title="@{wordly_check}" type="checkbox" value="wordly check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check temperate_check" title="check temperate_check">
+            <input name="attr_temperate_check" title="@{temperate_check}" type="checkbox" value="temperate_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="temperate" name="roll_temperate" type="roll" value="&amp;{template:rolls}{{header=^{temperate}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter temperate" title="enter temperate">
+            <input name="attr_temperate" placeholder="#" title="@{temperate}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter temperate" title="enter temperate">
+            <input name="attr_temperate" placeholder="#" title="@{temperate}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="indulgent" name="roll_indulgent" type="roll" value="&amp;{template:rolls}{{header=^{indulgent}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check indulgent check" title="check indulgent check">
+            <input name="attr_indulgent_check" title="@{indulgent_check}" type="checkbox" value="indulgent check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold">
+        </div>
+        <div class="col">
+          <label data-i18n-title="check trusting_check" title="check trusting_check">
+            <input name="attr_trusting_check" title="@{trusting_check}" type="checkbox" value="trusting_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="trusting" name="roll_trusting" type="roll" value="&amp;{template:rolls}{{header=^{trusting}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter trusting" title="enter trusting">
+            <input name="attr_trusting" placeholder="#" title="@{trusting}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter trusting" title="enter trusting">
+            <input name="attr_trusting" placeholder="#" title="@{trusting}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="suspiciuos" name="roll_suspiciuos" type="roll" value="&amp;{template:rolls}{{header=^{suspiciuos}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check suspiciuos check" title="check suspiciuos check">
+            <input name="attr_suspiciuos_check" title="@{suspiciuos_check}" type="checkbox" value="suspiciuos check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row traits">
+        <div class="col font-weight-bold"><span>*</span>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check valorous_check" title="check valorous_check">
+            <input name="attr_valorous_check" title="@{valorous_check}" type="checkbox" value="valorous_check"/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="valorous" name="roll_valorous" type="roll" value="&amp;{template:rolls}{{header=^{valorous}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter valorous" title="enter valorous">
+            <input name="attr_valorous" placeholder="#" title="@{valorous}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col"><span>/</span></div>
+        <div class="col">
+          <label data-i18n-title="enter valorous" title="enter valorous">
+            <input name="attr_valorous" placeholder="#" title="@{valorous}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <button data-i18n="cowardly" name="roll_cowardly" type="roll" value="&amp;{template:rolls}{{header=^{cowardly}}}"></button>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check cowardly check" title="check cowardly check">
+            <input name="attr_cowardly_check" title="@{cowardly_check}" type="checkbox" value="cowardly check"/>
+          </label>
+        </div>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_directed-trait">
+          <div class="row">
+            <div class="col">
+              <h2 data-i18n="directed trait"></h2>
+            </div>
+            <div class="col">
+              <label data-i18n-title="enter trait" title="enter trait">
+                <input data-i18n-placeholder="trait" name="attr_trait" placeholder="trait" title="@{trait}" type="text" value=""/>
+              </label>
+            </div>
+            <div class="col">
+              <label data-i18n-title="check check" title="check check">
+                <input name="attr_check" title="@{check}" type="checkbox" value="check"/>
+              </label>
+            </div>
+            <div class="col">
+              <button class="d20" name="roll_trait" type="roll" value="&amp;{template:rolls}">t</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="passions">
+      <div class="header">
+        <h1 data-i18n="passions"></h1>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 data-i18n="loyalty lord"></h2>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter loyalty lord" title="enter loyalty lord">
+            <input name="attr_loyalty_lord" placeholder="#" title="@{loyalty_lord}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check loyalty lord check" title="check loyalty lord check">
+            <input name="attr_loyalty_lord_check" title="@{loyalty_lord_check}" type="checkbox" value="loyalty lord check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 data-i18n="love family"></h2>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter love family" title="enter love family">
+            <input name="attr_love_family" placeholder="#" title="@{love_family}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check love family check" title="check love family check">
+            <input name="attr_love_family_check" title="@{love_family_check}" type="checkbox" value="love family check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 data-i18n="hospitality"></h2>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter hospitality" title="enter hospitality">
+            <input name="attr_hospitality" placeholder="#" title="@{hospitality}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check hospitality check" title="check hospitality check">
+            <input name="attr_hospitality_check" title="@{hospitality_check}" type="checkbox" value="hospitality check"/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <h2 data-i18n="honor"></h2>
+        </div>
+        <div class="col">
+          <label data-i18n-title="enter honor" title="enter honor">
+            <input name="attr_honor" placeholder="#" title="@{honor}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col">
+          <label data-i18n-title="check honor check" title="check honor check">
+            <input name="attr_honor_check" title="@{honor_check}" type="checkbox" value="honor check"/>
+          </label>
+        </div>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_passion">
+          <div class="row">
+            <div class="col">
+              <label data-i18n-title="enter passion" title="enter passion">
+                <input data-i18n-placeholder="passion" name="attr_passion" placeholder="passion" title="@{passion}" type="text" value=""/>
+              </label>
+            </div>
+            <div class="col">
+              <label data-i18n-title="check check" title="check check">
+                <input name="attr_check" title="@{check}" type="checkbox" value="check"/>
+              </label>
+            </div>
+            <div class="col">
+              <button class="d20" name="roll_passion" type="roll" value="&amp;{template:rolls}">t</button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="equipment-carried">
+      <div class="header">
+        <h1 data-i18n="equipment carried"></h1>
+      </div>
+      <div class="row armor">
+        <h2 data-i18n="armor type"></h2>
+        <label data-i18n-title="enter armor type" title="enter armor type">
+          <input data-i18n-placeholder="armor type" name="attr_armor_type" placeholder="armor type" title="@{armor_type}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="points"></h2>
+        <label data-i18n-title="enter armor points" title="enter armor points">
+          <input name="attr_armor_points" placeholder="#" title="@{armor_points}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row clothing">
+        <h2 data-i18n="clothing"></h2>
+        <label data-i18n-title="enter clothing" title="enter clothing">
+          <input data-i18n-placeholder="clothing" name="attr_clothing" placeholder="clothing" title="@{clothing}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="libra value"></h2>
+        <label data-i18n-title="enter libra value" title="enter libra value">
+          <input name="attr_libra_value" placeholder="#" title="@{libra_value}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row gear">
+        <label data-i18n-title="check personal gear check" title="check personal gear check">
+          <input name="attr_personal_gear_check" title="@{personal_gear_check}" type="checkbox" value="personal gear check"/>
+        </label>
+        <h2 data-i18n="personal gear"></h2>
+        <label data-i18n-title="enter personal gear" title="enter personal gear">
+          <input data-i18n-placeholder="personal gear" name="attr_personal_gear" placeholder="personal gear" title="@{personal_gear}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="on horse #"></h2>
+        <label data-i18n-title="enter personal gear on horse" title="enter personal gear on horse">
+          <input name="attr_personal_gear_on_horse" placeholder="#" title="@{personal_gear_on_horse}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row gear">
+        <label data-i18n-title="check travel gear check" title="check travel gear check">
+          <input name="attr_travel_gear_check" title="@{travel_gear_check}" type="checkbox" value="travel gear check"/>
+        </label>
+        <h2 data-i18n="travel gear"></h2>
+        <label data-i18n-title="enter travel gear" title="enter travel gear">
+          <input data-i18n-placeholder="travel gear" name="attr_travel_gear" placeholder="travel gear" title="@{travel_gear}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="on horse #"></h2>
+        <label data-i18n-title="enter travel gear on horse" title="enter travel gear on horse">
+          <input name="attr_travel_gear_on_horse" placeholder="#" title="@{travel_gear_on_horse}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row gear">
+        <label data-i18n-title="check war gear check" title="check war gear check">
+          <input name="attr_war_gear_check" title="@{war_gear_check}" type="checkbox" value="war gear check"/>
+        </label>
+        <h2 data-i18n="war gear"></h2>
+        <label data-i18n-title="enter war gear" title="enter war gear">
+          <input data-i18n-placeholder="war gear" name="attr_war_gear" placeholder="war gear" title="@{war_gear}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="on horse #"></h2>
+        <label data-i18n-title="enter war gear on horse" title="enter war gear on horse">
+          <input name="attr_war_gear_on_horse" placeholder="#" title="@{war_gear_on_horse}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_equipment-carried">
+          <div class="row">
+            <label data-i18n-title="enter equipment" title="enter equipment">
+              <input data-i18n-placeholder="equipment" name="attr_equipment" placeholder="equipment" title="@{equipment}" type="text" value=""/>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col gold-left-border">
+    <div class="attributes">
+      <div class="header">
+        <h1 data-i18n="attributes"></h1>
+      </div>
+      <div class="row size">
+        <h2 class="text-uppercase" data-i18n="siz"></h2>
+        <label data-i18n-title="enter size" title="enter size">
+          <input data-i18n-placeholder="size" name="attr_size" placeholder="size" title="@{size}" type="text" value=""/>
+        </label><span class="font-weight-bold" data-i18n="(Knockdown)"></span>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 class="text-uppercase" data-i18n="dex"></h2>
+        <label data-i18n-title="enter dexterity" title="enter dexterity">
+          <input data-i18n-placeholder="dexterity" name="attr_dexterity" placeholder="dexterity" title="@{dexterity}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 class="text-uppercase" data-i18n="str"></h2>
+        <label data-i18n-title="enter strength" title="enter strength">
+          <input data-i18n-placeholder="strength" name="attr_strength" placeholder="strength" title="@{strength}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row constitution">
+        <h2 class="text-uppercase" data-i18n="con"></h2>
+        <label data-i18n-title="enter constitution" title="enter constitution">
+          <input data-i18n-placeholder="constitution" name="attr_constitution" placeholder="constitution" title="@{constitution}" type="text" value=""/>
+        </label><span class="font-weight-bold" data-i18n="(MajorWound)"></span>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 class="text-uppercase" data-i18n="app"></h2>
+        <label data-i18n-title="enter appearance" title="enter appearance">
+          <input data-i18n-placeholder="appearance" name="attr_appearance" placeholder="appearance" title="@{appearance}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row damage">
+        <h2 data-i18n="Damage"></h2>
+        <label data-i18n-title="enter damage" title="enter damage">
+          <input name="attr_damage" placeholder="#" title="@{damage}" type="number" value=""/>
+        </label><span class="font-weight-bold" data-i18n="d6"></span>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="healing rate"></h2>
+        <label data-i18n-title="enter healing rate" title="enter healing rate">
+          <input name="attr_healing_rate" placeholder="#" title="@{healing_rate}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="movement rate"></h2>
+        <label data-i18n-title="enter movement rate" title="enter movement rate">
+          <input name="attr_movement_rate" placeholder="#" title="@{movement_rate}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="total hit points"></h2>
+        <label data-i18n-title="enter total hit points" title="enter total hit points">
+          <input name="attr_total_hit_points" placeholder="#" title="@{total_hit_points}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="unconcious"></h2>
+        <label data-i18n-title="enter unconcious" title="enter unconcious">
+          <input name="attr_unconcious" placeholder="#" title="@{unconcious}" type="number" value=""/>
+        </label>
+      </div>
+    </div>
+    <div class="distinctive-features">
+      <div class="header">
+        <h1 data-i18n="distinctive features"></h1>
+      </div>
+      <div class="row">
+        <textarea data-i18n-placeholder="distinctive features" name="attr_distinctive_features" placeholder="distinctive features"></textarea>
+      </div>
+    </div>
+    <div class="skills">
+      <div class="header">
+        <h1 data-i18n="skills"></h1>
+      </div>
+      <div class="row 3autocolumn awareness">
+        <button data-i18n="awareness" name="roll_awareness" type="roll" value="&amp;{template:rolls}{{header=^{awareness}}}"></button>
+        <label data-i18n-title="enter awareness" title="enter awareness">
+          <input name="attr_awareness" placeholder="#" title="@{awareness}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check awareness check" title="check awareness check">
+          <input name="attr_awareness_check" title="@{awareness_check}" type="checkbox" value="awareness check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn boating">
+        <button data-i18n="boating" name="roll_boating" type="roll" value="&amp;{template:rolls}{{header=^{boating}}}"></button>
+        <label data-i18n-title="enter boating" title="enter boating">
+          <input name="attr_boating" placeholder="#" title="@{boating}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check boating check" title="check boating check">
+          <input name="attr_boating_check" title="@{boating_check}" type="checkbox" value="boating check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn compose">
+        <button data-i18n="compose" name="roll_compose" type="roll" value="&amp;{template:rolls}{{header=^{compose}}}"></button>
+        <label data-i18n-title="enter compose" title="enter compose">
+          <input name="attr_compose" placeholder="#" title="@{compose}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check compose check" title="check compose check">
+          <input name="attr_compose_check" title="@{compose_check}" type="checkbox" value="compose check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn courtesy">
+        <button data-i18n="courtesy" name="roll_courtesy" type="roll" value="&amp;{template:rolls}{{header=^{courtesy}}}"></button>
+        <label data-i18n-title="enter courtesy" title="enter courtesy">
+          <input name="attr_courtesy" placeholder="#" title="@{courtesy}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check courtesy check" title="check courtesy check">
+          <input name="attr_courtesy_check" title="@{courtesy_check}" type="checkbox" value="courtesy check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn dancing">
+        <button data-i18n="dancing" name="roll_dancing" type="roll" value="&amp;{template:rolls}{{header=^{dancing}}}"></button>
+        <label data-i18n-title="enter dancing" title="enter dancing">
+          <input name="attr_dancing" placeholder="#" title="@{dancing}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check dancing check" title="check dancing check">
+          <input name="attr_dancing_check" title="@{dancing_check}" type="checkbox" value="dancing check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn faerie lore">
+        <button data-i18n="faerie lore" name="roll_faerie-lore" type="roll" value="&amp;{template:rolls}{{header=^{faerie lore}}}"></button>
+        <label data-i18n-title="enter faerie lore" title="enter faerie lore">
+          <input name="attr_faerie_lore" placeholder="#" title="@{faerie_lore}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check faerie lore check" title="check faerie lore check">
+          <input name="attr_faerie_lore_check" title="@{faerie_lore_check}" type="checkbox" value="faerie lore check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn falconry">
+        <button data-i18n="falconry" name="roll_falconry" type="roll" value="&amp;{template:rolls}{{header=^{falconry}}}"></button>
+        <label data-i18n-title="enter falconry" title="enter falconry">
+          <input name="attr_falconry" placeholder="#" title="@{falconry}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check falconry check" title="check falconry check">
+          <input name="attr_falconry_check" title="@{falconry_check}" type="checkbox" value="falconry check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn first aid">
+        <button data-i18n="first aid" name="roll_first-aid" type="roll" value="&amp;{template:rolls}{{header=^{first aid}}}"></button>
+        <label data-i18n-title="enter first aid" title="enter first aid">
+          <input name="attr_first_aid" placeholder="#" title="@{first_aid}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check first aid check" title="check first aid check">
+          <input name="attr_first_aid_check" title="@{first_aid_check}" type="checkbox" value="first aid check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn flirting">
+        <button data-i18n="flirting" name="roll_flirting" type="roll" value="&amp;{template:rolls}{{header=^{flirting}}}"></button>
+        <label data-i18n-title="enter flirting" title="enter flirting">
+          <input name="attr_flirting" placeholder="#" title="@{flirting}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check flirting check" title="check flirting check">
+          <input name="attr_flirting_check" title="@{flirting_check}" type="checkbox" value="flirting check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn folk lore">
+        <button data-i18n="folk lore" name="roll_folk-lore" type="roll" value="&amp;{template:rolls}{{header=^{folk lore}}}"></button>
+        <label data-i18n-title="enter folk lore" title="enter folk lore">
+          <input name="attr_folk_lore" placeholder="#" title="@{folk_lore}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check folk lore check" title="check folk lore check">
+          <input name="attr_folk_lore_check" title="@{folk_lore_check}" type="checkbox" value="folk lore check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn gaming">
+        <button data-i18n="gaming" name="roll_gaming" type="roll" value="&amp;{template:rolls}{{header=^{gaming}}}"></button>
+        <label data-i18n-title="enter gaming" title="enter gaming">
+          <input name="attr_gaming" placeholder="#" title="@{gaming}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check gaming check" title="check gaming check">
+          <input name="attr_gaming_check" title="@{gaming_check}" type="checkbox" value="gaming check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn heraldry">
+        <button data-i18n="heraldry" name="roll_heraldry" type="roll" value="&amp;{template:rolls}{{header=^{heraldry}}}"></button>
+        <label data-i18n-title="enter heraldry" title="enter heraldry">
+          <input name="attr_heraldry" placeholder="#" title="@{heraldry}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check heraldry check" title="check heraldry check">
+          <input name="attr_heraldry_check" title="@{heraldry_check}" type="checkbox" value="heraldry check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn hunting">
+        <button data-i18n="hunting" name="roll_hunting" type="roll" value="&amp;{template:rolls}{{header=^{hunting}}}"></button>
+        <label data-i18n-title="enter hunting" title="enter hunting">
+          <input name="attr_hunting" placeholder="#" title="@{hunting}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check hunting check" title="check hunting check">
+          <input name="attr_hunting_check" title="@{hunting_check}" type="checkbox" value="hunting check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn intrigue">
+        <button data-i18n="intrigue" name="roll_intrigue" type="roll" value="&amp;{template:rolls}{{header=^{intrigue}}}"></button>
+        <label data-i18n-title="enter intrigue" title="enter intrigue">
+          <input name="attr_intrigue" placeholder="#" title="@{intrigue}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check intrigue check" title="check intrigue check">
+          <input name="attr_intrigue_check" title="@{intrigue_check}" type="checkbox" value="intrigue check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn orate">
+        <button data-i18n="orate" name="roll_orate" type="roll" value="&amp;{template:rolls}{{header=^{orate}}}"></button>
+        <label data-i18n-title="enter orate" title="enter orate">
+          <input name="attr_orate" placeholder="#" title="@{orate}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check orate check" title="check orate check">
+          <input name="attr_orate_check" title="@{orate_check}" type="checkbox" value="orate check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn play">
+        <button data-i18n="play" name="roll_play" type="roll" value="&amp;{template:rolls}{{header=^{play}}}"></button>
+        <label data-i18n-title="enter play name" title="enter play name">
+          <input data-i18n-placeholder="play name" name="attr_play_name" placeholder="play name" title="@{play_name}" type="text" value=""/>
+        </label>
+        <label data-i18n-title="enter play" title="enter play">
+          <input name="attr_play" placeholder="#" title="@{play}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check play check" title="check play check">
+          <input name="attr_play_check" title="@{play_check}" type="checkbox" value="play check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn read">
+        <button data-i18n="read" name="roll_read" type="roll" value="&amp;{template:rolls}{{header=^{read}}}"></button>
+        <label data-i18n-title="enter read name" title="enter read name">
+          <input data-i18n-placeholder="read name" name="attr_read_name" placeholder="read name" title="@{read_name}" type="text" value=""/>
+        </label>
+        <label data-i18n-title="enter read" title="enter read">
+          <input name="attr_read" placeholder="#" title="@{read}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check read check" title="check read check">
+          <input name="attr_read_check" title="@{read_check}" type="checkbox" value="read check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn recognize">
+        <button data-i18n="recognize" name="roll_recognize" type="roll" value="&amp;{template:rolls}{{header=^{recognize}}}"></button>
+        <label data-i18n-title="enter recognize" title="enter recognize">
+          <input name="attr_recognize" placeholder="#" title="@{recognize}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check recognize check" title="check recognize check">
+          <input name="attr_recognize_check" title="@{recognize_check}" type="checkbox" value="recognize check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn religion">
+        <button data-i18n="religion" name="roll_religion" type="roll" value="&amp;{template:rolls}{{header=^{religion}}}"></button>
+        <label data-i18n-title="enter religion name" title="enter religion name">
+          <input data-i18n-placeholder="religion name" name="attr_religion_name" placeholder="religion name" title="@{religion_name}" type="text" value=""/>
+        </label>
+        <label data-i18n-title="enter religion" title="enter religion">
+          <input name="attr_religion" placeholder="#" title="@{religion}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check religion check" title="check religion check">
+          <input name="attr_religion_check" title="@{religion_check}" type="checkbox" value="religion check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn romance">
+        <button data-i18n="romance" name="roll_romance" type="roll" value="&amp;{template:rolls}{{header=^{romance}}}"></button>
+        <label data-i18n-title="enter romance" title="enter romance">
+          <input name="attr_romance" placeholder="#" title="@{romance}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check romance check" title="check romance check">
+          <input name="attr_romance_check" title="@{romance_check}" type="checkbox" value="romance check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn singing">
+        <button data-i18n="singing" name="roll_singing" type="roll" value="&amp;{template:rolls}{{header=^{singing}}}"></button>
+        <label data-i18n-title="enter singing" title="enter singing">
+          <input name="attr_singing" placeholder="#" title="@{singing}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check singing check" title="check singing check">
+          <input name="attr_singing_check" title="@{singing_check}" type="checkbox" value="singing check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn stewardship">
+        <button data-i18n="stewardship" name="roll_stewardship" type="roll" value="&amp;{template:rolls}{{header=^{stewardship}}}"></button>
+        <label data-i18n-title="enter stewardship" title="enter stewardship">
+          <input name="attr_stewardship" placeholder="#" title="@{stewardship}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check stewardship check" title="check stewardship check">
+          <input name="attr_stewardship_check" title="@{stewardship_check}" type="checkbox" value="stewardship check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn swimming">
+        <button data-i18n="swimming" name="roll_swimming" type="roll" value="&amp;{template:rolls}{{header=^{swimming}}}"></button>
+        <label data-i18n-title="enter swimming" title="enter swimming">
+          <input name="attr_swimming" placeholder="#" title="@{swimming}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check swimming check" title="check swimming check">
+          <input name="attr_swimming_check" title="@{swimming_check}" type="checkbox" value="swimming check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn tourney">
+        <button data-i18n="tourney" name="roll_tourney" type="roll" value="&amp;{template:rolls}{{header=^{tourney}}}"></button>
+        <label data-i18n-title="enter tourney" title="enter tourney">
+          <input name="attr_tourney" placeholder="#" title="@{tourney}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check tourney check" title="check tourney check">
+          <input name="attr_tourney_check" title="@{tourney_check}" type="checkbox" value="tourney check"/>
+        </label>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_skills">
+          <div class="row">
+            <label data-i18n-title="enter skill" title="enter skill">
+              <input data-i18n-placeholder="skill" name="attr_skill" placeholder="skill" title="@{skill}" type="text" value=""/>
+            </label>
+            <label data-i18n-title="check check" title="check check">
+              <input name="attr_check" title="@{check}" type="checkbox" value="check"/>
+            </label>
+            <button class="d20" name="roll_skill" type="roll" value="&amp;{template:rolls}">t</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="squire">
+      <div class="header">
+        <h1 data-i18n="squire"></h1>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="name"></h2>
+        <label data-i18n-title="enter name" title="enter name">
+          <input data-i18n-placeholder="name" name="attr_name" placeholder="name" title="@{name}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="age"></h2>
+        <label data-i18n-title="enter age" title="enter age">
+          <input data-i18n-placeholder="age" name="attr_age" placeholder="age" title="@{age}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <button data-i18n="first aid" name="roll_first-aid" type="roll" value="&amp;{template:rolls}{{header=^{first aid}}}"></button>
+        <label data-i18n-title="enter first aid" title="enter first aid">
+          <input name="attr_first_aid" placeholder="#" title="@{first_aid}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <button data-i18n="battle" name="roll_battle" type="roll" value="&amp;{template:rolls}{{header=^{battle}}}"></button>
+        <label data-i18n-title="enter battle" title="enter battle">
+          <input name="attr_battle" placeholder="#" title="@{battle}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <button data-i18n="horsemanship" name="roll_horsemanship" type="roll" value="&amp;{template:rolls}{{header=^{horsemanship}}}"></button>
+        <label data-i18n-title="enter horsemanship" title="enter horsemanship">
+          <input name="attr_horsemanship" placeholder="#" title="@{horsemanship}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_squire">
+          <div class="row">
+            <label data-i18n-title="enter skill" title="enter skill">
+              <input data-i18n-placeholder="skill" name="attr_skill" placeholder="skill" title="@{skill}" type="text" value=""/>
+            </label>
+            <label data-i18n-title="check check" title="check check">
+              <input name="attr_check" title="@{check}" type="checkbox" value="check"/>
+            </label>
+            <button class="d20" name="roll_skill" type="roll" value="&amp;{template:rolls}">t</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+  <div class="col gold-left-border">
+    <div class="glory">
+      <div class="header">
+        <h1 data-i18n="glory"></h1>
+      </div>
+      <div class="row 2column">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="this game"></h2>
+          <label data-i18n-title="enter glory this game" title="enter glory this game">
+            <input data-i18n-placeholder="glory this game" name="attr_glory_this_game" placeholder="glory this game" title="@{glory_this_game}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="total"></h2>
+          <label data-i18n-title="enter glory total" title="enter glory total">
+            <input data-i18n-placeholder="glory total" name="attr_glory_total" placeholder="glory total" title="@{glory_total}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="current-hit-points">
+      <div class="header">
+        <h1 data-i18n="current hit points"></h1>
+      </div>
+      <div class="row">
+        <label data-i18n-title="enter current hit points" title="enter current hit points">
+          <input name="attr_current_hit_points" placeholder="#" title="@{current_hit_points}" type="number" value=""/>
+        </label>
+      </div>
+      <div class="row">
+        <h2 data-i18n="wounds"></h2>
+        <textarea data-i18n-placeholder="wounds" name="attr_wounds" placeholder="wounds"></textarea>
+      </div>
+      <div class="row chirugery-needed">
+        <label data-i18n-title="check chirugery needed" title="check chirugery needed">
+          <input name="attr_chirugery_needed" title="@{chirugery_needed}" type="checkbox" value="chirugery needed"/>
+        </label>
+        <h2 data-i18n="chirugery needed"></h2>
+      </div>
+    </div>
+    <div class="combat-skills">
+      <div class="header">
+        <h1 data-i18n="combat skills"></h1>
+      </div>
+      <div class="row 3autocolumn">
+        <h2 data-i18n="battle"></h2>
+        <label data-i18n-title="enter battle" title="enter battle">
+          <input data-i18n-placeholder="battle" name="attr_battle" placeholder="battle" title="@{battle}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <h2 data-i18n="horsemanship"></h2>
+        <label data-i18n-title="enter horsemanship" title="enter horsemanship">
+          <input data-i18n-placeholder="horsemanship" name="attr_horsemanship" placeholder="horsemanship" title="@{horsemanship}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row">
+        <h2 class="text-primary" data-i18n="weapon skills"></h2>
+      </div>
+      <div class="row 3autocolumn">
+        <h2 data-i18n="sword"></h2>
+        <label data-i18n-title="enter sword" title="enter sword">
+          <input data-i18n-placeholder="sword" name="attr_sword" placeholder="sword" title="@{sword}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <h2 data-i18n="lance"></h2>
+        <label data-i18n-title="enter lance" title="enter lance">
+          <input data-i18n-placeholder="lance" name="attr_lance" placeholder="lance" title="@{lance}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <h2 data-i18n="spear"></h2>
+        <label data-i18n-title="enter spear" title="enter spear">
+          <input data-i18n-placeholder="spear" name="attr_spear" placeholder="spear" title="@{spear}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 3autocolumn">
+        <h2 data-i18n="dagger"></h2>
+        <label data-i18n-title="enter dagger" title="enter dagger">
+          <input data-i18n-placeholder="dagger" name="attr_dagger" placeholder="dagger" title="@{dagger}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_combat-skills">
+          <div class="row">
+            <label data-i18n-title="enter skill" title="enter skill">
+              <input data-i18n-placeholder="skill" name="attr_skill" placeholder="skill" title="@{skill}" type="text" value=""/>
+            </label>
+            <label data-i18n-title="check check" title="check check">
+              <input name="attr_check" title="@{check}" type="checkbox" value="check"/>
+            </label>
+            <button class="d20" name="roll_skill" type="roll" value="&amp;{template:rolls}">t</button>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="jouse-score">
+      <div class="header">
+        <h1 data-i18n="jouse score"></h1>
+      </div>
+      <div class="row 2column">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="win"></h2>
+          <label data-i18n-title="enter win" title="enter win">
+            <input name="attr_win" placeholder="#" title="@{win}" type="number" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="losses"></h2>
+          <label data-i18n-title="enter losses" title="enter losses">
+            <input name="attr_losses" placeholder="#" title="@{losses}" type="number" value=""/>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="horse">
+      <div class="header">
+        <h1 data-i18n="horses"></h1>
+      </div>
+      <div class="row">
+        <h2 class="text-primary" data-i18n="best warhorse (#1)"></h2>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="type"></h2>
+        <label data-i18n-title="enter warhorse type" title="enter warhorse type">
+          <input data-i18n-placeholder="warhorse type" name="attr_warhorse_type" placeholder="warhorse type" title="@{warhorse_type}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2column">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="damage"></h2>
+          <label data-i18n-title="enter warhorse damage" title="enter warhorse damage">
+            <input data-i18n-placeholder="warhorse damage" name="attr_warhorse_damage" placeholder="warhorse damage" title="@{warhorse_damage}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="move"></h2>
+          <label data-i18n-title="enter warhorse move" title="enter warhorse move">
+            <input data-i18n-placeholder="warhorse move" name="attr_warhorse_move" placeholder="warhorse move" title="@{warhorse_move}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row 2column">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="armor"></h2>
+          <label data-i18n-title="enter warhorse armor" title="enter warhorse armor">
+            <input data-i18n-placeholder="warhorse armor" name="attr_warhorse_armor" placeholder="warhorse armor" title="@{warhorse_armor}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="hp"></h2>
+          <label data-i18n-title="enter warhorse hp" title="enter warhorse hp">
+            <input data-i18n-placeholder="warhorse hp" name="attr_warhorse_hp" placeholder="warhorse hp" title="@{warhorse_hp}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row 3column">
+        <div class="col 2autocolumn">
+          <h2 class="text-uppercase" data-i18n="siz"></h2>
+          <label data-i18n-title="enter warhorse siz" title="enter warhorse siz">
+            <input data-i18n-placeholder="warhorse siz" name="attr_warhorse_siz" placeholder="warhorse siz" title="@{warhorse_siz}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 class="text-uppercase" data-i18n="con"></h2>
+          <label data-i18n-title="enter warhorse con" title="enter warhorse con">
+            <input data-i18n-placeholder="warhorse con" name="attr_warhorse_con" placeholder="warhorse con" title="@{warhorse_con}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 class="text-uppercase" data-i18n="dex"></h2>
+          <label data-i18n-title="enter warhorse dex" title="enter warhorse dex">
+            <input data-i18n-placeholder="warhorse dex" name="attr_warhorse_dex" placeholder="warhorse dex" title="@{warhorse_dex}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="breed"></h2>
+        <label data-i18n-title="enter warhorse breed" title="enter warhorse breed">
+          <input data-i18n-placeholder="warhorse breed" name="attr_warhorse_breed" placeholder="warhorse breed" title="@{warhorse_breed}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row">
+        <h2 class="text-primary" data-i18n="other horses"></h2>
+      </div>
+      <div class="row other-horse">
+        <h2 data-i18n="riding(#2)"></h2>
+        <label data-i18n-title="enter horse 2" title="enter horse 2">
+          <input data-i18n-placeholder="horse 2" name="attr_horse_2" placeholder="horse 2" title="@{horse_2}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="move"></h2>
+        <label data-i18n-title="enter horse 2 move" title="enter horse 2 move">
+          <input data-i18n-placeholder="horse 2 move" name="attr_horse_2_move" placeholder="horse 2 move" title="@{horse_2_move}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row other-horse">
+        <h2 data-i18n="squire(#3)"></h2>
+        <label data-i18n-title="enter horse 3" title="enter horse 3">
+          <input data-i18n-placeholder="horse 3" name="attr_horse_3" placeholder="horse 3" title="@{horse_3}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="move"></h2>
+        <label data-i18n-title="enter horse 3 move" title="enter horse 3 move">
+          <input data-i18n-placeholder="horse 3 move" name="attr_horse_3_move" placeholder="horse 3 move" title="@{horse_3_move}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row other-horse">
+        <h2 data-i18n="(#4)"></h2>
+        <label data-i18n-title="enter horse 4" title="enter horse 4">
+          <input data-i18n-placeholder="horse 4" name="attr_horse_4" placeholder="horse 4" title="@{horse_4}" type="text" value=""/>
+        </label>
+        <h2 data-i18n="move"></h2>
+        <label data-i18n-title="enter horse 4 move" title="enter horse 4 move">
+          <input data-i18n-placeholder="horse 4 move" name="attr_horse_4_move" placeholder="horse 4 move" title="@{horse_4_move}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_horses">
+          <div class="row">
+            <label data-i18n-title="enter horse" title="enter horse">
+              <input data-i18n-placeholder="horse" name="attr_horse" placeholder="horse" title="@{horse}" type="text" value=""/>
+            </label>
+            <h2 data-i18n="move"></h2>
+            <label data-i18n-title="enter horse move" title="enter horse move">
+              <input data-i18n-placeholder="horse move" name="attr_horse_move" placeholder="horse move" title="@{horse_move}" type="text" value=""/>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="holdings grid">
+  <div class="col">
+    <div class="annual-glory">
+      <div class="header">
+        <h1 data-i18n="annual glory rewards"></h1>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="traits"></h2>
+        <label data-i18n-title="enter annual glory rewards traits" title="enter annual glory rewards traits">
+          <input data-i18n-placeholder="annual glory rewards traits" name="attr_annual_glory_rewards_traits" placeholder="annual glory rewards traits" title="@{annual_glory_rewards_traits}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="chivalry"></h2>
+        <label data-i18n-title="enter annual glory rewards chivalry" title="enter annual glory rewards chivalry">
+          <input data-i18n-placeholder="annual glory rewards chivalry" name="attr_annual_glory_rewards_chivalry" placeholder="annual glory rewards chivalry" title="@{annual_glory_rewards_chivalry}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="holdings"></h2>
+        <label data-i18n-title="enter annual glory rewards holdings" title="enter annual glory rewards holdings">
+          <input data-i18n-placeholder="annual glory rewards holdings" name="attr_annual_glory_rewards_holdings" placeholder="annual glory rewards holdings" title="@{annual_glory_rewards_holdings}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="passions"></h2>
+        <label data-i18n-title="enter annual glory rewards passions" title="enter annual glory rewards passions">
+          <input data-i18n-placeholder="annual glory rewards passions" name="attr_annual_glory_rewards_passions" placeholder="annual glory rewards passions" title="@{annual_glory_rewards_passions}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="religion"></h2>
+        <label data-i18n-title="enter annual glory rewards religion" title="enter annual glory rewards religion">
+          <input data-i18n-placeholder="annual glory rewards religion" name="attr_annual_glory_rewards_religion" placeholder="annual glory rewards religion" title="@{annual_glory_rewards_religion}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="total"></h2>
+        <label data-i18n-title="enter annual glory rewards total" title="enter annual glory rewards total">
+          <input data-i18n-placeholder="annual glory rewards total" name="attr_annual_glory_rewards_total" placeholder="annual glory rewards total" title="@{annual_glory_rewards_total}" type="text" value=""/>
+        </label>
+      </div>
+    </div>
+    <div class="holdings-row">
+      <div class="header">
+        <h1 data-i18n="holdings"></h1>
+      </div>
+      <div class="row">
+        <textarea name="attr_holdings"></textarea>
+      </div>
+    </div>
+    <div class="equipment-at-home">
+      <div class="header">
+        <h1 data-i18n="equipment at home"></h1>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="denarii"></h2>
+        <label data-i18n-title="enter denarii" title="enter denarii">
+          <input data-i18n-placeholder="denarii" name="attr_denarii" placeholder="denarii" title="@{denarii}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="libra"></h2>
+        <label data-i18n-title="enter libra" title="enter libra">
+          <input data-i18n-placeholder="libra" name="attr_libra" placeholder="libra" title="@{libra}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row">
+        <textarea name="attr_equipment_at_home"></textarea>
+      </div>
+    </div>
+    <div class="army">
+      <div class="header">
+        <h1 data-i18n="army"></h1>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="old knights"></h2>
+        <label data-i18n-title="enter old knights" title="enter old knights">
+          <input data-i18n-placeholder="old knights" name="attr_old_knights" placeholder="old knights" title="@{old_knights}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="middle aged knights"></h2>
+        <label data-i18n-title="enter middle aged knights" title="enter middle aged knights">
+          <input data-i18n-placeholder="middle aged knights" name="attr_middle_aged_knights" placeholder="middle aged knights" title="@{middle_aged_knights}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="young knights"></h2>
+        <label data-i18n-title="enter young knights" title="enter young knights">
+          <input data-i18n-placeholder="young knights" name="attr_young_knights" placeholder="young knights" title="@{young_knights}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="total family knights"></h2>
+        <label data-i18n-title="enter total family knights" title="enter total family knights">
+          <input data-i18n-placeholder="total family knights" name="attr_total_family_knights" placeholder="total family knights" title="@{total_family_knights}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="vassal knights"></h2>
+        <label data-i18n-title="enter vassal knights" title="enter vassal knights">
+          <input data-i18n-placeholder="vassal knights" name="attr_vassal_knights" placeholder="vassal knights" title="@{vassal_knights}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="other lineage men"></h2>
+        <label data-i18n-title="enter other lineage men" title="enter other lineage men">
+          <input data-i18n-placeholder="other lineage men" name="attr_other_lineage_men" placeholder="other lineage men" title="@{other_lineage_men}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="levy"></h2>
+        <label data-i18n-title="enter levy" title="enter levy">
+          <input data-i18n-placeholder="levy" name="attr_levy" placeholder="levy" title="@{levy}" type="text" value=""/>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="col gold-left-border">
+    <div class="family-history">
+      <div class="row gold-bottom-border">
+        <h1 data-i18n="family history and events"></h1>
+      </div>
+      <div class="row">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="born"></h2>
+          <label data-i18n-title="enter born" title="enter born">
+            <input data-i18n-placeholder="born" name="attr_born" placeholder="born" title="@{born}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="squired"></h2>
+          <label data-i18n-title="enter squired" title="enter squired">
+            <input data-i18n-placeholder="squired" name="attr_squired" placeholder="squired" title="@{squired}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="knighted"></h2>
+          <label data-i18n-title="enter knighted" title="enter knighted">
+            <input data-i18n-placeholder="knighted" name="attr_knighted" placeholder="knighted" title="@{knighted}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="member of the round table"></h2>
+          <label data-i18n-title="enter member of the round table" title="enter member of the round table">
+            <input data-i18n-placeholder="member of the round table" name="attr_member_of_the_round_table" placeholder="member of the round table" title="@{member_of_the_round_table}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="landed"></h2>
+          <label data-i18n-title="enter landed" title="enter landed">
+            <input data-i18n-placeholder="landed" name="attr_landed" placeholder="landed" title="@{landed}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="titled"></h2>
+          <label data-i18n-title="enter titled" title="enter titled">
+            <input data-i18n-placeholder="titled" name="attr_titled" placeholder="titled" title="@{titled}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="wed"></h2>
+          <label data-i18n-title="enter wed" title="enter wed">
+            <input data-i18n-placeholder="wed" name="attr_wed" placeholder="wed" title="@{wed}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="died"></h2>
+          <label data-i18n-title="enter died" title="enter died">
+            <input data-i18n-placeholder="died" name="attr_died" placeholder="died" title="@{died}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="father name"></h2>
+          <label data-i18n-title="enter father name" title="enter father name">
+            <input data-i18n-placeholder="father name" name="attr_father_name" placeholder="father name" title="@{father_name}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="class"></h2>
+          <label data-i18n-title="enter class" title="enter class">
+            <input data-i18n-placeholder="class" name="attr_class" placeholder="class" title="@{class}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="glory to sons"></h2>
+          <label data-i18n-title="enter glory to sons" title="enter glory to sons">
+            <input data-i18n-placeholder="glory to sons" name="attr_glory_to_sons" placeholder="glory to sons" title="@{glory_to_sons}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col 2autocolumn">
+          <h2 data-i18n="family characteristic"></h2>
+          <label data-i18n-title="enter family characteristic" title="enter family characteristic">
+            <input data-i18n-placeholder="family characteristic" name="attr_family_characteristic" placeholder="family characteristic" title="@{family_characteristic}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="wife"></h2>
+          <label data-i18n-title="enter wife" title="enter wife">
+            <input data-i18n-placeholder="wife" name="attr_wife" placeholder="wife" title="@{wife}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="lover"></h2>
+          <label data-i18n-title="enter lover" title="enter lover">
+            <input data-i18n-placeholder="lover" name="attr_lover" placeholder="lover" title="@{lover}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="children"></h2>
+          <label data-i18n-title="enter children" title="enter children">
+            <input data-i18n-placeholder="children" name="attr_children" placeholder="children" title="@{children}" type="text" value=""/>
+          </label>
+        </div>
+        <div class="col 2autocolumn">
+          <h2 data-i18n="will"></h2>
+          <label data-i18n-title="enter will" title="enter will">
+            <input data-i18n-placeholder="will" name="attr_will" placeholder="will" title="@{will}" type="text" value=""/>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="character-history">
+      <div class="row gold-bottom-border">
+        <h1 data-i18n="character history"></h1>
+        <h1 data-i18n="glory"></h1>
+      </div>
+      <div class="row events">
+        <h2 data-i18n="date"></h2>
+        <h2 data-i18n="important event"></h2>
+        <h2 data-i18n="new"></h2>
+        <h2 data-i18n="total"></h2>
+      </div>
+      <div class="repeating-container">
+        <fieldset class="repeating_events">
+          <div class="row events">
+            <label data-i18n-title="enter date" title="enter date">
+              <input data-i18n-placeholder="date" name="attr_date" placeholder="date" title="@{date}" type="text" value=""/>
+            </label>
+            <label data-i18n-title="enter event" title="enter event">
+              <input data-i18n-placeholder="event" name="attr_event" placeholder="event" title="@{event}" type="text" value=""/>
+            </label>
+            <label data-i18n-title="enter new glory" title="enter new glory">
+              <input name="attr_new_glory" placeholder="#" title="@{new_glory}" type="number" value=""/>
+            </label>
+            <label data-i18n-title="enter total glory" title="enter total glory">
+              <input name="attr_total_glory" placeholder="#" title="@{total_glory}" type="number" value=""/>
+            </label>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="notes"></div>
+<div class="options"></div>
+<footer><span>Version </span><span name="attr_version"></span></footer>
+<input name="attr_version" type="hidden" value="1"/>
+<div class="rolltemplates">
+  <rolltemplate class="sheet-rolltemplate-rolls">
+    <!-- - Display a header on the template --->
+    <div class="sheet-template-header">{{#header}}{{header}}{{/header}}</div>
+    <!-- - Display the dice roll in the template --->
+    <div class="sheet-template-body">{{#dice}}
+      <div class="sheet-template-row">{{dice}}</div>{/dice}}
+      <!-- - Display a description. This is great for text included with a roll --->{{#desc}}
+      <div class="sheet-template-row"><span class="sheet-template-desc"></span></div>{{/desc}}
+    </div>
+  </rolltemplate>
+</div>

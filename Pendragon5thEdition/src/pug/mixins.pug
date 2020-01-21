@@ -1,0 +1,24 @@
+mixin textInput(name)
+	- const attrName = name.replace(/ /g, '_');
+	label(data-i18n-title=`enter ${name}` title=`enter ${name}`)
+		input(data-i18n-placeholder=name name=`attr_${attrName}` placeholder=name title=`@{${attrName}}` type='text' value='')
+
+mixin numberInput(name)
+	- const attrName = name.replace(/ /g, '_');
+	label(data-i18n-title=`enter ${name}` title=`enter ${name}`)
+		input(name=`attr_${attrName}` placeholder='#' title=`@{${attrName}}` type='number' value='')
+
+mixin checkboxInput(name)
+	- const attrName = name.replace(/ /g, '_');
+	label(data-i18n-title=`check ${name}` title=`check ${name}`)
+		input(name=`attr_${attrName}` title=`@{${attrName}}` type='checkbox' value=name)
+
+mixin rollButton(name)
+	- const attrName = name.replace(/ /g, '-');
+	button(data-i18n=name name=`roll_${attrName}` type='roll' value=`&{template:rolls}{{header=^{${name}}}}`)
+
+mixin repeatingRollButton(name)
+	- const attrName = name.replace(/ /g, '-');
+	button.d20(name=`roll_${name}` type='roll' value=`&{template:rolls}`) t
+
+//-button(name='roll_strength', type='roll', value='&{template:rolls}{{header=^{strength}}}{{base=^{attributes}}}{{dice=[[(@{strength}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')

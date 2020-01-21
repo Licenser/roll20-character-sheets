@@ -1,0 +1,447 @@
+input(name='attr_version' type='hidden' value='1')
+
+
+//- INCLUDES
+  =============================
+include src/pug/mixins.pug
+
+//- VARIABLES
+ =============================
+- const personalityTraits = {'chaste':'lustful', 'energetic':'lazy', 'forgiving':'vengeful','generous':'selfish','honest':'deceitful','just':'arbitrary','merciful':'cruel','modest':'proud','prudent':'reckless','spiritual':'wordly','temperate':'indulgent','trusting':'suspiciuos','valorous':'cowardly'};
+- const attributes = ['size', 'dex', 'str', 'con', 'app'];
+- const skills = ['awareness', 'boating', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
+
+//- TABS
+  =============================
+input.type(name='attr_sheet_type', type='hidden', value='knight')
+input.display_string(name='attr_toggles', type='hidden', value='')
+
+//- .tabs
+//-   each val in ['knight', 'holdings']
+//-     .row
+//-       label(data-i18n-title=`change sheet type to ${val}` title=`change sheet type to ${val}`)
+//-         if val === 'knight'
+//-           input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val selected)
+//-         else 
+//-           input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
+//-         span(data-i18n=val)
+
+
+//-NPC SHEET
+  =============================
+.npc
+  .box.npc-flex
+    p NPC STUFF
+  .box.npc-flex
+    p MORE NPC STUFF 
+
+//-PC SHEET
+  =============================
+.knight.pc.grid
+  .col
+    .row
+      h1(data-i18n='King Arthur Pendragon')
+      h2(data-i18n="Knight's Character Sheet")
+    .row.2autocolumn
+      h2(data-i18n='Player:')
+      +textInput('player name')
+    .personal-data
+      .header
+        h1(data-i18n='personal data')
+      .row.2autocolumn
+        h2(data-i18n='name')
+        +textInput('name')
+      .row.2column
+        .col.2autocolumn
+          h2(data-i18n='age')
+          +numberInput('age')
+        .col.2autocolumn
+          h2(data-i18n='son number')
+          +textInput('son number')
+      .row.2autocolumn
+        h2(data-i18n='homeland')
+        +textInput('homeland')
+      .row.2column
+        each val in ['culture', 'religion']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +textInput(val)
+      each val in ['lord', 'current class', 'current home']
+        .row.2autocolumn(class=`${val.replace(' ', '-')}`)
+          h2(data-i18n=val)
+          +textInput(val)
+    .personality-traits
+      .header
+        h1(data-i18n='personality traits')
+      .row.2autocolumn
+        h2(data-i18n='ChivalryBonus[*](total=80+)')
+        +textInput('chivalry bonus')
+      .row.2autocolumn
+        h2(data-i18n='ReligiousBonus(underlined traits all 16+)')
+        +textInput('religious bonus')
+      each val, key in personalityTraits
+        .row.traits
+          .col.font-weight-bold
+            - const chivalryBonusIndicator = ['energetic','generous','just','merciful','modest','valorous']
+            if chivalryBonusIndicator.includes(key)
+              span *
+          .col
+            +checkboxInput(`${key}_check`)
+          .col
+            +rollButton(key)
+          .col
+            +numberInput(key)
+          .col
+            span /
+          .col
+            +numberInput(key)
+          .col
+            +rollButton(val)
+          .col
+            +checkboxInput(`${val} check`)
+      .repeating-container
+        fieldset(class='repeating_directed-trait')
+          .row
+            .col
+              h2(data-i18n='directed trait')
+            .col
+              +textInput('trait')
+            .col
+              +checkboxInput(`check`)
+            .col
+              +repeatingRollButton('trait')
+    .passions
+      .header
+        h1(data-i18n='passions')
+      each val in ['loyalty lord', 'love family', 'hospitality', 'honor']
+        .row
+          .col
+            h2(data-i18n=val)
+          .col
+            +numberInput(val)
+          .col
+            +checkboxInput(`${val} check`)
+      .repeating-container
+        fieldset(class='repeating_passion')
+          .row
+            .col
+              +textInput('passion')
+            .col
+              +checkboxInput(`check`)
+            .col
+              +repeatingRollButton('passion')
+    .equipment-carried
+      .header
+        h1(data-i18n='equipment carried')
+      .row.armor
+        h2(data-i18n='armor type')
+        +textInput('armor type')
+        h2(data-i18n='points')
+        +numberInput('armor points')
+      .row.clothing
+        h2(data-i18n='clothing')
+        +textInput('clothing')
+        h2(data-i18n='libra value')
+        +numberInput('libra value')
+      each val in ['personal', 'travel', 'war']
+        .row.gear
+          +checkboxInput(`${val} gear check`)
+          h2(data-i18n=`${val} gear`)
+          +textInput(`${val} gear`)
+          h2(data-i18n=`on horse #`)
+          +numberInput(`${val} gear on horse`)
+      .repeating-container
+        fieldset(class='repeating_equipment-carried')
+          .row
+              +textInput('equipment')
+  .col.gold-left-border
+    .attributes
+      .header
+        h1(data-i18n='attributes')
+      .row.size
+        h2.text-uppercase(data-i18n='siz')
+        +textInput('size')
+        span.font-weight-bold(data-i18n='(Knockdown)')
+      .row.2autocolumn
+        h2.text-uppercase(data-i18n='dex')
+        +textInput('dexterity')
+      .row.2autocolumn
+        h2.text-uppercase(data-i18n='str')
+        +textInput('strength')
+      .row.constitution
+        h2.text-uppercase(data-i18n='con')
+        +textInput('constitution')
+        span.font-weight-bold(data-i18n='(MajorWound)')
+      .row.2autocolumn
+        h2.text-uppercase(data-i18n='app')
+        +textInput('appearance')
+      .row.damage
+        h2(data-i18n='Damage')
+        +numberInput('damage')
+        span.font-weight-bold(data-i18n='d6')
+      each val in ['healing rate', 'movement rate', 'total hit points', 'unconcious']
+        .row.2autocolumn
+          h2(data-i18n=val)
+          +numberInput(val)
+    .distinctive-features
+      .header
+        h1(data-i18n='distinctive features')
+      .row
+        textarea(data-i18n-placeholder='distinctive features' name='attr_distinctive_features' placeholder='distinctive features')
+    .skills
+      .header
+        h1(data-i18n='skills')
+      each val in skills
+        .row.3autocolumn(class=`${val}`)
+            +rollButton(val)
+            if val === 'play' || val === 'read' || val === 'religion'
+              +textInput(`${val} name`)
+            +numberInput(val)
+            +checkboxInput(`${val} check`)
+      .repeating-container
+        fieldset(class='repeating_skills')
+          .row
+              +textInput('skill')
+              +checkboxInput(`check`)
+              +repeatingRollButton('skill')
+    .squire
+      .header
+        h1(data-i18n='squire')
+      each val in ['name', 'age']
+        .row.2autocolumn
+          h2(data-i18n=val)
+          +textInput(val)
+      each val in ['first aid', 'battle', 'horsemanship']
+        .row.3autocolumn
+          +rollButton(val)
+          +numberInput(val)
+      .repeating-container
+        fieldset(class='repeating_squire')
+          .row
+              +textInput('skill')
+              +checkboxInput(`check`)
+              +repeatingRollButton('skill')
+
+
+  .col.gold-left-border
+    .glory
+      .header
+        h1(data-i18n='glory')
+      .row.2column
+        .col.2autocolumn
+          h2(data-i18n='this game')
+          +textInput('glory this game')
+        .col.2autocolumn
+          h2(data-i18n='total')
+          +textInput('glory total')
+    .current-hit-points
+        .header
+          h1(data-i18n='current hit points')
+        .row
+          +numberInput('current hit points')
+        .row
+          h2(data-i18n='wounds')
+          textarea(data-i18n-placeholder='wounds' name='attr_wounds' placeholder='wounds')
+        .row.chirugery-needed
+          +checkboxInput('chirugery needed')
+          h2(data-i18n='chirugery needed')
+    .combat-skills
+      .header
+        h1(data-i18n='combat skills')
+      each val in ['battle', 'horsemanship']
+        .row.3autocolumn
+          h2(data-i18n=val)
+          +textInput(val)
+      .row
+        h2.text-primary(data-i18n='weapon skills')
+      each val in ['sword', 'lance', 'spear', 'dagger']
+        .row.3autocolumn
+          h2(data-i18n=val)
+          +textInput(val)
+      .repeating-container
+        fieldset(class='repeating_combat-skills')
+          .row
+              +textInput('skill')
+              +checkboxInput(`check`)
+              +repeatingRollButton('skill')
+    .jouse-score
+      .header
+        h1(data-i18n='jouse score')
+      .row.2column
+        each val in ['win', 'losses']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +numberInput(val)
+    .horse
+      .header
+        h1(data-i18n='horses')
+      .row
+        h2.text-primary(data-i18n='best warhorse (#1)')
+      .row.2autocolumn
+        h2(data-i18n='type')
+        +textInput('warhorse type')
+      .row.2column
+        each val in ['damage', 'move']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +textInput(`warhorse ${val}`)
+      .row.2column
+        each val in ['armor', 'hp']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +textInput(`warhorse ${val}`)
+      .row.3column
+        each val in ['siz', 'con', 'dex']
+          .col.2autocolumn
+            h2.text-uppercase(data-i18n=`${val}`)
+            +textInput(`warhorse ${val}`)
+      .row.2autocolumn
+        h2(data-i18n='breed')
+        +textInput('warhorse breed')
+      .row
+        h2.text-primary(data-i18n='other horses')
+      .row.other-horse
+        h2(data-i18n='riding(#2)')
+        +textInput('horse 2')
+        h2(data-i18n='move')
+        +textInput('horse 2 move')
+      .row.other-horse
+        h2(data-i18n='squire(#3)')
+        +textInput('horse 3')
+        h2(data-i18n='move')
+        +textInput('horse 3 move')
+      .row.other-horse
+        h2(data-i18n='(#4)')
+        +textInput('horse 4')
+        h2(data-i18n='move')
+        +textInput('horse 4 move')
+      .repeating-container
+        fieldset(class='repeating_horses')
+          .row
+              +textInput('horse')
+              h2(data-i18n='move')
+              +textInput('horse move')
+
+
+
+.holdings.grid
+  .col
+    .annual-glory
+      .header
+        h1(data-i18n='annual glory rewards')
+      each val in ['traits', 'chivalry', 'holdings', 'passions', 'religion', 'total']
+        .row.2autocolumn
+          h2(data-i18n=val)
+          +textInput(`annual glory rewards ${val}`)
+    .holdings-row
+      .header
+        h1(data-i18n='holdings')
+      .row
+        textarea(name='attr_holdings')
+    .equipment-at-home
+      .header
+        h1(data-i18n='equipment at home')
+      .row.2autocolumn
+        h2(data-i18n='denarii')
+        +textInput(`denarii`)
+      .row.2autocolumn
+        h2(data-i18n='libra')
+        +textInput(`libra`)
+      .row
+        textarea(name='attr_equipment_at_home')
+    .army
+      .header
+        h1(data-i18n='army')
+      each val in ['old knights', 'middle aged knights', 'young knights', 'total family knights', 'vassal knights', 'other lineage men', 'levy']
+        .row.2autocolumn
+          h2(data-i18n=val)
+          +textInput(val)
+
+  .col.gold-left-border
+    .family-history
+      .row.gold-bottom-border
+        h1(data-i18n='family history and events')
+      .row
+        each val in ['born', 'squired', 'knighted', 'member of the round table']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +textInput(val)
+      .row
+        each val in ['landed', 'titled', 'wed', 'died']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +textInput(val)
+      .row
+        each val in ['father name', 'class', 'glory to sons']
+          .col.2autocolumn
+            h2(data-i18n=val)
+            +textInput(val)
+      .row
+        each val in ['family characteristic', 'wife', 'lover', 'children', 'will']
+          .col.2autocolumn
+              h2(data-i18n=val)
+              +textInput(val)
+
+
+
+    .character-history
+      .row.gold-bottom-border
+        h1(data-i18n='character history')
+        h1(data-i18n='glory')
+      .row.events
+        h2(data-i18n='date')
+        h2(data-i18n='important event')
+        h2(data-i18n='new')
+        h2(data-i18n='total')
+      .repeating-container
+        fieldset(class='repeating_events')
+          .row.events
+            +textInput('date')
+            +textInput('event')
+            +numberInput('new glory')
+            +numberInput('total glory')
+
+
+
+
+
+
+
+//- NOTES SHEET
+  =============================
+.notes
+
+//-OPTIONS SHEET
+  =============================
+.options
+
+//-FOOTER
+  =============================
+footer
+  span Version 
+  span(name='attr_version')
+
+//-HIDDEN ATTRIBUTES
+  =============================
+input(name='attr_version', type='hidden', value='1')
+
+//-ROLL TEMPLATE
+  =============================
+.rolltemplates
+  rolltemplate.sheet-rolltemplate-rolls
+    // - Display a header on the template -
+    .sheet-template-header
+      | {{#header}}{{header}}{{/header}}
+    // - Display the dice roll in the template -
+    .sheet-template-body
+      | {{#dice}}
+      .sheet-template-row {{dice}}
+      | {/dice}}
+      // - Display a description. This is great for text included with a roll -
+      | {{#desc}}
+      .sheet-template-row
+        span.sheet-template-desc
+      | {{/desc}}
+
+//- SCRIPTS
+//-include src/pug/scripts.js
