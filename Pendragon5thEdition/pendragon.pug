@@ -62,10 +62,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         h2(data-i18n='homeland')
         +textInput('homeland')
       .row.2column
-        each val in ['culture', 'religion']
-          .col.2autocolumn
-            h2(data-i18n=val)
-            +textInput(val)
+        .col.2autocolumn
+          h2(data-i18n='culture')
+          +textInput('culture')
+        .col.2autocolumn
+            h2(data-i18n='religion')
+            +textInput('personal religion')
       each val in ['lord', 'current class', 'current home']
         .row.2autocolumn(class=`${val.replace(' ', '-')}`)
           h2(data-i18n=val)
@@ -94,7 +96,7 @@ input.display_string(name='attr_toggles', type='hidden', value='')
           .col
             span /
           .col
-            +numberInput(key)
+            +numberInput(val)
           .col
             +rollButton(val)
           .col

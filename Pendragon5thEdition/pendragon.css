@@ -334,3 +334,65 @@ input:checked + .sheet-slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px); }
+
+/* ROLL TEMPLATE STYLE
+----------------------------- */
+.sheet-rolltemplate-rolls div.sheet-template-container {
+  border: 2px solid #226aae;
+  border-radius: 0.3em;
+  box-shadow: inset 0px 0px 3px 1px #226aae;
+  text-align: center;
+  /* DICE ROLL STYLES
+  ----------------------------- */ }
+  .sheet-rolltemplate-rolls div.sheet-template-container .inlinerollresult.fullfail,
+  .sheet-rolltemplate-rolls div.sheet-template-container .inlinerollresult.fullcrit,
+  .sheet-rolltemplate-rolls div.sheet-template-container .inlinerollresult.importantroll {
+    border: none; }
+  .sheet-rolltemplate-rolls div.sheet-template-container .inlinerollresult.fullfail, .sheet-rolltemplate-rolls div.sheet-template-container .inlinerollresult.fullcrit {
+    color: #226aae; }
+  .sheet-rolltemplate-rolls div.sheet-template-container .inlinerollresult {
+    background-color: transparent;
+    border: none;
+    font-weight: unset;
+    font-size: unset;
+    padding: unset; }
+  .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header {
+    background-color: #226aae;
+    border-bottom: 2px solid #4c4c4c;
+    padding: 2%;
+    text-transform: capitalize; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header h1, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header h2 {
+      display: inline;
+      line-height: 1.2em; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header h1 {
+      color: #226aae;
+      font-variant: small-caps;
+      font-size: 1.6em; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header h2 {
+      color: black;
+      font-size: 1.15em; }
+  .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row {
+    background-color: #226aae;
+    padding: 3%; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row:nth-child(2n+0) {
+      background-color: #d6af5e; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row a[href^="~"] {
+      background-color: #fefcea !important;
+      font-weight: bold !important;
+      color: #226aae;
+      font-size: 0.8em;
+      border-bottom: 0.01em solid #666;
+      border-bottom-right-radius: 0.01em;
+      border-color: #b3b3b3;
+      border-radius: 0.25em;
+      border-right: 0.02em solid #333333;
+      border-style: outset; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row span.sheet-inlinerollresult {
+      color: #226aae;
+      font-size: 1.5em;
+      font-weight: bold;
+      cursor: help;
+      padding: 0 3px 0 3px; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row span.sheet-percent, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row span.sheet-template-desc {
+      color: #226aae;
+      font-size: 1.2em; }

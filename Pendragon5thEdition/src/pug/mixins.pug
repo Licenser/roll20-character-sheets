@@ -15,10 +15,8 @@ mixin checkboxInput(name)
 
 mixin rollButton(name)
 	- const attrName = name.replace(/ /g, '-');
-	button(data-i18n=name name=`roll_${attrName}` type='roll' value=`&{template:rolls}{{header=^{${name}}}}`)
+	button(data-i18n=name name=`roll_${attrName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}`)
 
 mixin repeatingRollButton(name)
 	- const attrName = name.replace(/ /g, '-');
-	button.d20(name=`roll_${name}` type='roll' value=`&{template:rolls}`) t
-
-//-button(name='roll_strength', type='roll', value='&{template:rolls}{{header=^{strength}}}{{base=^{attributes}}}{{dice=[[(@{strength}+(@{attribute_roll})+@{wound_toggle}+@{modifier_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{mod=[[@{modifier_toggle}]]}}{{wound=[[@{wound_toggle}]]}}{{edge=[[@{edge_toggle}]]}}')
+	button.d20(name=`roll_${name}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}`) t
