@@ -90,13 +90,13 @@
         <h1 data-i18n="personality traits"></h1>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="ChivalryBonus[*](total=80+)"></h2>
+        <h2 data-i18n="Chivalry Bonus[*](total=80+)"></h2>
         <label data-i18n-title="enter chivalry bonus" title="enter chivalry bonus">
           <input data-i18n-placeholder="chivalry bonus" name="attr_chivalry_bonus" placeholder="chivalry bonus" title="@{chivalry_bonus}" type="text" value=""/>
         </label>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="ReligiousBonus(underlined traits all 16+)"></h2>
+        <h2 data-i18n="Religious Bonus(traits all 16+)"></h2>
         <label data-i18n-title="enter religious bonus" title="enter religious bonus">
           <input data-i18n-placeholder="religious bonus" name="attr_religious_bonus" placeholder="religious bonus" title="@{religious_bonus}" type="text" value=""/>
         </label>
@@ -358,64 +358,40 @@
         <h1 data-i18n="passions"></h1>
       </div>
       <div class="row">
-        <div class="col">
-          <h2 data-i18n="loyalty lord"></h2>
-        </div>
-        <div class="col">
-          <label data-i18n-title="enter loyalty lord" title="enter loyalty lord">
-            <input name="attr_loyalty_lord" placeholder="#" title="@{loyalty_lord}" type="number" value=""/>
-          </label>
-        </div>
-        <div class="col">
-          <label data-i18n-title="check loyalty lord check" title="check loyalty lord check">
-            <input name="attr_loyalty_lord_check" title="@{loyalty_lord_check}" type="checkbox" value="loyalty lord check"/>
-          </label>
-        </div>
+        <button class="text-capitalize" data-i18n="loyalty lord" name="roll_loyalty-lord" type="roll" value="&{template:rolls} {{header=^{loyalty lord}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{loyalty_lord}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter loyalty lord" title="enter loyalty lord">
+          <input name="attr_loyalty_lord" placeholder="#" title="@{loyalty_lord}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check loyalty lord check" title="check loyalty lord check">
+          <input name="attr_loyalty_lord_check" title="@{loyalty_lord_check}" type="checkbox" value="loyalty lord check"/>
+        </label>
       </div>
       <div class="row">
-        <div class="col">
-          <h2 data-i18n="love family"></h2>
-        </div>
-        <div class="col">
-          <label data-i18n-title="enter love family" title="enter love family">
-            <input name="attr_love_family" placeholder="#" title="@{love_family}" type="number" value=""/>
-          </label>
-        </div>
-        <div class="col">
-          <label data-i18n-title="check love family check" title="check love family check">
-            <input name="attr_love_family_check" title="@{love_family_check}" type="checkbox" value="love family check"/>
-          </label>
-        </div>
+        <button class="text-capitalize" data-i18n="love family" name="roll_love-family" type="roll" value="&{template:rolls} {{header=^{love family}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{love_family}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter love family" title="enter love family">
+          <input name="attr_love_family" placeholder="#" title="@{love_family}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check love family check" title="check love family check">
+          <input name="attr_love_family_check" title="@{love_family_check}" type="checkbox" value="love family check"/>
+        </label>
       </div>
       <div class="row">
-        <div class="col">
-          <h2 data-i18n="hospitality"></h2>
-        </div>
-        <div class="col">
-          <label data-i18n-title="enter hospitality" title="enter hospitality">
-            <input name="attr_hospitality" placeholder="#" title="@{hospitality}" type="number" value=""/>
-          </label>
-        </div>
-        <div class="col">
-          <label data-i18n-title="check hospitality check" title="check hospitality check">
-            <input name="attr_hospitality_check" title="@{hospitality_check}" type="checkbox" value="hospitality check"/>
-          </label>
-        </div>
+        <button class="text-capitalize" data-i18n="hospitality" name="roll_hospitality" type="roll" value="&{template:rolls} {{header=^{hospitality}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{hospitality}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter hospitality" title="enter hospitality">
+          <input name="attr_hospitality" placeholder="#" title="@{hospitality}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check hospitality check" title="check hospitality check">
+          <input name="attr_hospitality_check" title="@{hospitality_check}" type="checkbox" value="hospitality check"/>
+        </label>
       </div>
       <div class="row">
-        <div class="col">
-          <h2 data-i18n="honor"></h2>
-        </div>
-        <div class="col">
-          <label data-i18n-title="enter honor" title="enter honor">
-            <input name="attr_honor" placeholder="#" title="@{honor}" type="number" value=""/>
-          </label>
-        </div>
-        <div class="col">
-          <label data-i18n-title="check honor check" title="check honor check">
-            <input name="attr_honor_check" title="@{honor_check}" type="checkbox" value="honor check"/>
-          </label>
-        </div>
+        <button class="text-capitalize" data-i18n="honor" name="roll_honor" type="roll" value="&{template:rolls} {{header=^{honor}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{honor}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter honor" title="enter honor">
+          <input name="attr_honor" placeholder="#" title="@{honor}" type="number" value=""/>
+        </label>
+        <label data-i18n-title="check honor check" title="check honor check">
+          <input name="attr_honor_check" title="@{honor_check}" type="checkbox" value="honor check"/>
+        </label>
       </div>
       <div class="repeating-container">
         <fieldset class="repeating_passion">
@@ -544,7 +520,7 @@
         </label>
       </div>
       <div class="row damage">
-        <button class="text-capitalize" data-i18n="damage" name="roll_damage" type="roll" value="&{template:rolls}{{header=^{damage}}}{{dice=[[@{damage}d6]]}}"></button>
+        <button class="text-capitalize" data-i18n="damage" name="roll_damage" type="roll" value="&{template:rolls} {{header=^{damage}}} {{damage=[[@{damage}d6]]}}"></button>
         <label data-i18n-title="enter damage" title="enter damage">
           <input name="attr_damage" placeholder="#" title="@{damage}" type="number" value=""/>
         </label><span class="font-weight-bold" data-i18n="d6"></span>
@@ -1041,7 +1017,7 @@
       </div>
       <div class="row 2column">
         <div class="col 2autocolumn">
-          <h2 data-i18n="damage"></h2>
+          <button class="text-capitalize" data-i18n="damage" name="roll_warhorse-damage" type="roll" value="&{template:rolls} {{header=^{warhorse damage}}} {{damage=[[@{warhorse_damage}d6]]}}"></button>
           <label data-i18n-title="enter warhorse damage" title="enter warhorse damage">
             <input data-i18n-placeholder="warhorse damage" name="attr_warhorse_damage" placeholder="warhorse damage" title="@{warhorse_damage}" type="text" value=""/>
           </label>
@@ -1057,13 +1033,13 @@
         <div class="col 2autocolumn">
           <h2 data-i18n="armor"></h2>
           <label data-i18n-title="enter warhorse armor" title="enter warhorse armor">
-            <input data-i18n-placeholder="warhorse armor" name="attr_warhorse_armor" placeholder="warhorse armor" title="@{warhorse_armor}" type="text" value=""/>
+            <input name="attr_warhorse_armor" placeholder="#" title="@{warhorse_armor}" type="number" value=""/>
           </label>
         </div>
         <div class="col 2autocolumn">
           <h2 data-i18n="hp"></h2>
           <label data-i18n-title="enter warhorse hp" title="enter warhorse hp">
-            <input data-i18n-placeholder="warhorse hp" name="attr_warhorse_hp" placeholder="warhorse hp" title="@{warhorse_hp}" type="text" value=""/>
+            <input name="attr_warhorse_hp" placeholder="#" title="@{warhorse_hp}" type="number" value=""/>
           </label>
         </div>
       </div>
@@ -1142,10 +1118,10 @@
     </div>
     <div class="knight-details">
       <div class="header">
-        <h1 data-i18n="shield"></h1>
+        <h1 data-i18n="coat of arms"></h1>
       </div>
       <div class="row">
-        <textarea data-i18n-placeholder="shield" name="attr_shield" placeholder="shield"></textarea>
+        <textarea data-i18n-placeholder="coat of arms" name="attr_coat_of_arms" placeholder="coat of arms"></textarea>
       </div>
       <div class="header">
         <h1 data-i18n="motto"></h1>
@@ -1215,6 +1191,12 @@
         <h2 data-i18n="denarii"></h2>
         <label data-i18n-title="enter denarii" title="enter denarii">
           <input data-i18n-placeholder="denarii" name="attr_denarii" placeholder="denarii" title="@{denarii}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn">
+        <h2 data-i18n="shilling"></h2>
+        <label data-i18n-title="enter shilling" title="enter shilling">
+          <input data-i18n-placeholder="shilling" name="attr_shilling" placeholder="shilling" title="@{shilling}" type="text" value=""/>
         </label>
       </div>
       <div class="row 2autocolumn">
@@ -1429,11 +1411,14 @@
       <!-- - Display a header on the template --->
       <div class="sheet-template-header">{{#header}}{{header}}{{/header}}</div>
       <!-- - Display the dice roll in the template --->
-      <div class="sheet-template-body">
-        <div class="sheet-template-row sheet-template-roll">{{#dice}}
+      <div class="sheet-template-body">{{#dice}}
+        <div class="sheet-template-row sheet-template-roll">
           <div class="sheet-template-col"> <span>{{dice}} </span><span>Rolled</span></div>{{/dice}}
           {{#threshold}}
           <div class="sheet-template-col"> <span>{{threshold}} </span><span>Threshold</span></div>{{/threshold}}
+        </div>
+        <div class="sheet-template-row">{{#damage}}
+          <div class="sheet-template-col"> <span>{{damage}} </span><span>Rolled</span></div>{{/damage}}
         </div>{{#desc}}
         <div class="sheet-template-row"><span class="sheet-template-desc">{{desc}}</span></div>{{/desc}}
       </div>

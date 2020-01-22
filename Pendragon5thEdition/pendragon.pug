@@ -65,10 +65,10 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .header
         h1(data-i18n='personality traits')
       .row.2autocolumn
-        h2(data-i18n='ChivalryBonus[*](total=80+)')
+        h2(data-i18n='Chivalry Bonus[*](total=80+)')
         +textInput('chivalry bonus')
       .row.2autocolumn
-        h2(data-i18n='ReligiousBonus(underlined traits all 16+)')
+        h2(data-i18n='Religious Bonus(traits all 16+)')
         +textInput('religious bonus')
       each val, key in personalityTraits
         .row.traits
@@ -96,12 +96,9 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         h1(data-i18n='passions')
       each val in ['loyalty lord', 'love family', 'hospitality', 'honor']
         .row
-          .col
-            h2(data-i18n=val)
-          .col
-            +numberInput(val)
-          .col
-            +checkboxInput(`${val} check`)
+          +rollButton(val)
+          +numberInput(val)
+          +checkboxInput(`${val} check`)
       .repeating-container
         fieldset(class='repeating_passion')
           .row
@@ -270,13 +267,16 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .row.2column
         each val in ['damage', 'move']
           .col.2autocolumn
-            h2(data-i18n=val)
+            if val === 'damage'
+              +horseDamageButton(`warhorse ${val}`)
+            else
+              h2(data-i18n=val)
             +textInput(`warhorse ${val}`)
       .row.2column
         each val in ['armor', 'hp']
           .col.2autocolumn
             h2(data-i18n=val)
-            +textInput(`warhorse ${val}`)
+            +numberInput(`warhorse ${val}`)
       .row.3column
         each val in ['siz', 'con', 'dex']
           .col.2autocolumn
@@ -309,11 +309,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
               h2(data-i18n='move')
               +textInput('horse move')
     .knight-details
-      each val in ['shield', 'motto']
+      each val in ['coat of arms', 'motto']
+        - const attrName = val.replace(/ /g, '_');
         .header
           h1(data-i18n=val)
         .row
-          textarea(data-i18n-placeholder=val name=`attr_${val}` placeholder=val)
+          textarea(data-i18n-placeholder=val name=`attr_${attrName}` placeholder=val)
 
 
 
@@ -337,6 +338,9 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .row.2autocolumn
         h2(data-i18n='denarii')
         +textInput(`denarii`)
+      .row.2autocolumn
+        h2(data-i18n='shilling')
+        +textInput(`shilling`)
       .row.2autocolumn
         h2(data-i18n='libra')
         +textInput(`libra`)
@@ -427,8 +431,8 @@ footer
         | {{#header}}{{header}}{{/header}}
       // - Display the dice roll in the template -
       .sheet-template-body
+        | {{#dice}}
         .sheet-template-row.sheet-template-roll
-          | {{#dice}}
           .sheet-template-col 
             span {{dice}} 
             span Rolled
@@ -438,6 +442,12 @@ footer
             span {{threshold}} 
             span Threshold
           | {{/threshold}}
+        .sheet-template-row
+          | {{#damage}}
+          .sheet-template-col 
+            span {{damage}} 
+            span Rolled
+          | {{/damage}}
           //- Display a description. This is great for text included with a roll -
         | {{#desc}}
         .sheet-template-row

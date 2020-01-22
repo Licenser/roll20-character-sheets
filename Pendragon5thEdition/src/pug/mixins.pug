@@ -31,7 +31,13 @@ mixin squireButton(name)
 mixin damageButton(name)
 	- const buttonName = name.replace(/ /g, '-');
 	- const attrName = name.replace(/ /g, '_');
-	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[@{${attrName}}d6]]}}`)
+	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls} {{header=^{${name}}}} {{damage=[[@{${attrName}}d6]]}}`)
+
+
+mixin horseDamageButton(name)
+	- const buttonName = name.replace(/ /g, '-');
+	- const attrName = name.replace(/ /g, '_');
+	button.text-capitalize(data-i18n='damage' name=`roll_${buttonName}` type='roll' value!=`&{template:rolls} {{header=^{${name}}}} {{damage=[[@{${attrName}}d6]]}}`)
 
 mixin repeatingRollButton(name)
 	- const buttonName = name.replace(/ /g, '-');
