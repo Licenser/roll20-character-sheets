@@ -94,7 +94,7 @@ textarea {
   overflow: scroll; }
 
 .charsheet {
-  min-width: 30em; }
+  min-width: 825px; }
 
 /* HIDE DIFFERENT SHEET TYPES BY DEFAULT
    ============================= */
@@ -201,6 +201,8 @@ div.sheet-pc {
     padding-top: 5%;
     text-overflow: ellipsis;
     width: fit-content; }
+    div.sheet-pc h2[data-i18n="Knight's Character Sheet"] {
+      padding-top: 1%; }
   div.sheet-pc div.sheet-row, div.sheet-pc div.sheet-col {
     display: inline-grid;
     overflow: hidden;
@@ -237,6 +239,9 @@ div.sheet-pc {
     grid-template-columns: 2fr 1fr 5% 10%; }
   div.sheet-pc div.sheet-squire div.sheet-repeating-container div.sheet-row {
     grid-template-columns: 2fr 1fr 5% 10%; }
+  div.sheet-pc div.sheet-knight-details textarea {
+    min-height: 80px;
+    height: 80px; }
   div.sheet-pc div.sheet-current-hit-points textarea {
     height: 60%; }
   div.sheet-pc div.sheet-current-hit-points input[name='attr_current_hit_points'] {
@@ -364,11 +369,10 @@ input:checked + .sheet-slider:before {
     font-weight: bold;
     font-size: 1.5em;
     border-bottom: 2px solid black;
-    padding: 2%;
+    padding: 3% 2%;
     text-transform: capitalize; }
-  .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row {
-    background-color: whitesmoke;
-    padding: 3%; }
+  .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body {
+    background-color: whitesmoke; }
     .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row:nth-child(2n+0) {
       background-color: #fefcea; }
     .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row a[href^="~"] {
@@ -392,3 +396,15 @@ input:checked + .sheet-slider:before {
     .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row span.sheet-percent, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-row span.sheet-template-desc {
       color: #226aae;
       font-size: 1em; }
+    .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-roll {
+      display: inline-grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%; }
+      .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-roll div.sheet-template-col {
+        padding: 5%; }
+        .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-roll div.sheet-template-col:nth-of-type(2) {
+          border-left: 2px solid black; }
+        .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-roll div.sheet-template-col span {
+          display: block; }
+          .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-body div.sheet-template-roll div.sheet-template-col span:last-child {
+            margin-top: 5%; }

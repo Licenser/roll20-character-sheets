@@ -145,7 +145,7 @@
     }
 
     .charsheet {
-        min-width: 30em;
+        min-width: 825px;
     }
 
 /* HIDE DIFFERENT SHEET TYPES BY DEFAULT
@@ -283,6 +283,10 @@ div.sheet-pc {
         padding-top: 5%;
         text-overflow: ellipsis;
         width: fit-content;
+
+        &[data-i18n="Knight's Character Sheet"] {
+            padding-top: 1%;
+        }
     }
 
     div.sheet-row, div.sheet-col {
@@ -376,6 +380,13 @@ div.sheet-pc {
             div.sheet-row {
                 grid-template-columns: 2fr 1fr 5% 10%;
             }
+        }
+    }
+
+    div.sheet-knight-details {
+        textarea {
+            min-height: 80px;
+            height: 80px;
         }
     }
 
@@ -567,14 +578,14 @@ input:checked + .sheet-slider:before {
             font-weight: bold;
             font-size: 1.5em; 
             border-bottom: 2px solid $dark;
-            padding: 2%;
+            padding: 3% 2%;
             text-transform: capitalize;
         }
 
         div.sheet-template-body {
+            background-color: $white;
+
             div.sheet-template-row {
-                background-color: $white;
-                padding: 3%;
 
                 &:nth-child(2n+0) { background-color: $light; }
 
@@ -607,6 +618,28 @@ input:checked + .sheet-slider:before {
                     &.sheet-template-desc {
                         color: $primary;
                         font-size: 1em;
+                    }
+                }
+            }
+
+            div.sheet-template-roll {
+                display: inline-grid;
+                grid-template-columns: 1fr 1fr;
+                width: 100%;
+
+                div.sheet-template-col {
+                    padding: 5%;
+
+                    &:nth-of-type(2) {
+                        border-left: 2px solid $dark;
+                    }
+
+                    span {
+                        display: block;
+
+                        &:last-child {
+                            margin-top: 5%;
+                        }
                     }
                 }
             }

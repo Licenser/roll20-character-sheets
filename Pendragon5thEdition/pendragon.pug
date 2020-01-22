@@ -7,7 +7,7 @@ include src/pug/mixins.pug
 
 //- VARIABLES
  =============================
-- const personalityTraits = {'chaste':'lustful', 'energetic':'lazy', 'forgiving':'vengeful','generous':'selfish','honest':'deceitful','just':'arbitrary','merciful':'cruel','modest':'proud','prudent':'reckless','spiritual':'wordly','temperate':'indulgent','trusting':'suspiciuos','valorous':'cowardly'};
+- const personalityTraits = {'chaste':'lustful', 'energetic':'lazy', 'forgiving':'vengeful','generous':'selfish','honest':'deceitful','just':'arbitrary','merciful':'cruel','modest':'proud','prudent':'reckless','spiritual':'wordly','temperate':'indulgent','trusting':'suspicious','valorous':'cowardly'};
 - const attributes = ['size', 'dex', 'str', 'con', 'app'];
 - const skills = ['awareness', 'boating', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
 
@@ -194,9 +194,9 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       each val in ['first aid', 'battle', 'horsemanship']
         - const attrName = val.replace(/ /g, '_');
         .row.3autocolumn
-          button.text-capitalize(data-i18n=val name=`roll_${attrName}` type='roll' value!=`&{template:rolls}{{header=^{${val}}}}{{dice=[[1d20]]}}`)
+          +squireButton(val)
           label(data-i18n-title=`enter ${val}` title=`enter ${val}`)
-            input(name=`attr_squire_${val}` placeholder='#' title=`@{squire_${attrName}}` type='number' value='')
+            input(name=`attr_squire_${attrName}` placeholder='#' title=`@{squire_${attrName}}` type='number' value='')
           +checkboxInput(`squire ${val} check`)
       .repeating-container
         fieldset(class='repeating_squire')
@@ -308,6 +308,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
               +textInput('horse')
               h2(data-i18n='move')
               +textInput('horse move')
+    .knight-details
+      each val in ['shield', 'motto']
+        .header
+          h1(data-i18n=val)
+        .row
+          textarea(data-i18n-placeholder=val name=`attr_${val}` placeholder=val)
 
 
 
@@ -421,10 +427,18 @@ footer
         | {{#header}}{{header}}{{/header}}
       // - Display the dice roll in the template -
       .sheet-template-body
-        | {{#dice}}
-        .sheet-template-row {{dice}}
-        | {{/dice}}
-        //- Display a description. This is great for text included with a roll -
+        .sheet-template-row.sheet-template-roll
+          | {{#dice}}
+          .sheet-template-col 
+            span {{dice}} 
+            span Rolled
+          | {{/dice}}
+          | {{#threshold}}
+          .sheet-template-col 
+            span {{threshold}} 
+            span Threshold
+          | {{/threshold}}
+          //- Display a description. This is great for text included with a roll -
         | {{#desc}}
         .sheet-template-row
           span.sheet-template-desc {{desc}}

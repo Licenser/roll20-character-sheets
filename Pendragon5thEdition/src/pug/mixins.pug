@@ -16,13 +16,17 @@ mixin checkboxInput(name)
 mixin attributeButton(name)
 	- const buttonName = name.replace(/ /g, '-');
 	- const attrName = name.replace(/ /g, '_');
-	button.text-uppercase(data-i18n=`${name.slice(0, 3)}` name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}{{desc=[[@{${attrName}}]]}}`)
+	button.text-uppercase(data-i18n=`${name.slice(0, 3)}` name=`roll_${buttonName}` type='roll' value!=`&{template:rolls} {{header=^{${name}}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{${attrName}}[Threshold]]]}}`)
 
 mixin rollButton(name)
 	- const buttonName = name.replace(/ /g, '-');
 	- const attrName = name.replace(/ /g, '_');
-	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20]]}}{{desc=[[@{${attrName}}]]}}`)
-	//-button(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=^{${name}}}}{{dice=[[1d20<@{${attrName}}cs@{${attrName}}cf20]]}}{{desc=[[@{${attrName}}]]}}`)
+	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls} {{header=^{${name}}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{${attrName}}[Threshold]]]}}`)
+
+mixin squireButton(name)
+	- const buttonName = name.replace(/ /g, '-');
+	- const attrName = name.replace(/ /g, '_');
+	button.text-capitalize(data-i18n=name name=`roll_${buttonName}` type='roll' value!=`&{template:rolls} {{header=Squire's ^{${name}}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{squire_${attrName}}[Threshold]]]}}`)
 
 mixin damageButton(name)
 	- const buttonName = name.replace(/ /g, '-');
@@ -32,4 +36,4 @@ mixin damageButton(name)
 mixin repeatingRollButton(name)
 	- const buttonName = name.replace(/ /g, '-');
 	- const attrName = name.replace(/ /g, '_');
-	button.d20(name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=@{name}}}{{dice=[[1d20]]}}{{desc=[[@{${attrName}}]]}}`) t
+	button.d20(name=`roll_${buttonName}` type='roll' value!=`&{template:rolls}{{header=@{name}}}{{dice=[[1d20[Roll]]]}} {{threshold=[[@{${attrName}}[Threshold]]]}}`) t
