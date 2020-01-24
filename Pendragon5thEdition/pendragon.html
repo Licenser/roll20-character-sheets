@@ -528,19 +528,19 @@
         </label>
       </div>
       <div class="row damage">
-        <button class="text-capitalize" data-i18n="damage" name="roll_damage" type="roll" value="&{template:rolls} {{header=^{damage}}} {{damage=[[@{damage}d6]]}}"></button><span class="text-center" name="attr_damage"></span><span class="font-weight-bold" data-i18n="d6"></span>
+        <button class="text-capitalize" data-i18n="damage" name="roll_damage" type="roll" value="&{template:rolls} {{header=^{damage}}} {{damage=[[@{damage}d6]]}}"></button><span class="text-center display" name="attr_damage"></span><span class="font-weight-bold" data-i18n="d6"></span>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="healing rate"></h2><span class="text-center" name="attr_healing_rate"></span>
+        <h2 data-i18n="healing rate"></h2><span class="text-center display" name="attr_healing_rate"></span>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="movement rate"></h2><span class="text-center" name="attr_movement_rate"></span>
+        <h2 data-i18n="movement rate"></h2><span class="text-center display" name="attr_movement_rate"></span>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="total hit points"></h2><span class="text-center" name="attr_total_hit_points"></span>
+        <h2 data-i18n="total hit points"></h2><span class="text-center display" name="attr_total_hit_points"></span>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="unconcious"></h2><span class="text-center" name="attr_unconcious"></span>
+        <h2 data-i18n="unconcious"></h2><span class="text-center display" name="attr_unconcious"></span>
       </div>
     </div>
     <div class="distinctive-features">
@@ -616,6 +616,15 @@
         </label>
         <label data-i18n-title="check falconry check" title="check falconry check">
           <input name="attr_falconry_check" title="@{falconry_check}" type="checkbox" value="falconry check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn fashion">
+        <button class="text-capitalize" data-i18n="fashion" name="roll_fashion" type="roll" value="&{template:rolls} {{header=^{fashion}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{fashion}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter fashion" title="enter fashion">
+          <input name="attr_fashion" placeholder="#" title="@{fashion}" type="number" value="0"/>
+        </label>
+        <label data-i18n-title="check fashion check" title="check fashion check">
+          <input name="attr_fashion_check" title="@{fashion_check}" type="checkbox" value="fashion check"/>
         </label>
       </div>
       <div class="row 3autocolumn first aid">
@@ -810,7 +819,7 @@
       <div class="row 2autocolumn">
         <h2 data-i18n="age"></h2>
         <label data-i18n-title="enter squire age" title="enter squire age">
-          <input data-i18n-placeholder="squire age" name="attr_squire_age" placeholder="squire age" title="@{squire_age}" type="text" value=""/>
+          <input name="attr_squire_age" placeholder="#" title="@{squire_age}" type="number" value="0"/>
         </label>
       </div>
       <div class="row 3autocolumn">
@@ -867,13 +876,13 @@
         <div class="col 2autocolumn">
           <h2 data-i18n="this game"></h2>
           <label data-i18n-title="enter glory this game" title="enter glory this game">
-            <input data-i18n-placeholder="glory this game" name="attr_glory_this_game" placeholder="glory this game" title="@{glory_this_game}" type="text" value=""/>
+            <input name="attr_glory_this_game" placeholder="#" title="@{glory_this_game}" type="number" value="0"/>
           </label>
         </div>
         <div class="col 2autocolumn">
           <h2 data-i18n="total"></h2>
           <label data-i18n-title="enter glory total" title="enter glory total">
-            <input data-i18n-placeholder="glory total" name="attr_glory_total" placeholder="glory total" title="@{glory_total}" type="text" value=""/>
+            <input name="attr_glory_total" placeholder="#" title="@{glory_total}" type="number" value="0"/>
           </label>
         </div>
       </div>
@@ -1213,43 +1222,40 @@
       <div class="row 2autocolumn">
         <h2 data-i18n="old knights"></h2>
         <label data-i18n-title="enter old knights" title="enter old knights">
-          <input data-i18n-placeholder="old knights" name="attr_old_knights" placeholder="old knights" title="@{old_knights}" type="text" value=""/>
+          <input name="attr_old_knights" placeholder="#" title="@{old_knights}" type="number" value="0"/>
         </label>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="middle aged knights"></h2>
         <label data-i18n-title="enter middle aged knights" title="enter middle aged knights">
-          <input data-i18n-placeholder="middle aged knights" name="attr_middle_aged_knights" placeholder="middle aged knights" title="@{middle_aged_knights}" type="text" value=""/>
+          <input name="attr_middle_aged_knights" placeholder="#" title="@{middle_aged_knights}" type="number" value="0"/>
         </label>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="young knights"></h2>
         <label data-i18n-title="enter young knights" title="enter young knights">
-          <input data-i18n-placeholder="young knights" name="attr_young_knights" placeholder="young knights" title="@{young_knights}" type="text" value=""/>
+          <input name="attr_young_knights" placeholder="#" title="@{young_knights}" type="number" value="0"/>
         </label>
       </div>
       <div class="row 2autocolumn">
-        <h2 data-i18n="total family knights"></h2>
-        <label data-i18n-title="enter total family knights" title="enter total family knights">
-          <input data-i18n-placeholder="total family knights" name="attr_total_family_knights" placeholder="total family knights" title="@{total_family_knights}" type="text" value=""/>
-        </label>
+        <h2 data-i18n="total family knights"></h2><span class="text-center display" name="attr_total_family_knights"></span>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="vassal knights"></h2>
         <label data-i18n-title="enter vassal knights" title="enter vassal knights">
-          <input data-i18n-placeholder="vassal knights" name="attr_vassal_knights" placeholder="vassal knights" title="@{vassal_knights}" type="text" value=""/>
+          <input name="attr_vassal_knights" placeholder="#" title="@{vassal_knights}" type="number" value="0"/>
         </label>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="other lineage men"></h2>
         <label data-i18n-title="enter other lineage men" title="enter other lineage men">
-          <input data-i18n-placeholder="other lineage men" name="attr_other_lineage_men" placeholder="other lineage men" title="@{other_lineage_men}" type="text" value=""/>
+          <input name="attr_other_lineage_men" placeholder="#" title="@{other_lineage_men}" type="number" value="0"/>
         </label>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="levy"></h2>
         <label data-i18n-title="enter levy" title="enter levy">
-          <input data-i18n-placeholder="levy" name="attr_levy" placeholder="levy" title="@{levy}" type="text" value=""/>
+          <input name="attr_levy" placeholder="#" title="@{levy}" type="number" value="0"/>
         </label>
       </div>
       <div class="row">
@@ -1262,7 +1268,7 @@
       <div class="row gold-bottom-border">
         <h1 data-i18n="family history and events"></h1>
       </div>
-      <div class="row">
+      <div class="row grid col-4">
         <div class="col 2autocolumn">
           <h2 data-i18n="born"></h2>
           <label data-i18n-title="enter born" title="enter born">
@@ -1281,6 +1287,8 @@
             <input data-i18n-placeholder="knighted" name="attr_knighted" placeholder="knighted" title="@{knighted}" type="text" value=""/>
           </label>
         </div>
+      </div>
+      <div class="row grid">
         <div class="col 2autocolumn">
           <h2 data-i18n="member of the round table"></h2>
           <label data-i18n-title="enter member of the round table" title="enter member of the round table">
@@ -1288,7 +1296,7 @@
           </label>
         </div>
       </div>
-      <div class="row">
+      <div class="row grid col-4">
         <div class="col 2autocolumn">
           <h2 data-i18n="landed"></h2>
           <label data-i18n-title="enter landed" title="enter landed">
@@ -1314,7 +1322,7 @@
           </label>
         </div>
       </div>
-      <div class="row">
+      <div class="row grid col-3">
         <div class="col 2autocolumn">
           <h2 data-i18n="father name"></h2>
           <label data-i18n-title="enter father name" title="enter father name">
@@ -1424,11 +1432,12 @@
   </rolltemplate>
 </div>
 <script type="text/worker">const attributes = {
-	damage: ["strength", "size"],
-	healing: ["strength", "constitution"],
-	movement: ["strength", "dexterity"],
-	hp: ["size", "constitution"],
-	unconcious: ["total_hit_points"]
+	damage: ['strength', 'size'],
+	healing: ['strength', 'constitution'],
+	movement: ['strength', 'dexterity'],
+	hp: ['size', 'constitution'],
+	unconcious: ['total_hit_points'],
+	knights: ['old_knights', 'middle_aged_knights', 'young_knights']
 }
 
 
@@ -1452,13 +1461,19 @@ attributes.healing.forEach(attr => {
 
 attributes.hp.forEach(attr => {
 	on(`change:${attr}`, (eventinfo) => {
-		hitpointsCalculato(attributes.hp, 'total_hit_points');
+		sumOfCalculator(attributes.hp, 'total_hit_points');
 	});
 })
 
 attributes.unconcious.forEach(attr => {
 	on(`change:${attr}`, (eventinfo) => {
 		unconciousCalculator(attributes.unconcious, 'unconcious');
+	});
+})
+
+attributes.knights.forEach(attr => {
+	on(`change:${attr}`, (eventinfo) => {
+		sumOfCalculator(attributes.knights, 'total_family_knights');
 	});
 })
 
@@ -1478,7 +1493,7 @@ const totalAttributes = values => {
 
 const attributeSumDivide = (attributes, set) => {
     getAttrs(attributes, (values) => {
-    	const divide = "damage" ? 6 : 10;
+    	const divide = 'damage' ? 6 : 10;
     	let sum = totalAttributes(values);
     	sum = divideBy(sum, divide) ;
 
@@ -1488,7 +1503,7 @@ const attributeSumDivide = (attributes, set) => {
 	});
 };
 
-const hitpointsCalculato = (attributes, set) => {
+const sumOfCalculator = (attributes, set) => {
     getAttrs(attributes, (values) => {
 	    setAttrs({
 	    	[`${set}`]: totalAttributes(values)

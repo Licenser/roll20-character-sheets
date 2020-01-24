@@ -213,4 +213,6 @@
 	, "read name": "read name"
 	,"religion name":"religion name"
 	,"squire name":"squire name"
+	,"fashion":"fashion"
+	,"squire age":"squire age"
 }

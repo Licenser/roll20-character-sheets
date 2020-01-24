@@ -234,6 +234,12 @@
         background: linear-gradient(to bottom,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#fefcea',GradientType=0 ); /* IE6-9 */
     }
+
+
+    span.sheet-display {
+        border-bottom: 2px dotted $dark;
+        padding-top: 3%;
+    }
   
     
 /* TAB
@@ -337,11 +343,6 @@ div.sheet-pc {
         div.sheet-damage {
            grid-template-columns: auto 1fr auto; 
         }
-
-        span.sheet-text-center {
-            border-bottom: 2px dotted $dark;
-            padding-top: 3%;
-        }
     }
 
     div.sheet-distinctive-features {
@@ -423,7 +424,7 @@ div.sheet-pc {
     ============================= */
 
 div.sheet-holdings {
-    grid-template-columns: 1fr  50%;
+    grid-template-columns: 1fr  55%;
 
     button[type='roll'] {
         text-transform: capitalize;
@@ -460,7 +461,17 @@ div.sheet-holdings {
     }
 
     div.sheet-family-history {
+        textarea {
+            margin-top: 1%;
+        }
 
+        div.sheet-col-4 {
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        div.sheet-col-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
     }
 
     div.sheet-character-history {

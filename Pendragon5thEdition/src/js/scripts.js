@@ -1,9 +1,10 @@
 const attributes = {
-	damage: ["strength", "size"],
-	healing: ["strength", "constitution"],
-	movement: ["strength", "dexterity"],
-	hp: ["size", "constitution"],
-	unconcious: ["total_hit_points"]
+	damage: ['strength', 'size'],
+	healing: ['strength', 'constitution'],
+	movement: ['strength', 'dexterity'],
+	hp: ['size', 'constitution'],
+	unconcious: ['total_hit_points'],
+	knights: ['old_knights', 'middle_aged_knights', 'young_knights']
 }
 
 
@@ -27,13 +28,19 @@ attributes.healing.forEach(attr => {
 
 attributes.hp.forEach(attr => {
 	on(`change:${attr}`, (eventinfo) => {
-		hitpointsCalculato(attributes.hp, 'total_hit_points');
+		sumOfCalculator(attributes.hp, 'total_hit_points');
 	});
 })
 
 attributes.unconcious.forEach(attr => {
 	on(`change:${attr}`, (eventinfo) => {
 		unconciousCalculator(attributes.unconcious, 'unconcious');
+	});
+})
+
+attributes.knights.forEach(attr => {
+	on(`change:${attr}`, (eventinfo) => {
+		sumOfCalculator(attributes.knights, 'total_family_knights');
 	});
 })
 
@@ -53,7 +60,7 @@ const totalAttributes = values => {
 
 const attributeSumDivide = (attributes, set) => {
     getAttrs(attributes, (values) => {
-    	const divide = "damage" ? 6 : 10;
+    	const divide = 'damage' ? 6 : 10;
     	let sum = totalAttributes(values);
     	sum = divideBy(sum, divide) ;
 
@@ -63,7 +70,7 @@ const attributeSumDivide = (attributes, set) => {
 	});
 };
 
-const hitpointsCalculato = (attributes, set) => {
+const sumOfCalculator = (attributes, set) => {
     getAttrs(attributes, (values) => {
 	    setAttrs({
 	    	[`${set}`]: totalAttributes(values)

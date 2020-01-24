@@ -9,7 +9,7 @@ include src/pug/mixins.pug
  =============================
 - const personalityTraits = {'chaste':'lustful', 'energetic':'lazy', 'forgiving':'vengeful','generous':'selfish','honest':'deceitful','just':'arbitrary','merciful':'cruel','modest':'proud','prudent':'reckless','spiritual':'wordly','temperate':'indulgent','trusting':'suspicious','valorous':'cowardly'};
 - const attributes = ['size', 'dex', 'str', 'con', 'app'];
-- const skills = ['awareness', 'boating', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
+- const skills = ['awareness', 'boating', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'fashion', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
 
 //- TABS
   =============================
@@ -164,12 +164,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         +numberInput('appearance')
       .row.damage
         +damageButton('damage')
-        span.text-center(name=`attr_damage`)
+        span.text-center.display(name=`attr_damage`)
         span.font-weight-bold(data-i18n='d6')
       each val in ['healing rate', 'movement rate', 'total hit points', 'unconcious']
         .row.2autocolumn
           h2(data-i18n=val)
-          span.text-center(name=`attr_${val.replace(/ /g, '_')}`)
+          span.text-center.display(name=`attr_${val.replace(/ /g, '_')}`)
     .distinctive-features
       .header
         h1(data-i18n='distinctive features')
@@ -198,7 +198,10 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       each val in ['name', 'age']
         .row.2autocolumn
           h2(data-i18n=`${val}`)
-          +textInput(`squire ${val}`)
+          if val === 'name'
+            +textInput(`squire ${val}`)
+          else
+            +numberInput(`squire ${val}`)
       each val in ['first aid', 'battle', 'horsemanship']
         - const attrName = val.replace(/ /g, '_');
         .row.3autocolumn
@@ -222,10 +225,10 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .row.2column
         .col.2autocolumn
           h2(data-i18n='this game')
-          +textInput('glory this game')
+          +numberInput('glory this game')
         .col.2autocolumn
           h2(data-i18n='total')
-          +textInput('glory total')
+          +numberInput('glory total')
     .current-hit-points
         .header
           h1(data-i18n='current hit points')
@@ -365,7 +368,10 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       each val in ['old knights', 'middle aged knights', 'young knights', 'total family knights', 'vassal knights', 'other lineage men', 'levy']
         .row.2autocolumn
           h2(data-i18n=val)
-          +textInput(val)
+          if val != "total family knights"
+            +numberInput(val)
+          else
+            span.text-center.display(name='attr_total_family_knights')
       .row
         textarea(name='attr_army_notes')
 
@@ -373,17 +379,21 @@ input.display_string(name='attr_toggles', type='hidden', value='')
     .family-history
       .row.gold-bottom-border
         h1(data-i18n='family history and events')
-      .row
-        each val in ['born', 'squired', 'knighted', 'member of the round table']
+      .row.grid.col-4
+        each val in ['born', 'squired', 'knighted']
           .col.2autocolumn
             h2(data-i18n=val)
             +textInput(val)
-      .row
+      .row.grid
+          .col.2autocolumn
+            h2(data-i18n='member of the round table')
+            +textInput('member of the round table')
+      .row.grid.col-4
         each val in ['landed', 'titled', 'wed', 'died']
           .col.2autocolumn
             h2(data-i18n=val)
             +textInput(val)
-      .row
+      .row.grid.col-3
         each val in ['father name', 'class', 'glory to sons']
           .col.2autocolumn
             h2(data-i18n=val)

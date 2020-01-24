@@ -168,6 +168,10 @@ div.sheet-header, .sheet-rolltemplate-rolls div.sheet-template-container div.she
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#fefcea',GradientType=0 );
   /* IE6-9 */ }
 
+span.sheet-display {
+  border-bottom: 2px dotted black;
+  padding-top: 3%; }
+
 /* TAB
     ============================= */
 div.sheet-tabs {
@@ -223,9 +227,6 @@ div.sheet-pc {
     grid-template-columns: auto 1fr 2fr auto; }
   div.sheet-pc div.sheet-attributes div.sheet-damage {
     grid-template-columns: auto 1fr auto; }
-  div.sheet-pc div.sheet-attributes span.sheet-text-center {
-    border-bottom: 2px dotted black;
-    padding-top: 3%; }
   div.sheet-pc div.sheet-distinctive-features textarea {
     height: 80px; }
   div.sheet-pc div.sheet-distinctive-features div.sheet-repeating-container div.sheet-row {
@@ -256,7 +257,7 @@ div.sheet-pc {
 /*  HOLDINGS
     ============================= */
 div.sheet-holdings {
-  grid-template-columns: 1fr  50%; }
+  grid-template-columns: 1fr  55%; }
   div.sheet-holdings button[type='roll'] {
     text-transform: capitalize; }
   div.sheet-holdings h2 {
@@ -284,6 +285,12 @@ div.sheet-holdings {
     /* IE6-9 */ }
   div.sheet-holdings div.sheet-annual-glory h2[data-i18n='total'] {
     font-style: italic; }
+  div.sheet-holdings div.sheet-family-history textarea {
+    margin-top: 1%; }
+  div.sheet-holdings div.sheet-family-history div.sheet-col-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr; }
+  div.sheet-holdings div.sheet-family-history div.sheet-col-3 {
+    grid-template-columns: 1fr 1fr 1fr; }
   div.sheet-holdings div.sheet-character-history div.sheet-gold-bottom-border {
     grid-template-columns: 3fr 1fr; }
   div.sheet-holdings div.sheet-character-history div.sheet-events {
