@@ -6,7 +6,7 @@ mixin textInput(name)
 mixin numberInput(name)
 	- const attrName = name.replace(/ /g, '_');
 	label(data-i18n-title=`enter ${name}` title=`enter ${name}`)
-		input(name=`attr_${attrName}` placeholder='#' title=`@{${attrName}}` type='number' value='')
+		input(name=`attr_${attrName}` placeholder='#' title=`@{${attrName}}` type='number' value='0')
 
 mixin checkboxInput(name)
 	- const attrName = name.replace(/ /g, '_');

@@ -148,18 +148,6 @@
         min-width: 825px;
     }
 
-/* HIDE DIFFERENT SHEET TYPES BY DEFAULT
-   ============================= */ 
-    div.sheet-npc,
-    div.sheet-knight {
-        display: none;
-    }   
-
-    input.sheet-type[value="npc"] ~  div.sheet-npc,
-    input.sheet-type[value="knight"] ~  div.sheet-knight {
-        display: inline-grid;
-    }   
-
 /* GRID
    ============================= */ 
     div.sheet-grid {
@@ -251,26 +239,26 @@
 /* TAB
     ============================= */
 div.sheet-tabs {
-    div.sheet-row {
-        input, span {
-            grid-column: 1;
-        }
+    grid-template-columns: 1fr 1fr;
+    padding-left: 44%;
 
-        input {
-            opacity: 0;
-            width: 100%;
-            z-index: 2;
+    input {
+        grid-column: 1;
+        height: auto;
+        opacity: 0;
+        width: 100%;
 
-            &:checked + span {
-                background-color: $primary;
-            }
+        &:checked ~ span {
+            background-color: $secondary;
         }
+    }
 
-        span {
-            display: inline-block;
-            width: 100%;
-            background-color: $light;
-        }
+    span {
+        border: 2px solid $primary;
+        display: inline-block;
+        grid-column: 1;
+        width: 80%;
+        pointer: cursor;
     }
 }
 
@@ -348,6 +336,11 @@ div.sheet-pc {
 
         div.sheet-damage {
            grid-template-columns: auto 1fr auto; 
+        }
+
+        span.sheet-text-center {
+            border-bottom: 2px dotted $dark;
+            padding-top: 3%;
         }
     }
 
@@ -481,6 +474,21 @@ div.sheet-holdings {
     }
 }
 
+/*  SHOW & HIDE SHEET
+    ============================= */
+div.sheet-npc,
+input[name='attr_sheet_type'][value='knight'] ~ div.sheet-holdings,
+input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-knight {
+    display: none;
+}
+
+input[name='attr_sheet_type'][value='knight'] ~ div.sheet-knight,
+input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-holdings {
+    display: inline-grid;
+}
+
+
+
 /*  SWITCH
     ============================= */
 /* The switch - the box around the slider */
@@ -586,23 +594,7 @@ input:checked + .sheet-slider:before {
             background-color: $white;
 
             div.sheet-template-row {
-
                 &:nth-child(2n+0) { background-color: $light; }
-
-                a[href^="~"] {
-                    background-color: $light !important;
-                    font-weight: bold !important;
-                    color: $primary;
-                    font-size: 0.8em;
-                    border: {
-                        bottom             : 0.01em solid #666;
-                        bottom-right-radius: 0.01em;
-                        color              : hsl(0, 0%, 70%);
-                        radius             : 0.25em;
-                        right              : 0.02em solid hsl(0, 0%, 20%);
-                        style              : outset;
-                    }
-                }
 
                 span {
                     &.sheet-inlinerollresult  {
@@ -620,6 +612,11 @@ input:checked + .sheet-slider:before {
                         font-size: 1em;
                     }
                 }
+            }
+
+            div.sheet-template-damage {
+                background-color: #fff;
+                padding: 3% 2%;
             }
 
             div.sheet-template-roll {

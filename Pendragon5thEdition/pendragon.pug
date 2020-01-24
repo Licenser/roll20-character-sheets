@@ -26,6 +26,17 @@ input.display_string(name='attr_toggles', type='hidden', value='')
 
 //-PC SHEET
   =============================
+.grid.tabs
+  each val in ['knight', 'holdings']
+    label(data-i18n-title=`select character sheet ${val}`)
+      if val === 'knight'
+        input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val selected)
+        span.text-center(data-i18n='knight')
+      else
+        input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
+        span.text-center(data-i18n='holdings')
+
+
 .knight.pc.grid
   .col
     .row
@@ -153,12 +164,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         +numberInput('appearance')
       .row.damage
         +damageButton('damage')
-        +numberInput('damage')
+        span.text-center(name=`attr_damage`)
         span.font-weight-bold(data-i18n='d6')
       each val in ['healing rate', 'movement rate', 'total hit points', 'unconcious']
         .row.2autocolumn
           h2(data-i18n=val)
-          +numberInput(val)
+          span.text-center(name=`attr_${val.replace(/ /g, '_')}`)
     .distinctive-features
       .header
         h1(data-i18n='distinctive features')
@@ -317,9 +328,11 @@ input.display_string(name='attr_toggles', type='hidden', value='')
           textarea(data-i18n-placeholder=val name=`attr_${attrName}` placeholder=val)
 
 
-
 .holdings.grid
   .col
+    .row
+      h1(data-i18n='King Arthur Pendragon')
+      h2(data-i18n="Holdings Character Sheet")
     .annual-glory
       .header
         h1(data-i18n='annual glory rewards')
@@ -401,11 +414,6 @@ input.display_string(name='attr_toggles', type='hidden', value='')
             +numberInput('total glory')
 
 
-
-
-
-
-
 //- NOTES SHEET
   =============================
 .notes
@@ -431,28 +439,29 @@ footer
         | {{#header}}{{header}}{{/header}}
       // - Display the dice roll in the template -
       .sheet-template-body
-        | {{#dice}}
-        .sheet-template-row.sheet-template-roll
-          .sheet-template-col 
-            span {{dice}} 
-            span Rolled
-          | {{/dice}}
-          | {{#threshold}}
-          .sheet-template-col 
-            span {{threshold}} 
-            span Threshold
-          | {{/threshold}}
-        .sheet-template-row
-          | {{#damage}}
-          .sheet-template-col 
-            span {{damage}} 
-            span Rolled
-          | {{/damage}}
-          //- Display a description. This is great for text included with a roll -
-        | {{#desc}}
-        .sheet-template-row
-          span.sheet-template-desc {{desc}}
-        | {{/desc}}
+          | {{#dice}}
+          .sheet-template-row.sheet-template-roll
+            .sheet-template-col 
+              span {{dice}} 
+              span Rolled
+            | {{/dice}}
+            | {{#threshold}}
+            .sheet-template-col 
+              span {{threshold}} 
+              span Threshold
+            | {{/threshold}}
+            | {{#damage}}
+            .sheet-template-row.sheet-template-damage
+              .sheet-template-col
+                |{{damage}} 
+                span Rolled
+              | {{/damage}}
+            //- Display a description. This is great for text included with a roll -
+          | {{#desc}}
+          .sheet-template-row
+            span.sheet-template-desc {{desc}}
+          | {{/desc}}
 
 //- SCRIPTS
-//-include src/pug/scripts.js
+script(type="text/worker")
+  include src/js/scripts.js
