@@ -122,6 +122,12 @@
     }
 
     select {
+        margin-bottom: 0px;
+        vertical-align: bottom;
+        border: 2px solid $primary;
+        font-weight: bold;
+        text-transform: capitalize;
+        margin-top: 8%;
         width: 100%;
     }
 
@@ -270,7 +276,7 @@ div.sheet-tabs {
 
 /* PC
     ============================= */
-div.sheet-pc {
+div.sheet-character {
     grid-template-columns: 1.5fr 1fr 1fr;
 
     h2 {
@@ -394,8 +400,13 @@ div.sheet-pc {
             min-height: 30px;
         }
 
-        div.sheet-chirugery-needed {
+        div.sheet-chirurgery-needed {
             grid-template-columns: 5% 1fr;
+            grid-column-gap: 2%;
+
+            h2 {
+                padding-top: 0px;
+            }
         }
     }
 
@@ -489,18 +500,33 @@ div.sheet-holdings {
     ============================= */
 div.sheet-npc,
 input[name='attr_sheet_type'][value='character'] ~ div.sheet-holdings,
-input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-pc {
+input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-character {
     display: none;
 }
 
-input[name='attr_sheet_type'][value='character'] ~ div.sheet-pc,
+input[name='attr_sheet_type'][value='character'] ~ div.sheet-character,
 input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-holdings {
     display: inline-grid;
 }
 
-input[name='attr_character_type'][value='woman'] ~ div.sheet-knight,
-input[name='attr_character_type'][value='knight'] ~ div.sheet-woman {
-    display: none;
+$types: ('knight': 'woman', 'woman': 'knight');
+@each $key, $value in $types {
+    input[name='attr_character_type'][value="#{$key}"] ~ div.sheet-character div.sheet-col,
+    input[name='attr_character_type'][value="#{$key}"] ~ div.sheet-holdings div.sheet-col {
+        & div.sheet-row .sheet-#{$value},
+        & div.sheet-personal-data div.sheet-row .sheet-#{$value},
+        & div.sheet-personality-traits .sheet-#{$value},
+        & div.sheet-personality-traits div.sheet-row .sheet-#{$value},
+        & div.sheet-equipment-carried .sheet-#{$value},
+        & div.sheet-skills .sheet-#{$value},
+        & div.sheet-squire .sheet-#{$value},
+        & .sheet-#{$value},
+        & div.sheet-combat-skills .sheet-#{$value},
+        & div.sheet-horse div.sheet-row .sheet-#{$value},
+        & div.sheeet-family-history div.sheet-row {
+            display: none;
+        }  
+    }
 }
 
 

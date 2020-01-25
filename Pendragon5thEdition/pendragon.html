@@ -22,7 +22,7 @@
     <option data-i18n="woman" value="woman"></option>
   </select>
 </div>
-<div class="pc grid">
+<div class="character grid">
   <div class="col">
     <div class="row"><img class="knight" alt="King Arthut Pendragon Knight's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.png"/><img class="woman" alt="King Arthut Pendragon Woman's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/womenlogo.png"/></div>
     <div class="row 2autocolumn">
@@ -123,7 +123,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold">
+        <div class="font-weight-bold"><span class="woman">*</span>
         </div>
         <label data-i18n-title="check chaste_check" title="check chaste_check">
           <input name="attr_chaste_check" title="@{chaste_check}" type="checkbox" value="chaste_check"/>
@@ -141,7 +141,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold"><span>*</span>
+        <div class="font-weight-bold"><span class="knight">*</span><span class="woman">*</span>
         </div>
         <label data-i18n-title="check energetic_check" title="check energetic_check">
           <input name="attr_energetic_check" title="@{energetic_check}" type="checkbox" value="energetic_check"/>
@@ -177,7 +177,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold"><span>*</span>
+        <div class="font-weight-bold"><span class="knight">*</span>
         </div>
         <label data-i18n-title="check generous_check" title="check generous_check">
           <input name="attr_generous_check" title="@{generous_check}" type="checkbox" value="generous_check"/>
@@ -195,7 +195,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold">
+        <div class="font-weight-bold"><span class="woman">*</span>
         </div>
         <label data-i18n-title="check honest_check" title="check honest_check">
           <input name="attr_honest_check" title="@{honest_check}" type="checkbox" value="honest_check"/>
@@ -213,7 +213,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold"><span>*</span>
+        <div class="font-weight-bold"><span class="knight">*</span>
         </div>
         <label data-i18n-title="check just_check" title="check just_check">
           <input name="attr_just_check" title="@{just_check}" type="checkbox" value="just_check"/>
@@ -231,7 +231,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold"><span>*</span>
+        <div class="font-weight-bold"><span class="knight">*</span>
         </div>
         <label data-i18n-title="check merciful_check" title="check merciful_check">
           <input name="attr_merciful_check" title="@{merciful_check}" type="checkbox" value="merciful_check"/>
@@ -249,7 +249,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold"><span>*</span>
+        <div class="font-weight-bold"><span class="knight">*</span><span class="woman">*</span>
         </div>
         <label data-i18n-title="check modest_check" title="check modest_check">
           <input name="attr_modest_check" title="@{modest_check}" type="checkbox" value="modest_check"/>
@@ -267,7 +267,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold">
+        <div class="font-weight-bold"><span class="woman">*</span>
         </div>
         <label data-i18n-title="check prudent_check" title="check prudent_check">
           <input name="attr_prudent_check" title="@{prudent_check}" type="checkbox" value="prudent_check"/>
@@ -303,7 +303,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold">
+        <div class="font-weight-bold"><span class="woman">*</span>
         </div>
         <label data-i18n-title="check temperate_check" title="check temperate_check">
           <input name="attr_temperate_check" title="@{temperate_check}" type="checkbox" value="temperate_check"/>
@@ -339,7 +339,7 @@
         </label>
       </div>
       <div class="row traits">
-        <div class="font-weight-bold"><span>*</span>
+        <div class="font-weight-bold"><span class="knight">*</span>
         </div>
         <label data-i18n-title="check valorous_check" title="check valorous_check">
           <input name="attr_valorous_check" title="@{valorous_check}" type="checkbox" value="valorous_check"/>
@@ -1019,7 +1019,7 @@
         </fieldset>
       </div>
     </div>
-    <div class="jouse-score">
+    <div class="jouse-score knight">
       <div class="header">
         <h1 data-i18n="jouse score"></h1>
       </div>
@@ -1042,6 +1042,9 @@
       <div class="header">
         <h1 data-i18n="woman's gift"></h1>
       </div>
+      <div class="row">
+        <textarea data-i18n-placeholder="woman's gift" name="attr_womans_gift"></textarea>
+      </div>
     </div>
     <div class="horse">
       <div class="header">
@@ -1053,62 +1056,62 @@
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="type"></h2>
-        <label data-i18n-title="enter warhorse type" title="enter warhorse type">
-          <input data-i18n-placeholder="warhorse type" name="attr_warhorse_type" placeholder="warhorse type" title="@{warhorse_type}" type="text" value=""/>
+        <label data-i18n-title="enter horse type" title="enter horse type">
+          <input data-i18n-placeholder="horse type" name="attr_horse_type" placeholder="horse type" title="@{horse_type}" type="text" value=""/>
         </label>
       </div>
       <div class="row 2column">
         <div class="col 2autocolumn">
-          <button class="text-capitalize" data-i18n="damage" name="roll_warhorse-damage" type="roll" value="&{template:rolls} {{header=^{warhorse damage}}} {{damage=[[@{warhorse_damage}d6]]}}"></button>
-          <label data-i18n-title="enter warhorse damage" title="enter warhorse damage">
-            <input data-i18n-placeholder="warhorse damage" name="attr_warhorse_damage" placeholder="warhorse damage" title="@{warhorse_damage}" type="text" value=""/>
+          <button class="text-capitalize" data-i18n="damage" name="roll_horse-damage" type="roll" value="&{template:rolls} {{header=^{horse damage}}} {{damage=[[@{horse_damage}d6]]}}"></button>
+          <label data-i18n-title="enter horse damage" title="enter horse damage">
+            <input data-i18n-placeholder="horse damage" name="attr_horse_damage" placeholder="horse damage" title="@{horse_damage}" type="text" value=""/>
           </label>
         </div>
         <div class="col 2autocolumn">
           <h2 data-i18n="move"></h2>
-          <label data-i18n-title="enter warhorse move" title="enter warhorse move">
-            <input data-i18n-placeholder="warhorse move" name="attr_warhorse_move" placeholder="warhorse move" title="@{warhorse_move}" type="text" value=""/>
+          <label data-i18n-title="enter horse move" title="enter horse move">
+            <input data-i18n-placeholder="horse move" name="attr_horse_move" placeholder="horse move" title="@{horse_move}" type="text" value=""/>
           </label>
         </div>
       </div>
       <div class="row 2column">
         <div class="col 2autocolumn">
           <h2 data-i18n="armor"></h2>
-          <label data-i18n-title="enter warhorse armor" title="enter warhorse armor">
-            <input name="attr_warhorse_armor" placeholder="#" title="@{warhorse_armor}" type="number" value="0"/>
+          <label data-i18n-title="enter horse armor" title="enter horse armor">
+            <input name="attr_horse_armor" placeholder="#" title="@{horse_armor}" type="number" value="0"/>
           </label>
         </div>
         <div class="col 2autocolumn">
           <h2 data-i18n="hp"></h2>
-          <label data-i18n-title="enter warhorse hp" title="enter warhorse hp">
-            <input name="attr_warhorse_hp" placeholder="#" title="@{warhorse_hp}" type="number" value="0"/>
+          <label data-i18n-title="enter horse hp" title="enter horse hp">
+            <input name="attr_horse_hp" placeholder="#" title="@{horse_hp}" type="number" value="0"/>
           </label>
         </div>
       </div>
       <div class="row 3column">
         <div class="col 2autocolumn">
           <h2 class="text-uppercase" data-i18n="siz"></h2>
-          <label data-i18n-title="enter warhorse siz" title="enter warhorse siz">
-            <input data-i18n-placeholder="warhorse siz" name="attr_warhorse_siz" placeholder="warhorse siz" title="@{warhorse_siz}" type="text" value=""/>
+          <label data-i18n-title="enter horse siz" title="enter horse siz">
+            <input data-i18n-placeholder="horse siz" name="attr_horse_siz" placeholder="horse siz" title="@{horse_siz}" type="text" value=""/>
           </label>
         </div>
         <div class="col 2autocolumn">
           <h2 class="text-uppercase" data-i18n="con"></h2>
-          <label data-i18n-title="enter warhorse con" title="enter warhorse con">
-            <input data-i18n-placeholder="warhorse con" name="attr_warhorse_con" placeholder="warhorse con" title="@{warhorse_con}" type="text" value=""/>
+          <label data-i18n-title="enter horse con" title="enter horse con">
+            <input data-i18n-placeholder="horse con" name="attr_horse_con" placeholder="horse con" title="@{horse_con}" type="text" value=""/>
           </label>
         </div>
         <div class="col 2autocolumn">
           <h2 class="text-uppercase" data-i18n="dex"></h2>
-          <label data-i18n-title="enter warhorse dex" title="enter warhorse dex">
-            <input data-i18n-placeholder="warhorse dex" name="attr_warhorse_dex" placeholder="warhorse dex" title="@{warhorse_dex}" type="text" value=""/>
+          <label data-i18n-title="enter horse dex" title="enter horse dex">
+            <input data-i18n-placeholder="horse dex" name="attr_horse_dex" placeholder="horse dex" title="@{horse_dex}" type="text" value=""/>
           </label>
         </div>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="breed"></h2>
-        <label data-i18n-title="enter warhorse breed" title="enter warhorse breed">
-          <input data-i18n-placeholder="warhorse breed" name="attr_warhorse_breed" placeholder="warhorse breed" title="@{warhorse_breed}" type="text" value=""/>
+        <label data-i18n-title="enter horse breed" title="enter horse breed">
+          <input data-i18n-placeholder="horse breed" name="attr_horse_breed" placeholder="horse breed" title="@{horse_breed}" type="text" value=""/>
         </label>
       </div>
       <div class="row">
@@ -1177,10 +1180,7 @@
 </div>
 <div class="holdings grid">
   <div class="col">
-    <div class="row">
-      <h1 data-i18n="King Arthur Pendragon"></h1>
-      <h2 data-i18n="Holdings Character Sheet"></h2>
-    </div>
+    <div class="row"><img class="knight" alt="King Arthut Pendragon Knight's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.png"/><img class="woman" alt="King Arthut Pendragon Woman's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/womenlogo.png"/></div>
     <div class="annual-glory">
       <div class="header">
         <h1 data-i18n="annual glory rewards"></h1>
@@ -1191,7 +1191,7 @@
           <input data-i18n-placeholder="annual glory rewards traits" name="attr_annual_glory_rewards_traits" placeholder="annual glory rewards traits" title="@{annual_glory_rewards_traits}" type="text" value=""/>
         </label>
       </div>
-      <div class="row 2autocolumn">
+      <div class="row 2autocolumn knight">
         <h2 data-i18n="chivalry"></h2>
         <label data-i18n-title="enter annual glory rewards chivalry" title="enter annual glory rewards chivalry">
           <input data-i18n-placeholder="annual glory rewards chivalry" name="attr_annual_glory_rewards_chivalry" placeholder="annual glory rewards chivalry" title="@{annual_glory_rewards_chivalry}" type="text" value=""/>
@@ -1307,10 +1307,13 @@
       <div class="header">
         <h1 data-i18n="household treasures"></h1>
       </div>
+      <div class="row">
+        <textarea data-i18n-placeholder="household treasures" name="attr_household_treasures"></textarea>
+      </div>
     </div>
   </div>
   <div class="col gold-left-border">
-    <div class="family-history knight">
+    <div class="family-history">
       <div class="row gold-bottom-border">
         <h1 data-i18n="family history and events"></h1>
       </div>

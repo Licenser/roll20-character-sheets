@@ -41,7 +41,7 @@ input(name='attr_character_type', type='hidden', value='knight')
 
 
 
-.pc.grid
+.character.grid
   .col
     .row
       img.knight(alt="King Arthut Pendragon Knight's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.png")
@@ -96,7 +96,10 @@ input(name='attr_character_type', type='hidden', value='knight')
           .font-weight-bold
             - const chivalryBonusIndicator = ['energetic','generous','just','merciful','modest','valorous']
             if chivalryBonusIndicator.includes(key)
-              span *
+              span.knight *
+            - const gentlewomanBonusIndicator = ['chaste','energetic','honest','modest','prudent','temperate']
+            if gentlewomanBonusIndicator.includes(key)
+              span.woman *
           +checkboxInput(`${key}_check`)
           +rollButton(key)
           +numberInput(key)
@@ -277,7 +280,7 @@ input(name='attr_character_type', type='hidden', value='knight')
               +numberInput('skill')
               +checkboxInput(`check`)
               +repeatingRollButton('skill')
-    .jouse-score
+    .jouse-score.knight
       .header
         h1(data-i18n='jouse score')
       .row.2column
@@ -288,6 +291,8 @@ input(name='attr_character_type', type='hidden', value='knight')
     .womans-gift.woman
       .header
         h1(data-i18n="woman's gift")
+      .row
+        textarea(data-i18n-placeholder="woman's gift" name='attr_womans_gift')
     .horse
       .header
         h1(data-i18n='horses')
@@ -296,28 +301,28 @@ input(name='attr_character_type', type='hidden', value='knight')
         h2.text-primary.woman(data-i18n='best horse (#1)')
       .row.2autocolumn
         h2(data-i18n='type')
-        +textInput('warhorse type')
+        +textInput('horse type')
       .row.2column
         each val in ['damage', 'move']
           .col.2autocolumn
             if val === 'damage'
-              +horseDamageButton(`warhorse ${val}`)
+              +horseDamageButton(`horse ${val}`)
             else
               h2(data-i18n=val)
-            +textInput(`warhorse ${val}`)
+            +textInput(`horse ${val}`)
       .row.2column
         each val in ['armor', 'hp']
           .col.2autocolumn
             h2(data-i18n=val)
-            +numberInput(`warhorse ${val}`)
+            +numberInput(`horse ${val}`)
       .row.3column
         each val in ['siz', 'con', 'dex']
           .col.2autocolumn
             h2.text-uppercase(data-i18n=`${val}`)
-            +textInput(`warhorse ${val}`)
+            +textInput(`horse ${val}`)
       .row.2autocolumn
         h2(data-i18n='breed')
-        +textInput('warhorse breed')
+        +textInput('horse breed')
       .row
         h2.text-primary(data-i18n='other horses')
       .row.other-horse
@@ -350,17 +355,17 @@ input(name='attr_character_type', type='hidden', value='knight')
         .row
           textarea(data-i18n-placeholder=val name=`attr_${attrName}` placeholder=val)
 
-
 .holdings.grid
   .col
     .row
-      h1(data-i18n='King Arthur Pendragon')
-      h2(data-i18n="Holdings Character Sheet")
+      img.knight(alt="King Arthut Pendragon Knight's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.png")
+      img.woman(alt="King Arthut Pendragon Woman's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/womenlogo.png")
     .annual-glory
       .header
         h1(data-i18n='annual glory rewards')
       each val in ['traits', 'chivalry', 'holdings', 'passions', 'religion', 'total']
-        .row.2autocolumn
+        - const classNotation = val === 'chivalry' ? "knight"  : "";
+        .row.2autocolumn(class=classNotation)
           h2(data-i18n=val)
           +textInput(`annual glory rewards ${val}`)
     .holdings-row
@@ -397,9 +402,11 @@ input(name='attr_character_type', type='hidden', value='knight')
     .household-treasures.woman
       .header
         h1(data-i18n='household treasures')
+      .row
+        textarea(data-i18n-placeholder='household treasures' name='attr_household_treasures')
 
   .col.gold-left-border
-    .family-history.knight
+    .family-history
       .row.gold-bottom-border
         h1(data-i18n='family history and events')
       .row.grid.col-4
