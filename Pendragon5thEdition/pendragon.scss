@@ -151,7 +151,7 @@
     }
 
     .charsheet {
-        min-width: 825px;
+        width: 825px;
     }
 
 /* GRID
@@ -218,7 +218,7 @@
     }
 
     div.sheet-3autocolumn {
-        grid-template-columns: auto 1fr 5%;
+        grid-template-columns: auto 1fr 10%;
     }
 
     div.sheet-gold-left-border {
@@ -245,6 +245,39 @@
     span.sheet-display {
         border-bottom: 2px dotted $dark;
         padding-top: 3%;
+    }
+
+    label.sheet-styled-checkbox {
+
+        input, span {
+            grid-area: 1 / 1 / 1 / 1;
+            height: 15px;
+            width: 15px;
+            position: relative;
+            left: 20%;
+        }
+
+        span {
+            border: 2px solid $primary;
+            display: inline-block;
+            top: -20%;
+            color: transparent;
+            text-align: center;
+            font-size: 1em;
+            line-height: 90%;
+        }
+
+        input {
+            opacity: 0;
+            top: 20%;
+            z-index: 2;
+
+            &[type="checkbox"]:checked + span {
+                background-color: $primary;
+                color           : #fff;
+            }
+        }
+
     }
   
     
@@ -303,7 +336,11 @@ div.sheet-character {
 
     div.sheet-personality-traits {
         div.sheet-traits {
-            grid-template-columns: 2% 5% 3fr 1fr 1% 1fr 3fr 5%
+            grid-template-columns: 2% 5% 3fr 1fr 1% 1fr 3fr 5%;
+
+            div.sheet-font-weight-bold {
+                padding: 100% 2%;
+            }
         }
 
         div.sheet-repeating-container {
@@ -365,7 +402,7 @@ div.sheet-character {
 
     div.sheet-skills {
         div.sheet-read, div.sheet-play, div.sheet-religion {
-            grid-template-columns: auto 2fr 1fr 5%;
+            grid-template-columns: auto 2fr 1fr 10%;
         }
 
         div.sheet-repeating-container {
@@ -494,6 +531,13 @@ div.sheet-holdings {
             grid-template-columns: 5em 4fr 0.8fr 0.8fr;
         }
     }
+}
+
+div.sheet-footer {
+    margin-top: 5%;
+    font-style: italic;
+    font-size: 0.8em;
+    text-align: center;
 }
 
 /*  SHOW & HIDE SHEET
@@ -684,4 +728,11 @@ input:checked + .sheet-slider:before {
             }
         }
     }
+}
+
+/* ROLL TEMPLATE STYLE
+----------------------------- */
+.itemcontrol .repcontrol_del {
+  background-color: darkred;
+  font-family: "pictos";
 }

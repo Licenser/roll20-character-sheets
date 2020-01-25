@@ -100,7 +100,7 @@ input(name='attr_character_type', type='hidden', value='knight')
             - const gentlewomanBonusIndicator = ['chaste','energetic','honest','modest','prudent','temperate']
             if gentlewomanBonusIndicator.includes(key)
               span.woman *
-          +checkboxInput(`${key}_check`)
+          +checkboxInput(`${key} check`)
           +rollButton(key)
           +numberInput(key)
           span /
@@ -463,8 +463,9 @@ input(name='attr_character_type', type='hidden', value='knight')
 
 //-FOOTER
   =============================
-footer
-  span Version 
+.footer
+  span ©2016 Nocturnal Media. Permission granted to copy for personal use only.
+  span v. 
   span(name='attr_version')
 
 

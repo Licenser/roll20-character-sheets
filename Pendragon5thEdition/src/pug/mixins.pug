@@ -10,8 +10,9 @@ mixin numberInput(name)
 
 mixin checkboxInput(name)
 	- const attrName = name.replace(/ /g, '_');
-	label(data-i18n-title=`check ${name}` title=`check ${name}`)
+	label.styled-checkbox.grid(data-i18n-title=`${name}` title=`${name}`)
 		input(name=`attr_${attrName}` title=`@{${attrName}}` type='checkbox' value=name)
+		span.pictos 3
 
 mixin attributeButton(name)
 	- const buttonName = name.replace(/ /g, '-');
