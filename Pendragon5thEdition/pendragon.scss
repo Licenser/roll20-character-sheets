@@ -245,7 +245,7 @@
 /* TAB
     ============================= */
 div.sheet-tabs {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     padding-left: 44%;
 
     input {
@@ -488,14 +488,19 @@ div.sheet-holdings {
 /*  SHOW & HIDE SHEET
     ============================= */
 div.sheet-npc,
-input[name='attr_sheet_type'][value='knight'] ~ div.sheet-holdings,
-input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-knight {
+input[name='attr_sheet_type'][value='character'] ~ div.sheet-holdings,
+input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-pc {
     display: none;
 }
 
-input[name='attr_sheet_type'][value='knight'] ~ div.sheet-knight,
+input[name='attr_sheet_type'][value='character'] ~ div.sheet-pc,
 input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-holdings {
     display: inline-grid;
+}
+
+input[name='attr_character_type'][value='woman'] ~ div.sheet-knight,
+input[name='attr_character_type'][value='knight'] ~ div.sheet-woman {
+    display: none;
 }
 
 

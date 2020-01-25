@@ -9,12 +9,12 @@ include src/pug/mixins.pug
  =============================
 - const personalityTraits = {'chaste':'lustful', 'energetic':'lazy', 'forgiving':'vengeful','generous':'selfish','honest':'deceitful','just':'arbitrary','merciful':'cruel','modest':'proud','prudent':'reckless','spiritual':'wordly','temperate':'indulgent','trusting':'suspicious','valorous':'cowardly'};
 - const attributes = ['size', 'dex', 'str', 'con', 'app'];
-- const skills = ['awareness', 'boating', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'fashion', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
+- const skills = ['awareness', 'boating', 'chirurgery', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'fashion', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'industry', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
 
 //- TABS
   =============================
-input.type(name='attr_sheet_type', type='hidden', value='knight')
-input.display_string(name='attr_toggles', type='hidden', value='')
+input(name='attr_sheet_type', type='hidden', value='character')
+input(name='attr_character_type', type='hidden', value='knight')
 
 //-NPC SHEET
   =============================
@@ -27,21 +27,25 @@ input.display_string(name='attr_toggles', type='hidden', value='')
 //-PC SHEET
   =============================
 .grid.tabs
-  each val in ['knight', 'holdings']
+  each val in ['character', 'holdings']
     label(data-i18n-title=`select character sheet ${val}`)
-      if val === 'knight'
+      if val === 'character'
         input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val selected)
-        span.text-center(data-i18n='knight')
+        span.text-center(data-i18n='character')
       else
         input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
         span.text-center(data-i18n='holdings')
+  select(name='attr_character_type' value='knight')
+    option(data-i18n='knight' value='knight')
+    option(data-i18n='woman' value='woman')
 
 
-.knight.pc.grid
+
+.pc.grid
   .col
     .row
-      h1(data-i18n='King Arthur Pendragon')
-      h2(data-i18n="Knight's Character Sheet")
+      img.knight(alt="King Arthut Pendragon Knight's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.png")
+      img.woman(alt="King Arthut Pendragon Woman's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/womenlogo.png")
     .row.2autocolumn
       h2(data-i18n='Player:')
       +textInput('player name')
@@ -78,9 +82,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
     .personality-traits
       .header
         h1(data-i18n='personality traits')
-      .row.2autocolumn
+      .row.2autocolumn.knight
         h2(data-i18n='Chivalry Bonus[*](total=80+)')
         +textInput('chivalry bonus')
+      .row.2autocolumn.woman
+        h2(data-i18n='Gentle Woman Bonus[*](total=80+)')
+        +textInput('gentle woman bonus')
       .row.2autocolumn
         h2(data-i18n='Religious Bonus(traits all 16+)')
         +textInput('religious bonus')
@@ -123,7 +130,7 @@ input.display_string(name='attr_toggles', type='hidden', value='')
     .equipment-carried
       .header
         h1(data-i18n='equipment carried')
-      .row.armor
+      .row.armor.knight
         h2(data-i18n='armor type')
         +textInput('armor type')
         h2(data-i18n='points')
@@ -134,7 +141,8 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         h2(data-i18n='libra value')
         +numberInput('libra value')
       each val in ['personal', 'travel', 'war']
-        .row.gear
+        - const classNotation = val === 'war' ? "knight" : "";
+        .row.gear(class=classNotation)
           +checkboxInput(`${val} gear check`)
           h2(data-i18n=`${val} gear`)
           +textInput(`${val} gear`)
@@ -182,7 +190,8 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .header
         h1(data-i18n='skills')
       each val in skills
-        .row.3autocolumn(class=`${val}`)
+        - const classNotation = val === 'chirurgery' || val === 'industry' ? "woman" : val === 'boating' || val === 'hunting' ? "knight"  : "";
+        .row.3autocolumn(class=`${val} ${classNotation}`)
             +rollButton(val)
             if val === 'play' || val === 'read' || val === 'religion'
               +textInput(`${val} name`)
@@ -196,8 +205,10 @@ input.display_string(name='attr_toggles', type='hidden', value='')
               +checkboxInput(`check`)
               +repeatingRollButton('skill')
     .squire
-      .header
+      .header.knight
         h1(data-i18n='squire')
+      .header.woman
+        h1(data-i18n='servant')
       each val in ['name', 'age']
         .row.2autocolumn
           h2(data-i18n=`${val}`)
@@ -207,7 +218,7 @@ input.display_string(name='attr_toggles', type='hidden', value='')
             +numberInput(`squire ${val}`)
       each val in ['first aid', 'battle', 'horsemanship']
         - const attrName = val.replace(/ /g, '_');
-        .row.3autocolumn
+        .row.3autocolumn.knight
           +squireButton(val)
           label(data-i18n-title=`enter ${val}` title=`enter ${val}`)
             input(name=`attr_squire_${attrName}` placeholder='#' title=`@{squire_${attrName}}` type='number' value='')
@@ -240,9 +251,9 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         .row
           h2(data-i18n='wounds')
           textarea(data-i18n-placeholder='wounds' name='attr_wounds' placeholder='wounds')
-        .row.chirugery-needed
-          +checkboxInput('chirugery needed')
-          h2(data-i18n='chirugery needed')
+        .row.chirurgery-needed
+          +checkboxInput('chirurgery needed')
+          h2(data-i18n='chirurgery needed')
     .combat-skills
       .header
         h1(data-i18n='combat skills')
@@ -254,7 +265,8 @@ input.display_string(name='attr_toggles', type='hidden', value='')
       .row
         h2.text-primary(data-i18n='weapon skills')
       each val in ['sword', 'lance', 'spear', 'dagger']
-        .row.3autocolumn
+        - const classNotation = !val === 'dagger' ? "knight" : "";
+        .row.3autocolumn(class=`${classNotation}`)
           +rollButton(val)
           +numberInput(val)
           +checkboxInput(`${val} check`)
@@ -273,11 +285,15 @@ input.display_string(name='attr_toggles', type='hidden', value='')
           .col.2autocolumn
             h2(data-i18n=val)
             +numberInput(val)
+    .womans-gift.woman
+      .header
+        h1(data-i18n="woman's gift")
     .horse
       .header
         h1(data-i18n='horses')
       .row
-        h2.text-primary(data-i18n='best warhorse (#1)')
+        h2.text-primary.knight(data-i18n='best warhorse (#1)')
+        h2.text-primary.woman(data-i18n='best horse (#1)')
       .row.2autocolumn
         h2(data-i18n='type')
         +textInput('warhorse type')
@@ -310,7 +326,8 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         h2(data-i18n='move')
         +textInput('horse 2 move')
       .row.other-horse
-        h2(data-i18n='squire(#3)')
+        h2.woman(data-i18n='squire(#3)')
+        h2.knight(data-i18n='squire(#3)')
         +textInput('horse 3')
         h2(data-i18n='move')
         +textInput('horse 3 move')
@@ -365,7 +382,7 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         +textInput(`libra`)
       .row
         textarea(name='attr_equipment_at_home')
-    .army
+    .army.knight
       .header
         h1(data-i18n='army')
       each val in ['old knights', 'middle aged knights', 'young knights', 'total family knights', 'vassal knights', 'other lineage men', 'levy']
@@ -377,17 +394,21 @@ input.display_string(name='attr_toggles', type='hidden', value='')
             span.text-center.display(name='attr_total_family_knights')
       .row
         textarea(name='attr_army_notes')
+    .household-treasures.woman
+      .header
+        h1(data-i18n='household treasures')
 
   .col.gold-left-border
-    .family-history
+    .family-history.knight
       .row.gold-bottom-border
         h1(data-i18n='family history and events')
       .row.grid.col-4
         each val in ['born', 'squired', 'knighted']
-          .col.2autocolumn
+          - const classNotation = val === 'squired' || val === 'knighted' ? "knight"  : "";
+          .col.2autocolumn(class=classNotation)
             h2(data-i18n=val)
             +textInput(val)
-      .row.grid
+      .row.grid.knight
           .col.2autocolumn
             h2(data-i18n='member of the round table')
             +textInput('member of the round table')
@@ -402,12 +423,10 @@ input.display_string(name='attr_toggles', type='hidden', value='')
             h2(data-i18n=val)
             +textInput(val)
       .row
-        each val in ['family characteristic', 'wife', 'lover', 'children', 'will']
+        each val in ['family characteristic', 'spouse', 'lover', 'children', 'will']
           .col.2autocolumn
               h2(data-i18n=val)
               +textInput(val)
-
-
 
     .character-history
       .row.gold-bottom-border

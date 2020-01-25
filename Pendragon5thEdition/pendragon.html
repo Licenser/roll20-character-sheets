@@ -1,7 +1,7 @@
 
 <input name="attr_version" type="hidden" value="1"/>
-<input class="type" name="attr_sheet_type" type="hidden" value="knight"/>
-<input class="display_string" name="attr_toggles" type="hidden" value=""/>
+<input name="attr_sheet_type" type="hidden" value="character"/>
+<input name="attr_character_type" type="hidden" value="knight"/>
 <div class="npc">
   <div class="box npc-flex">
     <p>NPC STUFF</p>
@@ -11,19 +11,20 @@
   </div>
 </div>
 <div class="grid tabs">
-  <label data-i18n-title="select character sheet knight">
-    <input name="attr_sheet_type" title="@{sheet_type}" type="radio" value="knight" selected="selected"/><span class="text-center" data-i18n="knight"></span>
+  <label data-i18n-title="select character sheet character">
+    <input name="attr_sheet_type" title="@{sheet_type}" type="radio" value="character" selected="selected"/><span class="text-center" data-i18n="character"></span>
   </label>
   <label data-i18n-title="select character sheet holdings">
     <input name="attr_sheet_type" title="@{sheet_type}" type="radio" value="holdings"/><span class="text-center" data-i18n="holdings"></span>
   </label>
+  <select name="attr_character_type" value="knight">
+    <option data-i18n="knight" value="knight"></option>
+    <option data-i18n="woman" value="woman"></option>
+  </select>
 </div>
-<div class="knight pc grid">
+<div class="pc grid">
   <div class="col">
-    <div class="row">
-      <h1 data-i18n="King Arthur Pendragon"></h1>
-      <h2 data-i18n="Knight's Character Sheet"></h2>
-    </div>
+    <div class="row"><img class="knight" alt="King Arthut Pendragon Knight's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.png"/><img class="woman" alt="King Arthut Pendragon Woman's Character Sheet" src="https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/womenlogo.png"/></div>
     <div class="row 2autocolumn">
       <h2 data-i18n="Player:"></h2>
       <label data-i18n-title="enter player name" title="enter player name">
@@ -103,10 +104,16 @@
       <div class="header">
         <h1 data-i18n="personality traits"></h1>
       </div>
-      <div class="row 2autocolumn">
+      <div class="row 2autocolumn knight">
         <h2 data-i18n="Chivalry Bonus[*](total=80+)"></h2>
         <label data-i18n-title="enter chivalry bonus" title="enter chivalry bonus">
           <input data-i18n-placeholder="chivalry bonus" name="attr_chivalry_bonus" placeholder="chivalry bonus" title="@{chivalry_bonus}" type="text" value=""/>
+        </label>
+      </div>
+      <div class="row 2autocolumn woman">
+        <h2 data-i18n="Gentle Woman Bonus[*](total=80+)"></h2>
+        <label data-i18n-title="enter gentle woman bonus" title="enter gentle woman bonus">
+          <input data-i18n-placeholder="gentle woman bonus" name="attr_gentle_woman_bonus" placeholder="gentle woman bonus" title="@{gentle_woman_bonus}" type="text" value=""/>
         </label>
       </div>
       <div class="row 2autocolumn">
@@ -428,7 +435,7 @@
       <div class="header">
         <h1 data-i18n="equipment carried"></h1>
       </div>
-      <div class="row armor">
+      <div class="row armor knight">
         <h2 data-i18n="armor type"></h2>
         <label data-i18n-title="enter armor type" title="enter armor type">
           <input data-i18n-placeholder="armor type" name="attr_armor_type" placeholder="armor type" title="@{armor_type}" type="text" value=""/>
@@ -474,7 +481,7 @@
           <input name="attr_travel_gear_on_horse" placeholder="#" title="@{travel_gear_on_horse}" type="number" value="0"/>
         </label>
       </div>
-      <div class="row gear">
+      <div class="row gear knight">
         <label data-i18n-title="check war gear check" title="check war gear check">
           <input name="attr_war_gear_check" title="@{war_gear_check}" type="checkbox" value="war gear check"/>
         </label>
@@ -561,7 +568,7 @@
       <div class="header">
         <h1 data-i18n="skills"></h1>
       </div>
-      <div class="row 3autocolumn awareness">
+      <div class="row 3autocolumn awareness ">
         <button class="text-capitalize" data-i18n="awareness" name="roll_awareness" type="roll" value="&{template:rolls} {{header=^{awareness}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{awareness}[Threshold]]]}}"></button>
         <label data-i18n-title="enter awareness" title="enter awareness">
           <input name="attr_awareness" placeholder="#" title="@{awareness}" type="number" value="0"/>
@@ -570,7 +577,7 @@
           <input name="attr_awareness_check" title="@{awareness_check}" type="checkbox" value="awareness check"/>
         </label>
       </div>
-      <div class="row 3autocolumn boating">
+      <div class="row 3autocolumn boating knight">
         <button class="text-capitalize" data-i18n="boating" name="roll_boating" type="roll" value="&{template:rolls} {{header=^{boating}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{boating}[Threshold]]]}}"></button>
         <label data-i18n-title="enter boating" title="enter boating">
           <input name="attr_boating" placeholder="#" title="@{boating}" type="number" value="0"/>
@@ -579,7 +586,16 @@
           <input name="attr_boating_check" title="@{boating_check}" type="checkbox" value="boating check"/>
         </label>
       </div>
-      <div class="row 3autocolumn compose">
+      <div class="row 3autocolumn chirurgery woman">
+        <button class="text-capitalize" data-i18n="chirurgery" name="roll_chirurgery" type="roll" value="&{template:rolls} {{header=^{chirurgery}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{chirurgery}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter chirurgery" title="enter chirurgery">
+          <input name="attr_chirurgery" placeholder="#" title="@{chirurgery}" type="number" value="0"/>
+        </label>
+        <label data-i18n-title="check chirurgery check" title="check chirurgery check">
+          <input name="attr_chirurgery_check" title="@{chirurgery_check}" type="checkbox" value="chirurgery check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn compose ">
         <button class="text-capitalize" data-i18n="compose" name="roll_compose" type="roll" value="&{template:rolls} {{header=^{compose}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{compose}[Threshold]]]}}"></button>
         <label data-i18n-title="enter compose" title="enter compose">
           <input name="attr_compose" placeholder="#" title="@{compose}" type="number" value="0"/>
@@ -588,7 +604,7 @@
           <input name="attr_compose_check" title="@{compose_check}" type="checkbox" value="compose check"/>
         </label>
       </div>
-      <div class="row 3autocolumn courtesy">
+      <div class="row 3autocolumn courtesy ">
         <button class="text-capitalize" data-i18n="courtesy" name="roll_courtesy" type="roll" value="&{template:rolls} {{header=^{courtesy}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{courtesy}[Threshold]]]}}"></button>
         <label data-i18n-title="enter courtesy" title="enter courtesy">
           <input name="attr_courtesy" placeholder="#" title="@{courtesy}" type="number" value="0"/>
@@ -597,7 +613,7 @@
           <input name="attr_courtesy_check" title="@{courtesy_check}" type="checkbox" value="courtesy check"/>
         </label>
       </div>
-      <div class="row 3autocolumn dancing">
+      <div class="row 3autocolumn dancing ">
         <button class="text-capitalize" data-i18n="dancing" name="roll_dancing" type="roll" value="&{template:rolls} {{header=^{dancing}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{dancing}[Threshold]]]}}"></button>
         <label data-i18n-title="enter dancing" title="enter dancing">
           <input name="attr_dancing" placeholder="#" title="@{dancing}" type="number" value="0"/>
@@ -606,7 +622,7 @@
           <input name="attr_dancing_check" title="@{dancing_check}" type="checkbox" value="dancing check"/>
         </label>
       </div>
-      <div class="row 3autocolumn faerie lore">
+      <div class="row 3autocolumn faerie lore ">
         <button class="text-capitalize" data-i18n="faerie lore" name="roll_faerie-lore" type="roll" value="&{template:rolls} {{header=^{faerie lore}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{faerie_lore}[Threshold]]]}}"></button>
         <label data-i18n-title="enter faerie lore" title="enter faerie lore">
           <input name="attr_faerie_lore" placeholder="#" title="@{faerie_lore}" type="number" value="0"/>
@@ -615,7 +631,7 @@
           <input name="attr_faerie_lore_check" title="@{faerie_lore_check}" type="checkbox" value="faerie lore check"/>
         </label>
       </div>
-      <div class="row 3autocolumn falconry">
+      <div class="row 3autocolumn falconry ">
         <button class="text-capitalize" data-i18n="falconry" name="roll_falconry" type="roll" value="&{template:rolls} {{header=^{falconry}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{falconry}[Threshold]]]}}"></button>
         <label data-i18n-title="enter falconry" title="enter falconry">
           <input name="attr_falconry" placeholder="#" title="@{falconry}" type="number" value="0"/>
@@ -624,7 +640,7 @@
           <input name="attr_falconry_check" title="@{falconry_check}" type="checkbox" value="falconry check"/>
         </label>
       </div>
-      <div class="row 3autocolumn fashion">
+      <div class="row 3autocolumn fashion ">
         <button class="text-capitalize" data-i18n="fashion" name="roll_fashion" type="roll" value="&{template:rolls} {{header=^{fashion}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{fashion}[Threshold]]]}}"></button>
         <label data-i18n-title="enter fashion" title="enter fashion">
           <input name="attr_fashion" placeholder="#" title="@{fashion}" type="number" value="0"/>
@@ -633,7 +649,7 @@
           <input name="attr_fashion_check" title="@{fashion_check}" type="checkbox" value="fashion check"/>
         </label>
       </div>
-      <div class="row 3autocolumn first aid">
+      <div class="row 3autocolumn first aid ">
         <button class="text-capitalize" data-i18n="first aid" name="roll_first-aid" type="roll" value="&{template:rolls} {{header=^{first aid}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{first_aid}[Threshold]]]}}"></button>
         <label data-i18n-title="enter first aid" title="enter first aid">
           <input name="attr_first_aid" placeholder="#" title="@{first_aid}" type="number" value="0"/>
@@ -642,7 +658,7 @@
           <input name="attr_first_aid_check" title="@{first_aid_check}" type="checkbox" value="first aid check"/>
         </label>
       </div>
-      <div class="row 3autocolumn flirting">
+      <div class="row 3autocolumn flirting ">
         <button class="text-capitalize" data-i18n="flirting" name="roll_flirting" type="roll" value="&{template:rolls} {{header=^{flirting}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{flirting}[Threshold]]]}}"></button>
         <label data-i18n-title="enter flirting" title="enter flirting">
           <input name="attr_flirting" placeholder="#" title="@{flirting}" type="number" value="0"/>
@@ -651,7 +667,7 @@
           <input name="attr_flirting_check" title="@{flirting_check}" type="checkbox" value="flirting check"/>
         </label>
       </div>
-      <div class="row 3autocolumn folk lore">
+      <div class="row 3autocolumn folk lore ">
         <button class="text-capitalize" data-i18n="folk lore" name="roll_folk-lore" type="roll" value="&{template:rolls} {{header=^{folk lore}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{folk_lore}[Threshold]]]}}"></button>
         <label data-i18n-title="enter folk lore" title="enter folk lore">
           <input name="attr_folk_lore" placeholder="#" title="@{folk_lore}" type="number" value="0"/>
@@ -660,7 +676,7 @@
           <input name="attr_folk_lore_check" title="@{folk_lore_check}" type="checkbox" value="folk lore check"/>
         </label>
       </div>
-      <div class="row 3autocolumn gaming">
+      <div class="row 3autocolumn gaming ">
         <button class="text-capitalize" data-i18n="gaming" name="roll_gaming" type="roll" value="&{template:rolls} {{header=^{gaming}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{gaming}[Threshold]]]}}"></button>
         <label data-i18n-title="enter gaming" title="enter gaming">
           <input name="attr_gaming" placeholder="#" title="@{gaming}" type="number" value="0"/>
@@ -669,7 +685,7 @@
           <input name="attr_gaming_check" title="@{gaming_check}" type="checkbox" value="gaming check"/>
         </label>
       </div>
-      <div class="row 3autocolumn heraldry">
+      <div class="row 3autocolumn heraldry ">
         <button class="text-capitalize" data-i18n="heraldry" name="roll_heraldry" type="roll" value="&{template:rolls} {{header=^{heraldry}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{heraldry}[Threshold]]]}}"></button>
         <label data-i18n-title="enter heraldry" title="enter heraldry">
           <input name="attr_heraldry" placeholder="#" title="@{heraldry}" type="number" value="0"/>
@@ -678,7 +694,7 @@
           <input name="attr_heraldry_check" title="@{heraldry_check}" type="checkbox" value="heraldry check"/>
         </label>
       </div>
-      <div class="row 3autocolumn hunting">
+      <div class="row 3autocolumn hunting knight">
         <button class="text-capitalize" data-i18n="hunting" name="roll_hunting" type="roll" value="&{template:rolls} {{header=^{hunting}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{hunting}[Threshold]]]}}"></button>
         <label data-i18n-title="enter hunting" title="enter hunting">
           <input name="attr_hunting" placeholder="#" title="@{hunting}" type="number" value="0"/>
@@ -687,7 +703,16 @@
           <input name="attr_hunting_check" title="@{hunting_check}" type="checkbox" value="hunting check"/>
         </label>
       </div>
-      <div class="row 3autocolumn intrigue">
+      <div class="row 3autocolumn industry woman">
+        <button class="text-capitalize" data-i18n="industry" name="roll_industry" type="roll" value="&{template:rolls} {{header=^{industry}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{industry}[Threshold]]]}}"></button>
+        <label data-i18n-title="enter industry" title="enter industry">
+          <input name="attr_industry" placeholder="#" title="@{industry}" type="number" value="0"/>
+        </label>
+        <label data-i18n-title="check industry check" title="check industry check">
+          <input name="attr_industry_check" title="@{industry_check}" type="checkbox" value="industry check"/>
+        </label>
+      </div>
+      <div class="row 3autocolumn intrigue ">
         <button class="text-capitalize" data-i18n="intrigue" name="roll_intrigue" type="roll" value="&{template:rolls} {{header=^{intrigue}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{intrigue}[Threshold]]]}}"></button>
         <label data-i18n-title="enter intrigue" title="enter intrigue">
           <input name="attr_intrigue" placeholder="#" title="@{intrigue}" type="number" value="0"/>
@@ -696,7 +721,7 @@
           <input name="attr_intrigue_check" title="@{intrigue_check}" type="checkbox" value="intrigue check"/>
         </label>
       </div>
-      <div class="row 3autocolumn orate">
+      <div class="row 3autocolumn orate ">
         <button class="text-capitalize" data-i18n="orate" name="roll_orate" type="roll" value="&{template:rolls} {{header=^{orate}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{orate}[Threshold]]]}}"></button>
         <label data-i18n-title="enter orate" title="enter orate">
           <input name="attr_orate" placeholder="#" title="@{orate}" type="number" value="0"/>
@@ -705,7 +730,7 @@
           <input name="attr_orate_check" title="@{orate_check}" type="checkbox" value="orate check"/>
         </label>
       </div>
-      <div class="row 3autocolumn play">
+      <div class="row 3autocolumn play ">
         <button class="text-capitalize" data-i18n="play" name="roll_play" type="roll" value="&{template:rolls} {{header=^{play}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{play}[Threshold]]]}}"></button>
         <label data-i18n-title="enter play name" title="enter play name">
           <input data-i18n-placeholder="play name" name="attr_play_name" placeholder="play name" title="@{play_name}" type="text" value=""/>
@@ -717,7 +742,7 @@
           <input name="attr_play_check" title="@{play_check}" type="checkbox" value="play check"/>
         </label>
       </div>
-      <div class="row 3autocolumn read">
+      <div class="row 3autocolumn read ">
         <button class="text-capitalize" data-i18n="read" name="roll_read" type="roll" value="&{template:rolls} {{header=^{read}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{read}[Threshold]]]}}"></button>
         <label data-i18n-title="enter read name" title="enter read name">
           <input data-i18n-placeholder="read name" name="attr_read_name" placeholder="read name" title="@{read_name}" type="text" value=""/>
@@ -729,7 +754,7 @@
           <input name="attr_read_check" title="@{read_check}" type="checkbox" value="read check"/>
         </label>
       </div>
-      <div class="row 3autocolumn recognize">
+      <div class="row 3autocolumn recognize ">
         <button class="text-capitalize" data-i18n="recognize" name="roll_recognize" type="roll" value="&{template:rolls} {{header=^{recognize}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{recognize}[Threshold]]]}}"></button>
         <label data-i18n-title="enter recognize" title="enter recognize">
           <input name="attr_recognize" placeholder="#" title="@{recognize}" type="number" value="0"/>
@@ -738,7 +763,7 @@
           <input name="attr_recognize_check" title="@{recognize_check}" type="checkbox" value="recognize check"/>
         </label>
       </div>
-      <div class="row 3autocolumn religion">
+      <div class="row 3autocolumn religion ">
         <button class="text-capitalize" data-i18n="religion" name="roll_religion" type="roll" value="&{template:rolls} {{header=^{religion}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{religion}[Threshold]]]}}"></button>
         <label data-i18n-title="enter religion name" title="enter religion name">
           <input data-i18n-placeholder="religion name" name="attr_religion_name" placeholder="religion name" title="@{religion_name}" type="text" value=""/>
@@ -750,7 +775,7 @@
           <input name="attr_religion_check" title="@{religion_check}" type="checkbox" value="religion check"/>
         </label>
       </div>
-      <div class="row 3autocolumn romance">
+      <div class="row 3autocolumn romance ">
         <button class="text-capitalize" data-i18n="romance" name="roll_romance" type="roll" value="&{template:rolls} {{header=^{romance}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{romance}[Threshold]]]}}"></button>
         <label data-i18n-title="enter romance" title="enter romance">
           <input name="attr_romance" placeholder="#" title="@{romance}" type="number" value="0"/>
@@ -759,7 +784,7 @@
           <input name="attr_romance_check" title="@{romance_check}" type="checkbox" value="romance check"/>
         </label>
       </div>
-      <div class="row 3autocolumn singing">
+      <div class="row 3autocolumn singing ">
         <button class="text-capitalize" data-i18n="singing" name="roll_singing" type="roll" value="&{template:rolls} {{header=^{singing}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{singing}[Threshold]]]}}"></button>
         <label data-i18n-title="enter singing" title="enter singing">
           <input name="attr_singing" placeholder="#" title="@{singing}" type="number" value="0"/>
@@ -768,7 +793,7 @@
           <input name="attr_singing_check" title="@{singing_check}" type="checkbox" value="singing check"/>
         </label>
       </div>
-      <div class="row 3autocolumn stewardship">
+      <div class="row 3autocolumn stewardship ">
         <button class="text-capitalize" data-i18n="stewardship" name="roll_stewardship" type="roll" value="&{template:rolls} {{header=^{stewardship}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{stewardship}[Threshold]]]}}"></button>
         <label data-i18n-title="enter stewardship" title="enter stewardship">
           <input name="attr_stewardship" placeholder="#" title="@{stewardship}" type="number" value="0"/>
@@ -777,7 +802,7 @@
           <input name="attr_stewardship_check" title="@{stewardship_check}" type="checkbox" value="stewardship check"/>
         </label>
       </div>
-      <div class="row 3autocolumn swimming">
+      <div class="row 3autocolumn swimming ">
         <button class="text-capitalize" data-i18n="swimming" name="roll_swimming" type="roll" value="&{template:rolls} {{header=^{swimming}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{swimming}[Threshold]]]}}"></button>
         <label data-i18n-title="enter swimming" title="enter swimming">
           <input name="attr_swimming" placeholder="#" title="@{swimming}" type="number" value="0"/>
@@ -786,7 +811,7 @@
           <input name="attr_swimming_check" title="@{swimming_check}" type="checkbox" value="swimming check"/>
         </label>
       </div>
-      <div class="row 3autocolumn tourney">
+      <div class="row 3autocolumn tourney ">
         <button class="text-capitalize" data-i18n="tourney" name="roll_tourney" type="roll" value="&{template:rolls} {{header=^{tourney}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{tourney}[Threshold]]]}}"></button>
         <label data-i18n-title="enter tourney" title="enter tourney">
           <input name="attr_tourney" placeholder="#" title="@{tourney}" type="number" value="0"/>
@@ -813,8 +838,11 @@
       </div>
     </div>
     <div class="squire">
-      <div class="header">
+      <div class="header knight">
         <h1 data-i18n="squire"></h1>
+      </div>
+      <div class="header woman">
+        <h1 data-i18n="servant"></h1>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="name"></h2>
@@ -828,7 +856,7 @@
           <input name="attr_squire_age" placeholder="#" title="@{squire_age}" type="number" value="0"/>
         </label>
       </div>
-      <div class="row 3autocolumn">
+      <div class="row 3autocolumn knight">
         <button class="text-capitalize" data-i18n="first aid" name="roll_first-aid" type="roll" value="&{template:rolls} {{header=Squire's ^{first aid}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{squire_first_aid}[Threshold]]]}}"></button>
         <label data-i18n-title="enter first aid" title="enter first aid">
           <input name="attr_squire_first_aid" placeholder="#" title="@{squire_first_aid}" type="number" value=""/>
@@ -837,7 +865,7 @@
           <input name="attr_squire_first_aid_check" title="@{squire_first_aid_check}" type="checkbox" value="squire first aid check"/>
         </label>
       </div>
-      <div class="row 3autocolumn">
+      <div class="row 3autocolumn knight">
         <button class="text-capitalize" data-i18n="battle" name="roll_battle" type="roll" value="&{template:rolls} {{header=Squire's ^{battle}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{squire_battle}[Threshold]]]}}"></button>
         <label data-i18n-title="enter battle" title="enter battle">
           <input name="attr_squire_battle" placeholder="#" title="@{squire_battle}" type="number" value=""/>
@@ -846,7 +874,7 @@
           <input name="attr_squire_battle_check" title="@{squire_battle_check}" type="checkbox" value="squire battle check"/>
         </label>
       </div>
-      <div class="row 3autocolumn">
+      <div class="row 3autocolumn knight">
         <button class="text-capitalize" data-i18n="horsemanship" name="roll_horsemanship" type="roll" value="&{template:rolls} {{header=Squire's ^{horsemanship}}} {{dice=[[1d20[Roll]]]}} {{threshold=[[@{squire_horsemanship}[Threshold]]]}}"></button>
         <label data-i18n-title="enter horsemanship" title="enter horsemanship">
           <input name="attr_squire_horsemanship" placeholder="#" title="@{squire_horsemanship}" type="number" value=""/>
@@ -906,11 +934,11 @@
         <h2 data-i18n="wounds"></h2>
         <textarea data-i18n-placeholder="wounds" name="attr_wounds" placeholder="wounds"></textarea>
       </div>
-      <div class="row chirugery-needed">
-        <label data-i18n-title="check chirugery needed" title="check chirugery needed">
-          <input name="attr_chirugery_needed" title="@{chirugery_needed}" type="checkbox" value="chirugery needed"/>
+      <div class="row chirurgery-needed">
+        <label data-i18n-title="check chirurgery needed" title="check chirurgery needed">
+          <input name="attr_chirurgery_needed" title="@{chirurgery_needed}" type="checkbox" value="chirurgery needed"/>
         </label>
-        <h2 data-i18n="chirugery needed"></h2>
+        <h2 data-i18n="chirurgery needed"></h2>
       </div>
     </div>
     <div class="combat-skills">
@@ -1010,12 +1038,18 @@
         </div>
       </div>
     </div>
+    <div class="womans-gift woman">
+      <div class="header">
+        <h1 data-i18n="woman's gift"></h1>
+      </div>
+    </div>
     <div class="horse">
       <div class="header">
         <h1 data-i18n="horses"></h1>
       </div>
       <div class="row">
-        <h2 class="text-primary" data-i18n="best warhorse (#1)"></h2>
+        <h2 class="text-primary knight" data-i18n="best warhorse (#1)"></h2>
+        <h2 class="text-primary woman" data-i18n="best horse (#1)"></h2>
       </div>
       <div class="row 2autocolumn">
         <h2 data-i18n="type"></h2>
@@ -1091,7 +1125,8 @@
         </label>
       </div>
       <div class="row other-horse">
-        <h2 data-i18n="squire(#3)"></h2>
+        <h2 class="woman" data-i18n="squire(#3)"></h2>
+        <h2 class="knight" data-i18n="squire(#3)"></h2>
         <label data-i18n-title="enter horse 3" title="enter horse 3">
           <input data-i18n-placeholder="horse 3" name="attr_horse_3" placeholder="horse 3" title="@{horse_3}" type="text" value=""/>
         </label>
@@ -1221,7 +1256,7 @@
         <textarea name="attr_equipment_at_home"></textarea>
       </div>
     </div>
-    <div class="army">
+    <div class="army knight">
       <div class="header">
         <h1 data-i18n="army"></h1>
       </div>
@@ -1268,9 +1303,14 @@
         <textarea name="attr_army_notes"></textarea>
       </div>
     </div>
+    <div class="household-treasures woman">
+      <div class="header">
+        <h1 data-i18n="household treasures"></h1>
+      </div>
+    </div>
   </div>
   <div class="col gold-left-border">
-    <div class="family-history">
+    <div class="family-history knight">
       <div class="row gold-bottom-border">
         <h1 data-i18n="family history and events"></h1>
       </div>
@@ -1281,20 +1321,20 @@
             <input data-i18n-placeholder="born" name="attr_born" placeholder="born" title="@{born}" type="text" value=""/>
           </label>
         </div>
-        <div class="col 2autocolumn">
+        <div class="col 2autocolumn knight">
           <h2 data-i18n="squired"></h2>
           <label data-i18n-title="enter squired" title="enter squired">
             <input data-i18n-placeholder="squired" name="attr_squired" placeholder="squired" title="@{squired}" type="text" value=""/>
           </label>
         </div>
-        <div class="col 2autocolumn">
+        <div class="col 2autocolumn knight">
           <h2 data-i18n="knighted"></h2>
           <label data-i18n-title="enter knighted" title="enter knighted">
             <input data-i18n-placeholder="knighted" name="attr_knighted" placeholder="knighted" title="@{knighted}" type="text" value=""/>
           </label>
         </div>
       </div>
-      <div class="row grid">
+      <div class="row grid knight">
         <div class="col 2autocolumn">
           <h2 data-i18n="member of the round table"></h2>
           <label data-i18n-title="enter member of the round table" title="enter member of the round table">
@@ -1356,9 +1396,9 @@
           </label>
         </div>
         <div class="col 2autocolumn">
-          <h2 data-i18n="wife"></h2>
-          <label data-i18n-title="enter wife" title="enter wife">
-            <input data-i18n-placeholder="wife" name="attr_wife" placeholder="wife" title="@{wife}" type="text" value=""/>
+          <h2 data-i18n="spouse"></h2>
+          <label data-i18n-title="enter spouse" title="enter spouse">
+            <input data-i18n-placeholder="spouse" name="attr_spouse" placeholder="spouse" title="@{spouse}" type="text" value=""/>
           </label>
         </div>
         <div class="col 2autocolumn">
