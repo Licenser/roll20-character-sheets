@@ -55,9 +55,12 @@ input.display_string(name='attr_toggles', type='hidden', value='')
         .col.2autocolumn
           h2(data-i18n='age')
           +numberInput('age')
-        .col.2autocolumn
+        .col.2autocolumn.knight
           h2(data-i18n='son number')
           +textInput('son number')
+        .col.2autocolumn.woman
+          h2(data-i18n='daughter number')
+          +textInput('daughter number')
       .row.2autocolumn
         h2(data-i18n='homeland')
         +textInput('homeland')
