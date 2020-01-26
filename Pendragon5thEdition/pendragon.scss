@@ -32,13 +32,6 @@ button {
         background-color: $primary !important;
         color: #fff;
     }
-
-    &:focus > h2,
-    &:hover > h2,
-    &:active > h2 {
-        color: $white;
-        text-shadow: 1px 1px 2px $dark, 0 0 25px $secondary, 0 0 5px $primary
-    }
     &[type="roll"],
     &[type="action"] {
         background-color: $white;
@@ -85,6 +78,7 @@ h2 {
 h3 {
     font-size: 1.25em;
     line-height: 36px;
+    text-transform: capitalize;
 }
 
 input {
@@ -154,14 +148,25 @@ textarea {
 
 .charsheet {
     width: 825px;
+
+    div.sheet-row {
+        margin-bottom: 0px;
+    }
 }
     
 /* GRID
    ============================= */ 
     div.sheet-grid {
-        display        : inline-grid;
+        display: inline-grid;
         grid-column-gap: 1%;
         grid-row-gap: 0.5%;
+    }
+
+    %gridRowCol {
+        display: inline-grid;
+        overflow: hidden;
+        grid-auto-rows: min-content;
+        grid-column-gap: 1%;
     }
 
 /* GENERIC CLASSES
@@ -222,8 +227,8 @@ textarea {
         grid-template-columns: 1fr 1fr 1fr 1fr;
     }
 
-    div.sheet-5column {
-        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    div.sheet-6column {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     }
 
     div.sheet-2autocolumn {
@@ -249,6 +254,9 @@ textarea {
     }
   
     div.sheet-header {
+        margin-top: 2%;
+        border-top: 2px solid $primary;
+        border-bottom: 2px solid $primary;
         text-align: center;
         background: #fefcea; /* Old browsers */
         background: -moz-linear-gradient(top,  #fefcea 0%, #ede4b4 50%, #fefcea 100%); /* FF3.6-15 */
@@ -344,16 +352,7 @@ div.sheet-character {
     }
 
     div.sheet-row, div.sheet-col {
-        display: inline-grid;
-        overflow: hidden;
-        grid-auto-rows: min-content;
-        grid-column-gap: 1%;
-    }
-
-    div.sheet-header {
-        border-top: 2px solid $primary;
-        border-bottom: 2px solid $primary;
-        margin-top: 2%;
+        @extend %gridRowCol
     }
 
     div.sheet-personality-traits {
@@ -495,21 +494,7 @@ div.sheet-holdings {
     }
 
     div.sheet-row, div.sheet-col {
-        display: inline-grid;
-        overflow: hidden;
-        grid-auto-rows: min-content;
-    }
-
-    div.sheet-header {
-        border-top: 2px solid $primary;
-        border-bottom: 2px solid $primary;
-        margin-top: 2%;
-        text-align: center;
-        background: #fefcea; /* Old browsers */
-        background: -moz-linear-gradient(top,  #fefcea 0%, #ede4b4 50%, #fefcea 100%); /* FF3.6-15 */
-        background: -webkit-linear-gradient(top,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom,  #fefcea 0%,#ede4b4 50%,#fefcea 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#fefcea',GradientType=0 ); /* IE6-9 */
+        @extend %gridRowCol
     }
 
     div.sheet-annual-glory {
@@ -547,13 +532,15 @@ div.sheet-holdings {
     ============================= */
 div.sheet-gamemaster {
     div.sheet-feast-record {
-        div.sheet-row {
-            @extend div.sheet-grid;
+        grid-row-gap: 2%;
+
+        div.sheet-row, div.sheet-col {
+            @extend %gridRowCol
         }
-        div.sheet-header,
+        
         div.sheet-sub-header,
         div.sheet-repeating-container div.sheet-row {
-            grid-template-columns: 1fr 3.5em 3.5em 60%;
+            grid-template-columns: 1fr 5em 5em 60%;
         }
 
         div.sheet-sub-header {

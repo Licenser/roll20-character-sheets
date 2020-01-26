@@ -21,13 +21,6 @@ button:focus, button:hover, button:active {
   color: #fff;
 }
 
-button:focus > h2,
-button:hover > h2,
-button:active > h2 {
-  color: whitesmoke;
-  text-shadow: 1px 1px 2px black, 0 0 25px #d6af5e, 0 0 5px #226aae;
-}
-
 button[type="roll"], button[type="action"] {
   background-color: whitesmoke;
   border-bottom: 0.01em solid #666;
@@ -70,6 +63,7 @@ h2.sheet-label {
 h3 {
   font-size: 1.25em;
   line-height: 36px;
+  text-transform: capitalize;
 }
 
 input[type="text"], input[type="number"] {
@@ -135,12 +129,23 @@ textarea {
   width: 825px;
 }
 
+.charsheet div.sheet-row {
+  margin-bottom: 0px;
+}
+
 /* GRID
    ============================= */
-div.sheet-grid, div.sheet-gamemaster div.sheet-feast-record div.sheet-row {
+div.sheet-grid {
   display: inline-grid;
   grid-column-gap: 1%;
   grid-row-gap: 0.5%;
+}
+
+div.sheet-character div.sheet-row, div.sheet-character div.sheet-col, div.sheet-holdings div.sheet-row, div.sheet-holdings div.sheet-col, div.sheet-gamemaster div.sheet-feast-record div.sheet-row, div.sheet-gamemaster div.sheet-feast-record div.sheet-col {
+  display: inline-grid;
+  overflow: hidden;
+  grid-auto-rows: min-content;
+  grid-column-gap: 1%;
 }
 
 /* GENERIC CLASSES
@@ -201,8 +206,8 @@ div.sheet-4column {
   grid-template-columns: 1fr 1fr 1fr 1fr;
 }
 
-div.sheet-5column {
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+div.sheet-6column {
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 div.sheet-2autocolumn {
@@ -228,6 +233,9 @@ div.sheet-gold-bottom-border {
 }
 
 div.sheet-header, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header {
+  margin-top: 2%;
+  border-top: 2px solid #226aae;
+  border-bottom: 2px solid #226aae;
   text-align: center;
   background: #fefcea;
   /* Old browsers */
@@ -317,19 +325,6 @@ div.sheet-character h2 {
 
 div.sheet-character h2[data-i18n="Knight's Character Sheet"] {
   padding-top: 1%;
-}
-
-div.sheet-character div.sheet-row, div.sheet-character div.sheet-col {
-  display: inline-grid;
-  overflow: hidden;
-  grid-auto-rows: min-content;
-  grid-column-gap: 1%;
-}
-
-div.sheet-character div.sheet-header, div.sheet-character .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-character div.sheet-template-header {
-  border-top: 2px solid #226aae;
-  border-bottom: 2px solid #226aae;
-  margin-top: 2%;
 }
 
 div.sheet-character div.sheet-personality-traits div.sheet-traits {
@@ -438,29 +433,6 @@ div.sheet-holdings h2 {
   width: fit-content;
 }
 
-div.sheet-holdings div.sheet-row, div.sheet-holdings div.sheet-col {
-  display: inline-grid;
-  overflow: hidden;
-  grid-auto-rows: min-content;
-}
-
-div.sheet-holdings div.sheet-header, div.sheet-holdings .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-holdings div.sheet-template-header {
-  border-top: 2px solid #226aae;
-  border-bottom: 2px solid #226aae;
-  margin-top: 2%;
-  text-align: center;
-  background: #fefcea;
-  /* Old browsers */
-  background: -moz-linear-gradient(top, #fefcea 0%, #ede4b4 50%, #fefcea 100%);
-  /* FF3.6-15 */
-  background: -webkit-linear-gradient(top, #fefcea 0%, #ede4b4 50%, #fefcea 100%);
-  /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom, #fefcea 0%, #ede4b4 50%, #fefcea 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefcea', endColorstr='#fefcea',GradientType=0 );
-  /* IE6-9 */
-}
-
 div.sheet-holdings div.sheet-annual-glory h2[data-i18n='total'] {
   font-style: italic;
 }
@@ -487,10 +459,13 @@ div.sheet-holdings div.sheet-character-history div.sheet-events {
 
 /*  GAMEMASTER FEAST RECORD
     ============================= */
-div.sheet-gamemaster div.sheet-feast-record div.sheet-header, div.sheet-gamemaster div.sheet-feast-record .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-template-header, .sheet-rolltemplate-rolls div.sheet-template-container div.sheet-gamemaster div.sheet-feast-record div.sheet-template-header,
+div.sheet-gamemaster div.sheet-feast-record {
+  grid-row-gap: 2%;
+}
+
 div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header,
 div.sheet-gamemaster div.sheet-feast-record div.sheet-repeating-container div.sheet-row {
-  grid-template-columns: 1fr 3.5em 3.5em 60%;
+  grid-template-columns: 1fr 5em 5em 60%;
 }
 
 div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header div.sheet-table {

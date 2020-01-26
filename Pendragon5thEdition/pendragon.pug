@@ -455,26 +455,28 @@ input(name='attr_character_type', type='hidden', value='knight')
             +numberInput('total glory')
 
 .gamemaster
-  .feast-record
+  .feast-record.grid
     .row.2column
-      img(alt='King Arthur Pendragon' src='https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.jpg')
-      h1.text-right.header(data-i18n='feast record')
+      .col
+        img(alt='King Arthur Pendragon' src='https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.jpg')
+      .col.header
+        h1.header(data-i18n='feast record')
     .row.3column
       each val in ['location', 'size', 'date']
-        .col.2autocolumn
+        .col.grid.2autocolumn
           h2(data-i18n=val)
-          textInput(val)
-    .row
+          +textInput(val)
+    .row.sub-header.bottom-border
       each val in ['seating', 'glory', 'geniality mod.', 'accumulated geniality']
         h2(data-i18n=val)
     .row.sub-header
       .col.table
         h3(data-i18n='above the salt (high table)')
-      .col.grid.5column
+      .col.grid.6column
         - let n = 1
-        while n < 5
-          h3(data-i18n=`Round ${n++}`)
-        h3(data-i18n='total')
+        while n < 6
+          h3.text-center(data-i18n=`Round ${n++}`)
+        h3.text-center(data-i18n='total')
     .repeating-container
       fieldset(class='repeating_above-the-salt')
         .row
@@ -483,8 +485,8 @@ input(name='attr_character_type', type='hidden', value='knight')
           .col
             +numberInput('glory')
           .col
-            +textInput('geniality_modifier')
-          .col.5column
+            +textInput('geniality modifier')
+          .col.6column
             - let roundCounter = 0
             while roundCounter < 5
               +numberInput(`Round ${roundCounter++}`)
