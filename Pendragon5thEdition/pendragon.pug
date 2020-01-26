@@ -456,28 +456,28 @@ input(name='attr_character_type', type='hidden', value='knight')
 
 .gamemaster
   .feast-record
-    .row.grid.2column
+    .row.2column
       img(alt='King Arthur Pendragon' src='https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.jpg')
-      h1.text-right(data-i18n='feast record')
-    .row.grid.3column
+      h1.text-right.header(data-i18n='feast record')
+    .row.3column
       each val in ['location', 'size', 'date']
         .col.2autocolumn
           h2(data-i18n=val)
           textInput(val)
-    .row.grid.header
+    .row
       each val in ['seating', 'glory', 'geniality mod.', 'accumulated geniality']
         h2(data-i18n=val)
-    .row.grid.sub-header
+    .row.sub-header
       .col.table
         h3(data-i18n='above the salt (high table)')
       .col.grid.5column
-        - let n = 0
+        - let n = 1
         while n < 5
           h3(data-i18n=`Round ${n++}`)
         h3(data-i18n='total')
     .repeating-container
       fieldset(class='repeating_above-the-salt')
-        .row.grid
+        .row
           .col
             +textInput('name')
           .col
