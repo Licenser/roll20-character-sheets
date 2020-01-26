@@ -27,19 +27,20 @@ input(name='attr_character_type', type='hidden', value='knight')
 //-PC SHEET
   =============================
 .grid.tabs
-  each val in ['character', 'holdings']
+  each val in ['character', 'holdings', 'gamemaster']
     label(data-i18n-title=`select character sheet ${val}`)
       if val === 'character'
         input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val selected)
-        span.text-center(data-i18n='character')
+        span.text-center(data-i18n=`${val}`)
       else
         input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
-        span.text-center(data-i18n='holdings')
+        span.text-center(data-i18n=`${val}`)
   select(name='attr_character_type' value='knight')
     option(data-i18n='knight' value='knight')
     option(data-i18n='woman' value='woman')
-
-
+  select(name='attr_gamemaster_type' value='knight')
+    option(data-i18n='feast record' value='feast record')
+    option(data-i18n='gamemaster characters' value='gamemaster characters')
 
 .character.grid
   .col
@@ -143,11 +144,13 @@ input(name='attr_character_type', type='hidden', value='knight')
         +textInput('clothing')
         h2(data-i18n='libra value')
         +textInput('libra value')
+      .row
+        h2.text-primary(data-i18n='gear')
       each val in ['personal', 'travel', 'war']
         - const classNotation = val === 'war' ? "knight" : "";
         .row.gear(class=classNotation)
           +checkboxInput(`${val} gear check`)
-          h2(data-i18n=`${val} gear`)
+          h2(data-i18n=`${val}`)
           +textInput(`${val} gear`)
           h2(data-i18n=`on horse #`)
           +numberInput(`${val} gear on horse`)
@@ -194,7 +197,7 @@ input(name='attr_character_type', type='hidden', value='knight')
         h1(data-i18n='skills')
       each val in skills
         - const classNotation = val === 'chirurgery' || val === 'industry' ? "woman" : val === 'boating' || val === 'hunting' ? "knight"  : "";
-        .row.3autocolumn(class=`${val} ${classNotation}`)
+        .row.col-3(class=`${val} ${classNotation}`)
             +rollButton(val)
             if val === 'play' || val === 'read' || val === 'religion'
               +textInput(`${val} name`)
@@ -260,15 +263,15 @@ input(name='attr_character_type', type='hidden', value='knight')
       .header
         h1(data-i18n='combat skills')
       each val in ['battle', 'horsemanship']
-        .row.3autocolumn
+        .row.col-3
           +rollButton(val)
           +numberInput(val)
           +checkboxInput(`${val} check`)
       .row
         h2.text-primary(data-i18n='weapon skills')
       each val in ['sword', 'lance', 'spear', 'dagger']
-        - const classNotation = !val === 'dagger' ? "knight" : "";
-        .row.3autocolumn(class=`${classNotation}`)
+        - const classNotation = val != 'dagger' ? "knight" : "";
+        .row.col-3(class=`${classNotation}`)
           +rollButton(val)
           +numberInput(val)
           +checkboxInput(`${val} check`)
@@ -450,6 +453,8 @@ input(name='attr_character_type', type='hidden', value='knight')
             +textInput('event')
             +numberInput('new glory')
             +numberInput('total glory')
+
+.gamemaster.grid
 
 
 //- NOTES SHEET

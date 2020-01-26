@@ -223,6 +223,10 @@
         grid-template-columns: auto 1fr 10%;
     }
 
+    div.sheet-col-3 {
+        grid-template-columns: 1fr 3.5em 10%;
+    }
+
     div.sheet-gold-left-border {
         border-left: 0.2em solid $secondary;
         padding-left: 1%;
@@ -289,9 +293,8 @@
 /* TAB
     ============================= */
 div.sheet-tabs {
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-left: 44%;
-
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    
     input {
         grid-column: 1;
         height: auto;
@@ -305,6 +308,7 @@ div.sheet-tabs {
 
     span {
         border: 2px solid $primary;
+        text-transform: capitalize;
         display: inline-block;
         grid-column: 1;
         width: 80%;
@@ -537,21 +541,30 @@ div.sheet-footer {
 
 /*  SHOW & HIDE SHEET
     ============================= */
-div.sheet-npc,
-input[name='attr_sheet_type'][value='character'] ~ div.sheet-holdings,
-input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-character {
-    display: none;
+%displaynone {  display: none; }
+%displayInlineGrid { display: inline-grid;}
+
+$sheets: 'character', 'holdings', 'gamemaster', 'npc';
+@each $value in $sheets {
+    div.sheet-#{$value} {
+      @extend %displayInlineGrid;
+    }
+
+    input[name='attr_sheet_type']:not([value='#{$value}']) ~ div.sheet-#{$value} {
+       @extend %displaynone;
+    }
 }
 
-input[name='attr_sheet_type'][value='character'] ~ div.sheet-character,
-input[name='attr_sheet_type'][value='holdings'] ~ div.sheet-holdings {
-    display: inline-grid;
-}
+input[name='attr_sheet_type']:not([value='gamemaster']) ~ div.sheet-tabs select[name='attr_gamemaster_type'],
+input[name='attr_sheet_type'][value='gamemaster'] ~ div.sheet-tabs select[name='attr_character_type'] {
+    @extend %displaynone;
+ }
 
-$types: ('knight': 'woman', 'woman': 'knight');
-@each $key, $value in $types {
-    input[name='attr_character_type'][value="#{$key}"] ~ div.sheet-character div.sheet-col,
-    input[name='attr_character_type'][value="#{$key}"] ~ div.sheet-holdings div.sheet-col {
+
+$types: 'knight', 'woman';
+@each $value in $types {
+    input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-character div.sheet-col,
+    input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-holdings div.sheet-col {
         & div.sheet-row .sheet-#{$value},
         & div.sheet-personal-data div.sheet-row .sheet-#{$value},
         & div.sheet-personality-traits .sheet-#{$value},
@@ -563,7 +576,7 @@ $types: ('knight': 'woman', 'woman': 'knight');
         & div.sheet-combat-skills .sheet-#{$value},
         & div.sheet-horse div.sheet-row .sheet-#{$value},
         & div.sheeet-family-history div.sheet-row {
-            display: none;
+            @extend %displaynone;
         }  
     }
 }
