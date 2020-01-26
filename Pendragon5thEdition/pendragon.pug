@@ -26,7 +26,7 @@ input(name='attr_character_type', type='hidden', value='knight')
 
 //-PC SHEET
   =============================
-.grid.tabs
+.grid.tabs.4column
   each val in ['character', 'holdings', 'gamemaster']
     label(data-i18n-title=`select character sheet ${val}`)
       if val === 'character'
@@ -454,7 +454,42 @@ input(name='attr_character_type', type='hidden', value='knight')
             +numberInput('new glory')
             +numberInput('total glory')
 
-.gamemaster.grid
+.gamemaster
+  .feast-record
+    .row.grid.2column
+      img(alt='King Arthur Pendragon' src='https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.jpg')
+      h1.text-right(data-i18n='feast record')
+    .row.grid.3column
+      each val in ['location', 'size', 'date']
+        .col.2autocolumn
+          h2(data-i18n=val)
+          textInput(val)
+    .row.grid.header
+      each val in ['seating', 'glory', 'geniality mod.', 'accumulated geniality']
+        h2(data-i18n=val)
+    .row.grid.sub-header
+      .col.table
+        h3(data-i18n='above the salt (high table)')
+      .col.grid.5column
+        - let n = 0
+        while n < 5
+          h3(data-i18n=`Round ${n++}`)
+        h3(data-i18n='total')
+    .repeating-container
+      fieldset(class='repeating_above-the-salt')
+        .row.grid
+          .col
+            +textInput('name')
+          .col
+            +numberInput('glory')
+          .col
+            +textInput('geniality_modifier')
+          .col.5column
+            - let roundCounter = 0
+            while roundCounter < 5
+              +numberInput(`Round ${roundCounter++}`)
+            +numberInput('Round Total')
+        
 
 
 //- NOTES SHEET
