@@ -142,7 +142,7 @@ input(name='attr_character_type', type='hidden', value='knight')
         h2(data-i18n='clothing')
         +textInput('clothing')
         h2(data-i18n='libra value')
-        +numberInput('libra value')
+        +textInput('libra value')
       each val in ['personal', 'travel', 'war']
         - const classNotation = val === 'war' ? "knight" : "";
         .row.gear(class=classNotation)
@@ -233,7 +233,6 @@ input(name='attr_character_type', type='hidden', value='knight')
               +numberInput('skill')
               +checkboxInput(`check`)
               +repeatingRollButton('skill')
-
 
   .col.gold-left-border
     .glory

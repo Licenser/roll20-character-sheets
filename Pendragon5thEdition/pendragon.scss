@@ -19,6 +19,8 @@
 
     button {
         text-overflow: ellipsis;
+        font-family: serif;
+        font-variant: small-caps;
 
         &:before {
             display: none;
@@ -65,7 +67,7 @@
     h1 {
         color: $primary;
         text-transform: capitalize;
-        font-family: fantasy;
+        font-family: serif;
     }
 
     h2 {
@@ -248,7 +250,6 @@
     }
 
     label.sheet-styled-checkbox {
-
         input, span {
             grid-area: 1 / 1 / 1 / 1;
             height: 15px;
@@ -280,6 +281,10 @@
 
     }
   
+    div.sheet-repeating-container {
+        button { font-variant: none; }
+    }
+
     
 /* TAB
     ============================= */
@@ -303,14 +308,14 @@ div.sheet-tabs {
         display: inline-block;
         grid-column: 1;
         width: 80%;
-        pointer: cursor;
+        cursor: pointer;
     }
 }
 
 /* PC
     ============================= */
 div.sheet-character {
-    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-columns: 1.8fr 1fr 1fr;
 
     h2 {
         padding-top: 5%;
