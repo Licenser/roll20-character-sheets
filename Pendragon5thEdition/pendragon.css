@@ -459,6 +459,10 @@ div.sheet-holdings div.sheet-character-history div.sheet-events {
 
 /*  GAMEMASTER FEAST RECORD
     ============================= */
+div.sheet-gamemaster {
+  min-height: 800px;
+}
+
 div.sheet-gamemaster div.sheet-feast-record {
   grid-row-gap: 2%;
 }
@@ -468,8 +472,20 @@ div.sheet-gamemaster div.sheet-feast-record div.sheet-repeating-container div.sh
   grid-template-columns: 1fr 5em 5em 60%;
 }
 
+div.sheet-gamemaster div.sheet-feast-record div.sheet-6column {
+  grid-column-gap: 5%;
+}
+
+div.sheet-gamemaster div.sheet-feast-record div.sheet-6column h3 {
+  font-size: 1em;
+}
+
 div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header div.sheet-table {
   grid-column: 1 / 4;
+}
+
+div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header:nth-of-type(even) {
+  background-color: #fefcea;
 }
 
 /*  FOOTER
@@ -683,4 +699,8 @@ input:focus + .sheet-slider {
 .itemcontrol .repcontrol_del {
   background-color: darkred;
   font-family: "pictos";
+}
+
+.repitem:nth-of-type(even) {
+  background-color: rgba(77, 77, 77, 0.0784314);
 }

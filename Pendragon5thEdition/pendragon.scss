@@ -531,6 +531,7 @@ div.sheet-holdings {
 /*  GAMEMASTER FEAST RECORD
     ============================= */
 div.sheet-gamemaster {
+    min-height: 800px;
     div.sheet-feast-record {
         grid-row-gap: 2%;
 
@@ -543,10 +544,22 @@ div.sheet-gamemaster {
             grid-template-columns: 1fr 5em 5em 60%;
         }
 
+        div.sheet-6column {
+            grid-column-gap: 5%;
+
+            h3 {
+                font-size: 1em;
+            }
+        }
+
         div.sheet-sub-header {
             div.sheet-table {
                 grid-column: 1 / 4;
             }
+        }
+
+        div.sheet-sub-header:nth-of-type(even) {
+            background-color: $light;          
         }
     }
 }
@@ -761,4 +774,8 @@ $types: 'knight', 'woman';
 .itemcontrol .repcontrol_del {
   background-color: darkred;
   font-family: "pictos";
+}
+
+.repitem:nth-of-type(even) {
+    background-color: $transparentGray;
 }
