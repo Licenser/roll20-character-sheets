@@ -532,13 +532,14 @@ div.sheet-holdings {
     ============================= */
 div.sheet-gamemaster {
     min-height: 800px;
-    div.sheet-feast-record {
+
+    div.sheet-row, div.sheet-col {
+        @extend %gridRowCol
+    }
+
+    div.sheet-feast {
         grid-row-gap: 2%;
 
-        div.sheet-row, div.sheet-col {
-            @extend %gridRowCol
-        }
-        
         div.sheet-sub-header,
         div.sheet-repeating-container div.sheet-row {
             grid-template-columns: 1fr 5em 5em 60%;
@@ -560,6 +561,24 @@ div.sheet-gamemaster {
 
         div.sheet-sub-header:nth-of-type(even) {
             background-color: $light;          
+        }
+    }
+
+    div.sheet-characters {
+        div.sheet-sub-header,
+        div.sheet-repeating-row {
+            grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-row-gap: 5%;
+        }
+
+        div.sheet-bottom-border,
+        div.sheet-3column,
+        div.sheet-notes {
+            margin-top: 2%;
+        }
+
+        div.sheet-sub-header {
+            margin-top: 1%;
         }
     }
 }
@@ -594,7 +613,6 @@ input[name='attr_sheet_type'][value='gamemaster'] ~ div.sheet-tabs select[name='
     @extend %displaynone;
  }
 
-
 $types: 'knight', 'woman';
 @each $value in $types {
     input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-character div.sheet-col,
@@ -612,6 +630,13 @@ $types: 'knight', 'woman';
         & div.sheeet-family-history div.sheet-row {
             @extend %displaynone;
         }  
+    }
+}
+
+$gmtypes: 'feast', 'characters';
+@each $value in $gmtypes {
+    input[name='attr_gamemaster_type']:not([value="#{$value}"]) ~ div.sheet-gamemaster div.sheet-#{$value} {
+        @extend %displaynone;
     }
 }
 

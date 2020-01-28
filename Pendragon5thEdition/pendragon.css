@@ -141,7 +141,7 @@ div.sheet-grid {
   grid-row-gap: 0.5%;
 }
 
-div.sheet-character div.sheet-row, div.sheet-character div.sheet-col, div.sheet-holdings div.sheet-row, div.sheet-holdings div.sheet-col, div.sheet-gamemaster div.sheet-feast-record div.sheet-row, div.sheet-gamemaster div.sheet-feast-record div.sheet-col {
+div.sheet-character div.sheet-row, div.sheet-character div.sheet-col, div.sheet-holdings div.sheet-row, div.sheet-holdings div.sheet-col, div.sheet-gamemaster div.sheet-row, div.sheet-gamemaster div.sheet-col {
   display: inline-grid;
   overflow: hidden;
   grid-auto-rows: min-content;
@@ -463,29 +463,45 @@ div.sheet-gamemaster {
   min-height: 800px;
 }
 
-div.sheet-gamemaster div.sheet-feast-record {
+div.sheet-gamemaster div.sheet-feast {
   grid-row-gap: 2%;
 }
 
-div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header,
-div.sheet-gamemaster div.sheet-feast-record div.sheet-repeating-container div.sheet-row {
+div.sheet-gamemaster div.sheet-feast div.sheet-sub-header,
+div.sheet-gamemaster div.sheet-feast div.sheet-repeating-container div.sheet-row {
   grid-template-columns: 1fr 5em 5em 60%;
 }
 
-div.sheet-gamemaster div.sheet-feast-record div.sheet-6column {
+div.sheet-gamemaster div.sheet-feast div.sheet-6column {
   grid-column-gap: 5%;
 }
 
-div.sheet-gamemaster div.sheet-feast-record div.sheet-6column h3 {
+div.sheet-gamemaster div.sheet-feast div.sheet-6column h3 {
   font-size: 1em;
 }
 
-div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header div.sheet-table {
+div.sheet-gamemaster div.sheet-feast div.sheet-sub-header div.sheet-table {
   grid-column: 1 / 4;
 }
 
-div.sheet-gamemaster div.sheet-feast-record div.sheet-sub-header:nth-of-type(even) {
+div.sheet-gamemaster div.sheet-feast div.sheet-sub-header:nth-of-type(even) {
   background-color: #fefcea;
+}
+
+div.sheet-gamemaster div.sheet-characters div.sheet-sub-header,
+div.sheet-gamemaster div.sheet-characters div.sheet-repeating-row {
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-row-gap: 5%;
+}
+
+div.sheet-gamemaster div.sheet-characters div.sheet-bottom-border,
+div.sheet-gamemaster div.sheet-characters div.sheet-3column,
+div.sheet-gamemaster div.sheet-characters div.sheet-notes {
+  margin-top: 2%;
+}
+
+div.sheet-gamemaster div.sheet-characters div.sheet-sub-header {
+  margin-top: 1%;
 }
 
 /*  FOOTER
@@ -542,7 +558,7 @@ input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheet-combat-skills .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheet-horse div.sheet-row .sheet-woman,
-input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheeet-family-history div.sheet-row {
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheeet-family-history div.sheet-row, input[name='attr_gamemaster_type']:not([value="feast"]) ~ div.sheet-gamemaster div.sheet-feast, input[name='attr_gamemaster_type']:not([value="characters"]) ~ div.sheet-gamemaster div.sheet-characters {
   display: none;
 }
 

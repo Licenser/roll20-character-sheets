@@ -10,11 +10,13 @@ include src/pug/mixins.pug
 - const personalityTraits = {'chaste':'lustful', 'energetic':'lazy', 'forgiving':'vengeful','generous':'selfish','honest':'deceitful','just':'arbitrary','merciful':'cruel','modest':'proud','prudent':'reckless','spiritual':'wordly','temperate':'indulgent','trusting':'suspicious','valorous':'cowardly'};
 - const attributes = ['size', 'dex', 'str', 'con', 'app'];
 - const skills = ['awareness', 'boating', 'chirurgery', 'compose', 'courtesy', 'dancing', 'faerie lore', 'falconry', 'fashion', 'first aid', 'flirting', 'folk lore', 'gaming', 'heraldry', 'hunting', 'industry', 'intrigue', 'orate', 'play', 'read', 'recognize', 'religion', 'romance', 'singing', 'stewardship', 'swimming', 'tourney'];
+- const gmCharacters = ['name', 'glory', 'app',  'courtesy', 'flirting', 'intrigue', 'chaste', 'modest', 'temperate'];
 
 //- TABS
   =============================
-input(name='attr_sheet_type', type='hidden', value='character')
-input(name='attr_character_type', type='hidden', value='knight')
+input(name='attr_sheet_type' type='hidden' value='character')
+input(name='attr_sub_type' type='hidden' value='knight')
+input(name='attr_gamemaster_type' type='hidden' value='feast')
 
 //-NPC SHEET
   =============================
@@ -36,11 +38,11 @@ input(name='attr_character_type', type='hidden', value='knight')
         input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
         span.text-center(data-i18n=`${val}`)
   select(name='attr_character_type' value='knight')
-    option(data-i18n='knight' value='knight')
+    option(data-i18n='knight' value='knight' selected)
     option(data-i18n='woman' value='woman')
-  select(name='attr_gamemaster_type' value='knight')
-    option(data-i18n='feast record' value='feast record')
-    option(data-i18n='gamemaster characters' value='gamemaster characters')
+  select(name='attr_gamemaster_type' value='feast')
+    option(data-i18n='feast record' value='feast' selected)
+    option(data-i18n='gamemaster characters' value='characters')
 
 .character.grid
   .col
@@ -455,7 +457,7 @@ input(name='attr_character_type', type='hidden', value='knight')
             +numberInput('total glory')
 
 .gamemaster.grid
-  .feast-record.grid
+  .feast.grid
     .row.2column
       .col
         img(alt='King Arthur Pendragon' src='https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.jpg')
@@ -477,8 +479,8 @@ input(name='attr_character_type', type='hidden', value='knight')
         .col.grid.6column
           - let n = 1
           while n < 6
-            h3.text-center(data-i18n=`Round ${n++}`)
-          h3.text-center(data-i18n='total')
+            h3.text-center(data-i18n=`round ${n++}`)
+          h3.text-center.font-weight-bold(data-i18n='total')
       .repeating-container
         fieldset(class=`repeating_${repeatingName}`)
           .row
@@ -495,6 +497,37 @@ input(name='attr_character_type', type='hidden', value='knight')
                 +numberInput(`round ${roundCounter++}`)
               +numberInput('round total')
     .row
+      h2(data-i18n='notes')
+      textarea(name='attr_feast_record_notes')
+    
+  .characters
+    .row.2column
+      .col
+        img(alt='King Arthur Pendragon' src='https://raw.githubusercontent.com/clevett/roll20-character-sheets/pendragonv1/Pendragon5thEdition/src/pendragonlogo.jpg')
+      .col.header
+        h1.header(data-i18n='gamemaster characters')
+    .row.3column
+      each val in ['location', 'size', 'date']
+        .col.grid.2autocolumn
+          h2(data-i18n=val)
+          +textInput(val)
+    .row.bottom-border
+      h2(data-i18n='significant gamemaster characters')
+    .repeating-container
+      fieldset(class=`repeating_gamemaster-characters`)
+        .row.sub-header
+          each val in gmCharacters
+            if val === 'name'
+              h2(data-i18n=val)
+            else
+              +rollButton(val)
+        .row.repeating-row
+          each val in gmCharacters
+            if val === 'name'
+              +textInput(val)
+            else
+              +numberInput(val)
+    .row.notes
       h2(data-i18n='notes')
       textarea(name='attr_feast_record_notes')
 
