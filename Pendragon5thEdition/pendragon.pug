@@ -513,21 +513,25 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
           +textInput(val)
     .row.bottom-border
       h2(data-i18n='significant gamemaster characters')
+    .row.sub-header
+      each val in gmCharacters
+        if val === 'name'
+          h2(data-i18n=val)
+        else
+          h2.text-center(data-i18n=val)
     .repeating-container
       fieldset(class=`repeating_gamemaster-characters`)
-        .row.sub-header
-          each val in gmCharacters
-            if val === 'name'
-              h2(data-i18n=val)
-            else
-              +rollButton(val)
         .row.repeating-row
           each val in gmCharacters
             if val === 'name'
               +textInput(val)
-            else
+            else if val === 'glory'
               +numberInput(val)
-    .row.notes
+            else
+              .col
+                +numberInput(val)
+                +rollButton(val)
+    .row
       h2(data-i18n='notes')
       textarea(name='attr_feast_record_notes')
 

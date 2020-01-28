@@ -504,6 +504,10 @@ div.sheet-gamemaster div.sheet-characters div.sheet-sub-header {
   margin-top: 1%;
 }
 
+div.sheet-gamemaster div.sheet-characters div.sheet-repeating-row {
+  padding-bottom: 1%;
+}
+
 /*  FOOTER
     ============================= */
 div.sheet-footer {
