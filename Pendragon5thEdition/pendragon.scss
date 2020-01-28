@@ -315,6 +315,16 @@ label.sheet-styled-checkbox {
 /* TAB
     ============================= */
 div.sheet-tabs {
+    grid-template-columns: 3fr 1fr;
+
+    div.sheet-type {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+
+    div.sheet-col {
+        @extend %gridRowCol;
+    }
+
     input {
         grid-column: 1;
         height: auto;
@@ -478,6 +488,18 @@ div.sheet-character {
     }
 }
 
+/*  ENTOURAGE
+    ============================= */
+div.sheet-entourage {
+    div.sheet-col, div.sheet-row {
+        @extend %gridRowCol;
+    }
+
+    div.sheet-col-2 {
+        grid-template-columns: 2fr 1fr;
+    }
+}
+
 /*  HOLDINGS
     ============================= */
 div.sheet-holdings {
@@ -601,7 +623,7 @@ div.sheet-footer {
 %displaynone {  display: none; }
 %displayInlineGrid { display: inline-grid;}
 
-$sheets: 'character', 'holdings', 'gamemaster', 'npc';
+$sheets: 'character', 'holdings', 'gamemaster', 'npc', 'entourage';
 @each $value in $sheets {
     div.sheet-#{$value} {
       @extend %displayInlineGrid;
@@ -620,7 +642,8 @@ input[name='attr_sheet_type'][value='gamemaster'] ~ div.sheet-tabs select[name='
 $types: 'knight', 'woman';
 @each $value in $types {
     input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-character div.sheet-col,
-    input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-holdings div.sheet-col {
+    input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-holdings div.sheet-col,
+    input[name='attr_character_type']:not([value="#{$value}"]) ~ div.sheet-entourage div.sheet-row {
         & div.sheet-row .sheet-#{$value},
         & div.sheet-personal-data div.sheet-row .sheet-#{$value},
         & div.sheet-personality-traits .sheet-#{$value},
@@ -631,7 +654,8 @@ $types: 'knight', 'woman';
         & .sheet-#{$value},
         & div.sheet-combat-skills .sheet-#{$value},
         & div.sheet-horse div.sheet-row .sheet-#{$value},
-        & div.sheeet-family-history div.sheet-row {
+        & div.sheeet-family-history div.sheet-row,
+        & .sheet-#{$value} {
             @extend %displaynone;
         }  
     }

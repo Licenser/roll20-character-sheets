@@ -141,7 +141,7 @@ div.sheet-grid {
   grid-row-gap: 0.5%;
 }
 
-div.sheet-character div.sheet-row, div.sheet-character div.sheet-col, div.sheet-holdings div.sheet-row, div.sheet-holdings div.sheet-col, div.sheet-gamemaster div.sheet-row, div.sheet-gamemaster div.sheet-col {
+div.sheet-tabs div.sheet-col, div.sheet-character div.sheet-row, div.sheet-character div.sheet-col, div.sheet-entourage div.sheet-col, div.sheet-entourage div.sheet-row, div.sheet-holdings div.sheet-row, div.sheet-holdings div.sheet-col, div.sheet-gamemaster div.sheet-row, div.sheet-gamemaster div.sheet-col {
   display: inline-grid;
   overflow: hidden;
   grid-auto-rows: min-content;
@@ -291,6 +291,14 @@ label.sheet-styled-checkbox input[type="checkbox"]:checked + span {
 
 /* TAB
     ============================= */
+div.sheet-tabs {
+  grid-template-columns: 3fr 1fr;
+}
+
+div.sheet-tabs div.sheet-type {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 div.sheet-tabs input {
   grid-column: 1;
   height: auto;
@@ -417,6 +425,12 @@ div.sheet-character div.sheet-horse div.sheet-repeating-container div.sheet-row 
   grid-template-columns: 3fr auto 1fr;
 }
 
+/*  ENTOURAGE
+    ============================= */
+div.sheet-entourage div.sheet-col-2 {
+  grid-template-columns: 2fr 1fr;
+}
+
 /*  HOLDINGS
     ============================= */
 div.sheet-holdings {
@@ -519,7 +533,7 @@ div.sheet-footer {
 
 /*  SHOW & HIDE SHEETS
     ============================= */
-input[name='attr_sheet_type']:not([value='character']) ~ div.sheet-character, input[name='attr_sheet_type']:not([value='holdings']) ~ div.sheet-holdings, input[name='attr_sheet_type']:not([value='gamemaster']) ~ div.sheet-gamemaster, input[name='attr_sheet_type']:not([value='npc']) ~ div.sheet-npc, input[name='attr_sheet_type']:not([value='gamemaster']) ~ div.sheet-tabs select[name='attr_gamemaster_type'],
+input[name='attr_sheet_type']:not([value='character']) ~ div.sheet-character, input[name='attr_sheet_type']:not([value='holdings']) ~ div.sheet-holdings, input[name='attr_sheet_type']:not([value='gamemaster']) ~ div.sheet-gamemaster, input[name='attr_sheet_type']:not([value='npc']) ~ div.sheet-npc, input[name='attr_sheet_type']:not([value='entourage']) ~ div.sheet-entourage, input[name='attr_sheet_type']:not([value='gamemaster']) ~ div.sheet-tabs select[name='attr_gamemaster_type'],
 input[name='attr_sheet_type'][value='gamemaster'] ~ div.sheet-tabs select[name='attr_character_type'], input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-character div.sheet-col div.sheet-row .sheet-knight,
 input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-character div.sheet-col div.sheet-personal-data div.sheet-row .sheet-knight,
 input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-character div.sheet-col div.sheet-personality-traits .sheet-knight,
@@ -541,7 +555,18 @@ input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-holdings div
 input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-holdings div.sheet-col .sheet-knight,
 input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-holdings div.sheet-col div.sheet-combat-skills .sheet-knight,
 input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-holdings div.sheet-col div.sheet-horse div.sheet-row .sheet-knight,
-input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-holdings div.sheet-col div.sheeet-family-history div.sheet-row, input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-character div.sheet-col div.sheet-row .sheet-woman,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-holdings div.sheet-col div.sheeet-family-history div.sheet-row,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-row .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-personal-data div.sheet-row .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-personality-traits .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-personality-traits div.sheet-row .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-equipment-carried .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-skills .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-squire .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-combat-skills .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheet-horse div.sheet-row .sheet-knight,
+input[name='attr_character_type']:not([value="knight"]) ~ div.sheet-entourage div.sheet-row div.sheeet-family-history div.sheet-row, input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-character div.sheet-col div.sheet-row .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-character div.sheet-col div.sheet-personal-data div.sheet-row .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-character div.sheet-col div.sheet-personality-traits .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-character div.sheet-col div.sheet-personality-traits div.sheet-row .sheet-woman,
@@ -562,11 +587,22 @@ input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheet-combat-skills .sheet-woman,
 input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheet-horse div.sheet-row .sheet-woman,
-input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheeet-family-history div.sheet-row, input[name='attr_gamemaster_type']:not([value="feast"]) ~ div.sheet-gamemaster div.sheet-feast, input[name='attr_gamemaster_type']:not([value="characters"]) ~ div.sheet-gamemaster div.sheet-characters {
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-holdings div.sheet-col div.sheeet-family-history div.sheet-row,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-row .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-personal-data div.sheet-row .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-personality-traits .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-personality-traits div.sheet-row .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-equipment-carried .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-skills .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-squire .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-combat-skills .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheet-horse div.sheet-row .sheet-woman,
+input[name='attr_character_type']:not([value="woman"]) ~ div.sheet-entourage div.sheet-row div.sheeet-family-history div.sheet-row, input[name='attr_gamemaster_type']:not([value="feast"]) ~ div.sheet-gamemaster div.sheet-feast, input[name='attr_gamemaster_type']:not([value="characters"]) ~ div.sheet-gamemaster div.sheet-characters {
   display: none;
 }
 
-div.sheet-character, div.sheet-holdings, div.sheet-gamemaster, div.sheet-npc {
+div.sheet-character, div.sheet-holdings, div.sheet-gamemaster, div.sheet-npc, div.sheet-entourage {
   display: inline-grid;
 }
 

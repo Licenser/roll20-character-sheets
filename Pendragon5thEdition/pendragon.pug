@@ -28,21 +28,23 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
 
 //-PC SHEET
   =============================
-.grid.tabs.4column
-  each val in ['character', 'holdings', 'gamemaster']
-    label(data-i18n-title=`select character sheet ${val}`)
-      if val === 'character'
-        input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val selected)
-        span.text-center(data-i18n=`${val}`)
-      else
-        input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
-        span.text-center(data-i18n=`${val}`)
-  select(name='attr_character_type' value='knight')
-    option(data-i18n='knight' value='knight' selected)
-    option(data-i18n='woman' value='woman')
-  select(name='attr_gamemaster_type' value='feast')
-    option(data-i18n='feast record' value='feast' selected)
-    option(data-i18n='gamemaster characters' value='characters')
+.grid.tabs
+  .col.sheet-type
+    each val in ['character', 'holdings', 'entourage', 'gamemaster']
+      label(data-i18n-title=`sheet type: ${val}`)
+        if val === 'character'
+          input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val selected)
+          span.text-center(data-i18n=`${val}`)
+        else
+          input(name=`attr_sheet_type` title=`@{sheet_type}` type='radio' value=val)
+          span.text-center(data-i18n=`${val}`)
+  .col
+    select(name='attr_character_type' value='knight')
+      option(data-i18n='knight' value='knight' selected)
+      option(data-i18n='woman' value='woman')
+    select(name='attr_gamemaster_type' value='feast')
+      option(data-i18n='feast record' value='feast' selected)
+      option(data-i18n='gamemaster characters' value='characters')
 
 .character.grid
   .col
@@ -243,10 +245,11 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
     .glory
       .header
         h1(data-i18n='glory')
-      .row.2column
+      .row
         .col.2autocolumn
           h2(data-i18n='this game')
           +numberInput('glory this game')
+      .row
         .col.2autocolumn
           h2(data-i18n='total')
           +numberInput('glory total')
@@ -358,6 +361,66 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
           h1(data-i18n=val)
         .row
           textarea(data-i18n-placeholder=val name=`attr_${attrName}` placeholder=val)
+
+.entourage.grid
+  .row.bottom-border.text-center
+    h1.knight(data-i18n=`knight's entourage`)
+    h1.woman(data-i18n=`lady's entourage`)
+  .row.2column
+    .col
+      .row
+        h1(data-i18n='squire')
+      .repeating-container
+        fieldset(class='repeating_squire')
+          .row.2autocolumn
+            h2(data-i18n='squire')
+            +textInput('name')
+          .row.col-2
+            .col
+              .row.3column
+                each val in ['born', 'age', 'mod']
+                  .col.2autocolumn
+                    h2(data-i18n=val)
+                    +textInput(val)
+              .row.2autocolumn
+                h2(data-i18n='skill')
+                +textInput('skill 1')
+              .row.2autocolumn
+                h2(data-i18n='skill')
+                +textInput('skill 2')
+              .row.2autocolumn
+                h2(data-i18n='loyalty lord')
+                +textInput('loyalty lord')
+            .col
+              .row.2autocolumn
+                h2(data-i18n='squire skill')
+                +textInput('squire skill')
+              - let squireSkillCounter = 1;
+              while squireSkillCounter < 4
+                .row.2autocolumn
+                  h2(data-i18n='value')
+                  +textInput(`value ${squireSkillCounter++}`)
+    .col.commoners
+      .repeating-container
+        fieldset(class='repeating_entourage')
+          .row.col-2
+            .col.2autocolumn
+              h2(data-i18n='position')
+              +textInput('position')
+            .col.2autocolumn
+              h2(data-i18n='cost £')
+              +textInput('cost')
+          - let entourageSkillCounter = 0
+          while entourageSkillCounter < 3
+            .row.col-2
+              .col.2autocolumn
+                h2(data-i18n='skill')
+                +textInput(`skill ${entourageSkillCounter++}`)
+              .col.2autocolumn
+                h2(data-i18n='value')
+                +textInput(`value ${entourageSkillCounter}`)
+
+
 
 .holdings.grid
   .col
