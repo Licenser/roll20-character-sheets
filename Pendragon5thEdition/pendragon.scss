@@ -498,6 +498,20 @@ div.sheet-entourage {
     div.sheet-col-2 {
         grid-template-columns: 2fr 1fr;
     }
+
+    div.sheet-knight {
+        div.sheet-2column {
+            grid-template-columns: 1.5fr 1fr;
+        }
+    }
+
+    div.sheet-damage {
+        grid-template-columns: auto 1fr 1.2em;
+    }
+
+    .repitem {
+        padding: 2% 1%;
+    }
 }
 
 /*  HOLDINGS
@@ -655,7 +669,8 @@ $types: 'knight', 'woman';
         & div.sheet-combat-skills .sheet-#{$value},
         & div.sheet-horse div.sheet-row .sheet-#{$value},
         & div.sheeet-family-history div.sheet-row,
-        & .sheet-#{$value} {
+        & .sheet-#{$value},
+        & div.sheet-col .sheet-#{$value} {
             @extend %displaynone;
         }  
     }
@@ -765,6 +780,7 @@ $gmtypes: 'feast', 'characters';
             border-bottom: 2px solid $dark;
             padding: 3% 2%;
             text-transform: capitalize;
+            margin-top:0px;
         }
 
         div.sheet-template-body {

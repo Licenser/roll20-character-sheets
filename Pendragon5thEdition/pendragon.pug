@@ -368,9 +368,9 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
     h1.woman(data-i18n=`lady's entourage`)
   .row.2column
     .col
-      .row
+      .row.knight
         h1(data-i18n='squire')
-      .repeating-container
+      .repeating-container.gold-bottom-border.knight
         fieldset(class='repeating_squire')
           .row.2autocolumn
             h2(data-i18n='squire')
@@ -400,7 +400,57 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
                 .row.2autocolumn
                   h2(data-i18n='value')
                   +textInput(`value ${squireSkillCounter++}`)
-    .col.commoners
+            .row
+      .row.knight
+        h1(data-i18n='knight')
+      .repeating-container.gold-bottom-border.knight
+        fieldset(class='repeating_knight')
+          .row.col-2
+            .col
+              .row.2autocolumn
+                h2(data-i18n='position')
+                +textInput('name')
+              .row.2autocolumn
+                h2(data-i18n='weapon')
+                +textInput('weapon 1')
+              .row.2autocolumn
+                h2(data-i18n='weapon')
+                +textInput('weapon 2')
+              .row.2column
+                .col.2autocolumn
+                  h2(data-i18n='armor')
+                  +textInput('armor')
+                .col.2autocolumn
+                  h2(data-i18n='mw')
+                  +textInput('mw')
+              .row.2column
+                  .col.2autocolumn
+                    h2(data-i18n='horse')
+                    +textInput('horse')
+                  .col.2autocolumn
+                    h2(data-i18n='damage')
+                    +textInput('damage')
+            .col
+              .row.2autocolumn
+                h2(data-i18n='cost £')
+                +textInput('cost')
+              .row.damage
+                h2(data-i18n='damage')
+                +textInput('damage 1')
+                span(data-i18n='d6')
+              .row.damage
+                h2(data-i18n='damage')
+                +textInput('damage 2')
+                span(data-i18n='d6')
+              .row.2autocolumn
+                h2(data-i18n='glory')
+                +textInput('glory')
+              .row.2autocolumn
+                h2(data-i18n='armor')
+                +textInput('armor')
+    .col.commoners.gold-left-border
+      .row
+        h1(data-i18n='entourage')
       .repeating-container
         fieldset(class='repeating_entourage')
           .row.col-2
@@ -410,15 +460,15 @@ input(name='attr_gamemaster_type' type='hidden' value='feast')
             .col.2autocolumn
               h2(data-i18n='cost £')
               +textInput('cost')
-          - let entourageSkillCounter = 0
-          while entourageSkillCounter < 3
+          - let entourageSkillCounter = 1
+          while entourageSkillCounter < 4
             .row.col-2
               .col.2autocolumn
                 h2(data-i18n='skill')
-                +textInput(`skill ${entourageSkillCounter++}`)
+                +textInput(`skill ${entourageSkillCounter}`)
               .col.2autocolumn
                 h2(data-i18n='value')
-                +textInput(`value ${entourageSkillCounter}`)
+                +textInput(`value ${entourageSkillCounter++}`)
 
 
 
