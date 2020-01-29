@@ -443,6 +443,10 @@ div.sheet-entourage .repitem {
   padding: 2% 1%;
 }
 
+div.sheet-entourage div.sheet-wife {
+  grid-template-columns: 2fr 1fr;
+}
+
 /*  HOLDINGS
     ============================= */
 div.sheet-holdings {
