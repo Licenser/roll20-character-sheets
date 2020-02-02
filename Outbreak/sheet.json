@@ -2,7 +2,13 @@
   "html": "outbreak.html",
   "css": "outbreak.css",
   "authors": "Emerald Productions, LLC",
+<<<<<<< HEAD
   "roll20userid": "26123, 557736",
   "preview": "preview.png",
   "instructions": "Official Outbreak by Hunters Entertainment"
+=======
+  "roll20userid": "557736",
+  "preview": "preview.png",
+  "instructions": "Outbreak by Hunters Entertainment"
+>>>>>>> 3e3aaa21464c8a382952d339d32840eb263262b1
 }
