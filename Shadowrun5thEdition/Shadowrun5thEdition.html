@@ -1,5 +1,5 @@
 
-<input name="attr_version" type="hidden" value="3.03"/>
+<input name="attr_version" type="hidden" value="3.04"/>
 <input class="sheet_type" name="attr_sheet_type" type="hidden" value="pc"/>
 <input class="character-type" name="attr_flag_special" type="hidden" value="mundane"/>
 <div class="pc">
@@ -768,10 +768,11 @@
 				<input type="number" name="attr_stun_modifier" value="" placeholder="#" title="@{stun_modifier}" /><br />
 				<input type="hidden" name="attr_overflow" value="3" />
 				<label data-i18n="overflowmodifier">Overflow Modifier</label><input type="number" name="attr_overflow_modifier" value="" placeholder="#" title="@{overflow_modifier}" /><br />
-				<label data-i18n="paintolerance">Pain Tolerance</label><input type="number" name="attr_pain_tolerance" value="0" placeholder="#" title="@{pain_tolerance}" />
-				<div class="con-footer">
-					<span data-i18n="painfooter">Low Pain Tolernace adds a -1 and High Pain Tolerance adds a +1 per rank.</span>
-				</div>
+				<label data-i18n="high pain tolerance">High Pain Tolerance</label><input type="number" name="attr_high_pain_tolerance" value="0" placeholder="#" title="@{high_pain_tolerance}" /><br />
+				<label data-i18n="low pain tolerance">Low Pain Tolerance</label><input type="checkbox" name="attr_low_pain_tolerance" value="2" title="@{low_pain_tolerance}" /><br />
+				<label data-i18n="damage compensators">Damage Compensators (P/S): </label>
+				<input type="number" name="attr_damage_compensators_physical" value="0" placeholder="#" title="@{damage_compensators_physical}" /><span> / </span>
+				<input type="number" name="attr_damage_compensators_stun" value="0" placeholder="#" title="@{damage_compensators_stun}" />
 			</div>
 			<div class="display">
 				<div class="con-track">
@@ -1739,7 +1740,7 @@
     </div>
     <div class="pc-row">
       <div class="header right-header">
-        <h1 data-i18n="complexform">Complex Forms</h1>
+        <h1 data-i18n="complex form">Complex Forms</h1>
         <div class="right-tri"></div>
       </div>
       <div class="border-box">
@@ -1775,14 +1776,14 @@
           </label>
           <div class="rows repeating-container complex-forms">
             <div class="row-long headers">
-              <h2 data-i18n="complexform">Complex Form</h2>
-              <h2 data-i18n="target">Target</h2>
-              <h2 data-i18n="duration">Duration</h2>
-              <h2 data-i18n="fade">Fade</h2>
+              <h2 class="text-capitalize" data-i18n="complex form"></h2>
+              <h2 class="text-capitalize" data-i18n="target"></h2>
+              <h2 class="text-capitalize" data-i18n="duration"></h2>
+              <h2 class="text-capitalize" data-i18n="fade"></h2>
             </div>
             <fieldset class="repeating_forms">
               <input name="attr_dicepool" type="hidden" value="0"/>
-              <button name="roll_complex_form" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=@{name}}}{{base=^{base}}}{{dice=[[((@{skill}+@{dicepool}+@{resonance})+@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{desc=Level ?{Level|}, Fade [[?{Level|}+(@{fade})]]}}"><span name="attr_name"></span></button><span class="center" name="attr_target"></span><span class="center" name="attr_duration"></span><span class="center" name="attr_fade"></span>
+              <button name="roll_complex_form" type="roll" value="@{gm_toggle} &{template:rolls}{{mod=[[@{modifiers_toggle}]]}}{{wound=[[@{wounds_toggle}]]}}{{edge=[[@{edge_toggle}]]}}{{header=@{name}}}{{base=^{base}}}{{dice=[[((@{skill}+@{dicepool}+@{resonance})+@{wounds_toggle}+@{modifiers_toggle}+@{edge_toggle})d6>5@{explode_toggle}]]}}{{desc=Level ?{Level|}, Fade [[?{Level|}+(@{fade})]]}}"><span name="attr_name"></span></button><span class="center" name="attr_c"></span><span class="center" name="attr_o"></span><span class="center" name="attr_m"></span><span class="center" name="attr_p"></span><span class="center" name="attr_l"></span><span class="center" name="attr_e"></span><span class="center" name="attr_x"></span><span class="center" name="attr_ "></span><span class="center" name="attr_f"></span><span class="center" name="attr_o"></span><span class="center" name="attr_r"></span><span class="center" name="attr_m"></span>
               <input class="collapse-flag" name="attr_display_flag" type="checkbox"/><span class="pictos">i</span>
               <input class="settings-flag" name="attr_flag" title="Settings toggle" type="checkbox" checked="checked"/><span class="pictos">x</span>
               <div class="collapse"><span name="attr_notes"></span></div>
@@ -1791,20 +1792,20 @@
                   <input name="attr_name" placeholder="name" title="@{repeating_forms_${x}_name}" type="text" value=""/>
                 </label>
                 <select name="attr_target" title="@{repeating_forms_${x}_target}" value="Device">
-                  <option data-i18n="device" value="Device">Device</option>
-                  <option data-i18n="file" value="File">File</option>
-                  <option data-i18n="host" value="Host">Host</option>
-                  <option data-i18n="ic" value="IC">IC</option>
-                  <option data-i18n="persona" value="Persona">Persona</option>
-                  <option data-i18n="self" value="Self">Self</option>
-                  <option data-i18n="sprite" value="Sprite">Sprite</option>
+                  <option class="text-capitalize" data-i18n="device" value="device">device</option>
+                  <option class="text-capitalize" data-i18n="file" value="file">file</option>
+                  <option class="text-capitalize" data-i18n="host" value="host">host</option>
+                  <option class="text-capitalize" data-i18n="ic" value="ic">ic</option>
+                  <option class="text-capitalize" data-i18n="persona" value="persona">persona</option>
+                  <option class="text-capitalize" data-i18n="self" value="self">self</option>
+                  <option class="text-capitalize" data-i18n="sprite" value="sprite">sprite</option>
                 </select>
                 <select name="attr_duration" title="@{repeating_forms_${x}_duration}" value="Instant">
-                  <option data-i18n="extended" value="Extended">Extended</option>
-                  <option data-i18n="instant" value="Instant">Instant</option>
-                  <option data-i18n="permanent" value="Permanent">Permanent</option>
-                  <option data-i18n="other" value="Other">Other</option>
-                  <option data-i18n="sustained" value="Sustained">Sustained</option>
+                  <option class="text-capitalize" data-i18n="extended" value="extended"></option>
+                  <option class="text-capitalize" data-i18n="instant" value="instant"></option>
+                  <option class="text-capitalize" data-i18n="permanent" value="permanent"></option>
+                  <option class="text-capitalize" data-i18n="other" value="other"></option>
+                  <option class="text-capitalize" data-i18n="sustained" value="sustained"></option>
                 </select>
                 <label data-i18n-title="fade" title="fade">
                   <input name="attr_fade" placeholder="-1" title="@{repeating_forms_${x}_fade}" type="number" value=""/>
@@ -1815,7 +1816,7 @@
                     <option data-i18n="electronicsgroup" value="@{electronics}">Electronics Group</option>
                     <option data-i18n="software" value="@{software}" selected="selected">Software</option>
                   </select>
-                  <h3 data-i18n="specialization">specialization</h3>
+                  <h3 data-i18n="specialization"></h3>
                   <label data-i18n-title="specialization" title="specialization">
                     <input name="attr_spec" value="2" title="@{repeating_forms_${x}_spec}" type="checkbox"/>
                   </label>
@@ -2377,9 +2378,6 @@
       </div>
       <div class="rows grunt pain-tolerance">
         <h2 data-i18n="paintolerance">Pain Tolerance</h2>
-        <label class="settings" data-i18n-title="paintolerance" title="paintolerance">
-          <input name="attr_pain_tolerance" min="-1" max="3" placeholder="0" title="@{pain_tolerance}" type="number" value="0"/>
-        </label><em><span data-i18n="painfooter">Low Pain Tolernace adds a -1 and High Pain Tolerance adds a +1 per rank.</span></em>
       </div>
       <div class="rows vehicle">
         <div class="rows">
@@ -2972,7 +2970,7 @@
       </fieldset>
     </div>
     <div class="rows grunt repeating forms hide-resonance">
-      <h1 data-i18n="complexform">Complex Forms</h1>
+      <h1 data-i18n="complex form">Complex Forms</h1>
       <fieldset class="repeating_form">
         <input name="attr_flag" title="Settings toggle" type="checkbox" checked="checked"/><span class="pictos">x</span>
         <input name="attr_form" type="hidden" value=""/><span name="attr_form_dice"></span>
@@ -2990,13 +2988,13 @@
             <input name="attr_form_name" placeholder="Editor" title="@{repeating_form_${x}_form_name}" type="text"/>
           </label>
           <select name="attr_form_target" title="@{repeating_form_${x}_form_target}" value="device">
-            <option data-i18n="device" value="Device" selected="selected">device</option>
-            <option data-i18n="file" value="File">file</option>
-            <option data-i18n="host" value="Host">host</option>
-            <option data-i18n="ic" value="IC">ic</option>
-            <option data-i18n="persona" value="Persona">persona</option>
-            <option data-i18n="self" value="Self">self</option>
-            <option data-i18n="sprite" value="Sprite">sprite</option>
+            <option data-i18n="device" value="device" selected="selected">device</option>
+            <option data-i18n="file" value="file">file</option>
+            <option data-i18n="host" value="host">host</option>
+            <option data-i18n="ic" value="ic">ic</option>
+            <option data-i18n="persona" value="persona">persona</option>
+            <option data-i18n="self" value="self">self</option>
+            <option data-i18n="sprite" value="sprite">sprite</option>
           </select>
           <label data-i18n-title="duration" title="Duration">
             <input name="attr_form_duration" placeholder="Permanent" title="@{repeating_form_${x}_form_duration}" type="text"/>
@@ -3367,12 +3365,78 @@
 <input type="hidden" name="attr_tracking" min="0" value="0" />
 <input type="hidden" name="attr_unarmedcombat" min="0" value="0" />
 <script type="text/worker">
-  
+  const versioning = version => {
+  	console.log(`%c Shadowrun 5th Edition versioning. Started at version ${version}`, "color: darkblue; font-weight:bold");
 
-//Sheet open versioning
+    switch(version) {
+        case version < 1.35:
+            onepointthreefive();
+            setAttrs({version: 1.35}, () => versioning(1.35));
+            break;
+        case version < 1.41:
+            onepointfour();
+            setAttrs({version: 1.41}, () => versioning(1.41));
+            break;
+        case version < 3.04:
+            threepointzerofour();
+            setAttrs({version: 3.04}, () => versioning(3.04));
+            break;
+        default:
+            console.log(`%c Shadowrun 5th Edition is update to date. Version ${version}`, "color: darkgreen; font-weight:bold");
+    }
+};
+
+const threepointzerofour = () => {
+    const attributes = ['physical', 'physical_damage', 'stun', 'stun_damage', 'sheet_type', 'matrix_con'];
+    getAttrs(attributes, value => {
+        let update = {};
+
+        if ('sheet_type' === 'pc') {
+            update["physical"] = value.physical_damage || 0;
+            update["stun"] = value.stun_damage || 0;
+            update["matrix"] = value.matrix_con || 0;
+        }
+
+        setAttrs(update);
+    });   
+}
+
+const onepointfour = () => {
+    const toggles = [`wound_toggle`, `edge_toggle`, `modifier_toggle`];
+    getAttrs(toggles, (v) => {
+        let set = {};
+        toggles.forEach(attr => {
+            const name = attr.split("_")[0], value = v[`${attr}`].toString();
+            (value != "0" || !value.includes(name)) ? set[`${attr}`] = 0 : false;
+        });
+        setAttrs(set);
+    });
+}
+
+const onepointthreefive = () => {
+    getAttrs(["sheet_type"], (v) => {
+        let update = {};
+        v.sheet_type === "goon" ? update["sheet_type"] = "grunt" : false;
+        setAttrs(update);
+    });  
+}
+
+	//Sheet open for versioning and translations
 	on("sheet:opened", function() {
 		getAttrs(["version"], (v) => { versioning(parseFloat(v.version) || 1); });
 
+		translations();
+	});
+
+	const sheetAttribues = {
+		"attributes": ["body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge"],
+		"repeating": ["quality", "martial", "items", "range", "melee", "armor", "spell", "preps", "ritual", "powers", "forms", "vehicle", "augementations", "lifestyle", "contacts", "programs"],
+		"repeatingSkills": ["active", "knowledge", "language"],
+		"tabs": [`core`, `arms`, `augs`, `gear`, `magic`, `matrix`, `social`, `vehicle`, `options`],
+		"woundCalculation": ["high_pain_tolerance", "low_pain_tolerance", "damage_compensators_physical", "damage_compensators_stun", "stun", "physical"]
+	}
+
+	const translations = () => {
 		let translations = [];
 		let attributes = ["attribute", "body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge", "none"];
 		attributes.forEach((attribute) => {
@@ -3387,35 +3451,8 @@
 
 	    setAttrs({
 	    	attribute_roll: attribute_roll
-	    });
-	});			
-
-    const versioning = (version) => {
-    	console.log(`%c Shadowrun 5th Edition versioning, ${version}`, "color: blue; font-weight:bold");
-       if (version >= 1.41) {
-			console.log(`%c Shadowrun 5th Edition is update to date`, "color: red; font-weight:bold");
-       	} else if (version >= 1.4) {
-       		const toggles = [`wound_toggle`, `edge_toggle`, `modifier_toggle`];
-			getAttrs(toggles, (v) => {
-				let set = {};
-				toggles.forEach(attr => {
-					const name = attr.split("_")[0], value = v[`${attr}`].toString();
-					(value != "0" || !value.includes(name)) ? set[`${attr}`] = 0 : false;
-				});
-				setAttrs(set);
-			});
-       		setAttrs({version: 1.41}, () => {versioning(1.41)});
-        } else if (version >= 1.35) {
-        	getAttrs(["sheet_type"], (v) => {
-        		let update = {};
-        		(v.sheet_type === "goon") ? update["sheet_type"] = "grunt" : false;
-        		setAttrs(update);
-        	});
-            setAttrs({version: 1.36}, () => {versioning(1.4)});
-        } else {
-			setAttrs({version: 1.35}, () => {versioning(1.35)});
-		};
-    };
+	    });	
+	}	
 
     on("clicked:shots_remove clicked:shots_add", (eventinfo) => {
     	getAttrs([`shots_fired`], (v) => {
@@ -3446,13 +3483,13 @@
 		});
 	});
 
-	["active", "knowledge", "language"].forEach((attr) => {
+	sheetAttribues.repeatingSkills.forEach((attr) => {
 		on(`clicked:repeating_${attr}:skill`, (eventinfo) => {
 			settingsToggle(eventinfo);
 		}); 
 	});
 
-	["quality", "martial", "items", "range", "melee", "armor", "spell", "preps", "ritual", "powers", "forms", "vehicle", "augementations", "lifestyle", "contacts", "programs"].forEach((attr) => {
+	sheetAttribues.repeating.forEach(attr => {
 		on(`clicked:repeating_${attr}:${attr}`, (eventinfo) => {
 			settingsToggle(eventinfo);
 		}); 
@@ -3468,7 +3505,7 @@
 		});
 	};
 
-   [`core`, `arms`, `augs`, `gear`, `magic`, `matrix`, `social`, `vehicle`, `options`].forEach(attr => {
+   sheetAttribues.tabs.forEach(attr => {
    		on(`clicked:tab_${attr}`, () => {
    			setAttrs({tab: attr});
    		});
@@ -3555,9 +3592,12 @@
 			const type = eventinfo.sourceAttribute.split("_")[0]; update_limit(type);
 		});
 
-		on("change:pain_tolerance", () => {
-			update_wounds();
+		sheetAttribues.woundCalculation.forEach(attr => {
+			on(`change:${attr}`, () => {
+				update_wounds();
+			});
 		});
+
 
 	//Calculate ATTRIBUTES
 	   ['body', 'agility', 'reaction', 'strength', 'willpower', 'logic', 'intuition','charisma','magic', 'resonance',
@@ -3705,28 +3745,24 @@
 
 	//Update condition tracks
 		const update_track = (track) => {
-			let attrs = [`${track}_modifier`, `${track}_damage`];
-			(track === "stun") ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
+			let attrs = [`${track}_modifier`];
+			track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
 
 			getAttrs(attrs, (v) =>{
-				const attr1 = attrs[2], stat1 = parseInt(v[`${attr1}`]) || 0; //Willpower or Body
+				const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
 				const mod = parseInt(v[`${track}_modifier`]) || 0;
-				const dam = parseInt(v[`${track}_damage`]) || 0;
 				let update = {};
 
 				if (track === "stun" || v["sheet_type"] === "pc" || v["sheet_type"] === "grunt") {
-					tot = Math.ceil(stat1/2) + 8 + mod;
+					tot = Math.ceil(stat/2) + 8 + mod;
 				} else if (v["sheet_type"] === "vehicle" && v["flag_drone"]  === "drone") {
-					tot = (Math.ceil(stat1/2) + 6 + mod);
+					tot = (Math.ceil(stat/2) + 6 + mod);
 				} else if (v["sheet_type"] === "vehicle") {
-					tot = (Math.ceil(stat1/2) + 12 + mod);
+					tot = (Math.ceil(stat/2) + 12 + mod);
 				} else {
 					tot = 0; //Sprites don't have Stun or Physical track
 				};
 
-				const current = (dam != 0) ? tot - dam : tot;
-
-				update[`${track}`] = current;
 				update[`${track}_max`] = tot;
 
 				setAttrs(update, {silent:true});
@@ -3746,34 +3782,29 @@
 			});
 		});
 
-	//Convert physical into the physical damage track boxes and reverse
-		['physical', 'stun'].forEach(attr => {
-			on(`change:${attr} change:${attr}_damage`, (eventinfo) => {
-				getAttrs([`${attr}`, `${attr}_damage`, `${attr}_max`], (v) => {
-					const stat = parseInt(v[`${attr}`]) || 0, dam = parseInt(v[`${attr}_damage`]) || 0, max = parseInt(v[`${attr}_max`]) || 0, source = eventinfo.sourceAttribute;
-					const wou = (source === `${attr}`) ? max - stat : max - dam;
-
-					if (source === `${attr}`) {
-						(dam === wou) ? false : ((stat < max && dam != wou) ? setAttrs({[`${attr}_damage`]: wou}, {silent: true}) : setAttrs({[`${attr}_damage`]: 0}, {silent: true}));
-					} else {
-						(stat === wou) ? false : setAttrs({[`${attr}`]: wou}, {silent: true});
-					};
-
-					update_wounds();
-				});
-			});
-		});
-
 	const update_wounds = () => {
-		getAttrs(["stun_damage", "physical_damage", "pain_tolerance"], (v) => {
-			const stu = parseInt(v.stun_damage) || 0, phy = parseInt(v.physical_damage) || 0, pai = parseInt(v.pain_tolerance) || 0;
-			lowP = (pai < 0) ? 2 : 3;
-			highPhy = (pai > 0) ? phy - pai : phy;
-			highStu = (pai > 0) ? stu - pai : stu;
-			pMod = (phy > 0) ? (Math.floor(highPhy/lowP)) : 0;
-			sMod = (stu > 0) ? (Math.floor(highStu/lowP)) : 0;
-			wou = Math.floor(-(pMod) + -(sMod));
-			
+		console.log("WOUNDS!!");
+		getAttrs(sheetAttribues.woundCalculation, (v) => {
+			const painTolerance = parseInt(v.pain_tolerance) || 0; 
+			let update = {}
+
+			["stun", "physical"].forEach(attr => {
+				const parsedAttr = parseInt(v[`${attr}`]) || 0;
+			});
+//			const stu = parseInt(v.stun) || 0, phy = parseInt(v.physical) || 0, pai = parseInt(v.pain_tolerance) || 0;
+//			lowP = pai < 0 ? 2 : 3;
+//			highPhy = pai > 0 ? phy - pai : phy;
+//			highStu = pai > 0 ? stu - pai : stu;
+//			pMod = phy > 0 ? (Math.floor(highPhy/lowP)) : 0;
+//			sMod = stu > 0 ? (Math.floor(highStu/lowP)) : 0;
+//			wou = Math.floor(-(pMod) + -(sMod));
+//			
+//			every 3 points damage = a wounds//
+
+//			High Paint tolerance = physical-1 / 3
+//			Lowe Paint TOlerance = physical / 3 - low pain tolerance
+			//Noram = physical / 3
+
 			setAttrs({wounds: wou});
 		});
 	};
@@ -3900,7 +3931,7 @@
 	on("clicked:cond_reset_physical clicked:cond_reset_stun", (eventinfo) => {
 		const attr = eventinfo.triggerName.split("_")[2];
 		setAttrs({
-			[`${attr}_damage`] : 0
+			[`${attr}`] : 0
 		});
 	});
 

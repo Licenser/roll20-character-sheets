@@ -1,9 +1,21 @@
 
 
-//Sheet open versioning
+	//Sheet open for versioning and translations
 	on("sheet:opened", function() {
 		getAttrs(["version"], (v) => { versioning(parseFloat(v.version) || 1); });
 
+		translations();
+	});
+
+	const sheetAttribues = {
+		"attributes": ["body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge"],
+		"repeating": ["quality", "martial", "items", "range", "melee", "armor", "spell", "preps", "ritual", "powers", "forms", "vehicle", "augementations", "lifestyle", "contacts", "programs"],
+		"repeatingSkills": ["active", "knowledge", "language"],
+		"tabs": [`core`, `arms`, `augs`, `gear`, `magic`, `matrix`, `social`, `vehicle`, `options`],
+		"woundCalculation": ["high_pain_tolerance", "low_pain_tolerance", "damage_compensators_physical", "damage_compensators_stun", "stun", "physical"]
+	}
+
+	const translations = () => {
 		let translations = [];
 		let attributes = ["attribute", "body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge", "none"];
 		attributes.forEach((attribute) => {
@@ -18,35 +30,8 @@
 
 	    setAttrs({
 	    	attribute_roll: attribute_roll
-	    });
-	});			
-
-    const versioning = (version) => {
-    	console.log(`%c Shadowrun 5th Edition versioning, ${version}`, "color: blue; font-weight:bold");
-       if (version >= 1.41) {
-			console.log(`%c Shadowrun 5th Edition is update to date`, "color: red; font-weight:bold");
-       	} else if (version >= 1.4) {
-       		const toggles = [`wound_toggle`, `edge_toggle`, `modifier_toggle`];
-			getAttrs(toggles, (v) => {
-				let set = {};
-				toggles.forEach(attr => {
-					const name = attr.split("_")[0], value = v[`${attr}`].toString();
-					(value != "0" || !value.includes(name)) ? set[`${attr}`] = 0 : false;
-				});
-				setAttrs(set);
-			});
-       		setAttrs({version: 1.41}, () => {versioning(1.41)});
-        } else if (version >= 1.35) {
-        	getAttrs(["sheet_type"], (v) => {
-        		let update = {};
-        		(v.sheet_type === "goon") ? update["sheet_type"] = "grunt" : false;
-        		setAttrs(update);
-        	});
-            setAttrs({version: 1.36}, () => {versioning(1.4)});
-        } else {
-			setAttrs({version: 1.35}, () => {versioning(1.35)});
-		};
-    };
+	    });	
+	}	
 
     on("clicked:shots_remove clicked:shots_add", (eventinfo) => {
     	getAttrs([`shots_fired`], (v) => {
@@ -77,13 +62,13 @@
 		});
 	});
 
-	["active", "knowledge", "language"].forEach((attr) => {
+	sheetAttribues.repeatingSkills.forEach((attr) => {
 		on(`clicked:repeating_${attr}:skill`, (eventinfo) => {
 			settingsToggle(eventinfo);
 		}); 
 	});
 
-	["quality", "martial", "items", "range", "melee", "armor", "spell", "preps", "ritual", "powers", "forms", "vehicle", "augementations", "lifestyle", "contacts", "programs"].forEach((attr) => {
+	sheetAttribues.repeating.forEach(attr => {
 		on(`clicked:repeating_${attr}:${attr}`, (eventinfo) => {
 			settingsToggle(eventinfo);
 		}); 
@@ -99,7 +84,7 @@
 		});
 	};
 
-   [`core`, `arms`, `augs`, `gear`, `magic`, `matrix`, `social`, `vehicle`, `options`].forEach(attr => {
+   sheetAttribues.tabs.forEach(attr => {
    		on(`clicked:tab_${attr}`, () => {
    			setAttrs({tab: attr});
    		});
@@ -186,9 +171,12 @@
 			const type = eventinfo.sourceAttribute.split("_")[0]; update_limit(type);
 		});
 
-		on("change:pain_tolerance", () => {
-			update_wounds();
+		sheetAttribues.woundCalculation.forEach(attr => {
+			on(`change:${attr}`, () => {
+				update_wounds();
+			});
 		});
+
 
 	//Calculate ATTRIBUTES
 	   ['body', 'agility', 'reaction', 'strength', 'willpower', 'logic', 'intuition','charisma','magic', 'resonance',
@@ -336,28 +324,24 @@
 
 	//Update condition tracks
 		const update_track = (track) => {
-			let attrs = [`${track}_modifier`, `${track}_damage`];
-			(track === "stun") ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
+			let attrs = [`${track}_modifier`];
+			track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
 
 			getAttrs(attrs, (v) =>{
-				const attr1 = attrs[2], stat1 = parseInt(v[`${attr1}`]) || 0; //Willpower or Body
+				const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
 				const mod = parseInt(v[`${track}_modifier`]) || 0;
-				const dam = parseInt(v[`${track}_damage`]) || 0;
 				let update = {};
 
 				if (track === "stun" || v["sheet_type"] === "pc" || v["sheet_type"] === "grunt") {
-					tot = Math.ceil(stat1/2) + 8 + mod;
+					tot = Math.ceil(stat/2) + 8 + mod;
 				} else if (v["sheet_type"] === "vehicle" && v["flag_drone"]  === "drone") {
-					tot = (Math.ceil(stat1/2) + 6 + mod);
+					tot = (Math.ceil(stat/2) + 6 + mod);
 				} else if (v["sheet_type"] === "vehicle") {
-					tot = (Math.ceil(stat1/2) + 12 + mod);
+					tot = (Math.ceil(stat/2) + 12 + mod);
 				} else {
 					tot = 0; //Sprites don't have Stun or Physical track
 				};
 
-				const current = (dam != 0) ? tot - dam : tot;
-
-				update[`${track}`] = current;
 				update[`${track}_max`] = tot;
 
 				setAttrs(update, {silent:true});
@@ -377,34 +361,29 @@
 			});
 		});
 
-	//Convert physical into the physical damage track boxes and reverse
-		['physical', 'stun'].forEach(attr => {
-			on(`change:${attr} change:${attr}_damage`, (eventinfo) => {
-				getAttrs([`${attr}`, `${attr}_damage`, `${attr}_max`], (v) => {
-					const stat = parseInt(v[`${attr}`]) || 0, dam = parseInt(v[`${attr}_damage`]) || 0, max = parseInt(v[`${attr}_max`]) || 0, source = eventinfo.sourceAttribute;
-					const wou = (source === `${attr}`) ? max - stat : max - dam;
-
-					if (source === `${attr}`) {
-						(dam === wou) ? false : ((stat < max && dam != wou) ? setAttrs({[`${attr}_damage`]: wou}, {silent: true}) : setAttrs({[`${attr}_damage`]: 0}, {silent: true}));
-					} else {
-						(stat === wou) ? false : setAttrs({[`${attr}`]: wou}, {silent: true});
-					};
-
-					update_wounds();
-				});
-			});
-		});
-
 	const update_wounds = () => {
-		getAttrs(["stun_damage", "physical_damage", "pain_tolerance"], (v) => {
-			const stu = parseInt(v.stun_damage) || 0, phy = parseInt(v.physical_damage) || 0, pai = parseInt(v.pain_tolerance) || 0;
-			lowP = (pai < 0) ? 2 : 3;
-			highPhy = (pai > 0) ? phy - pai : phy;
-			highStu = (pai > 0) ? stu - pai : stu;
-			pMod = (phy > 0) ? (Math.floor(highPhy/lowP)) : 0;
-			sMod = (stu > 0) ? (Math.floor(highStu/lowP)) : 0;
-			wou = Math.floor(-(pMod) + -(sMod));
-			
+		console.log("WOUNDS!!");
+		getAttrs(sheetAttribues.woundCalculation, (v) => {
+			const painTolerance = parseInt(v.pain_tolerance) || 0; 
+			let update = {}
+
+			["stun", "physical"].forEach(attr => {
+				const parsedAttr = parseInt(v[`${attr}`]) || 0;
+			});
+//			const stu = parseInt(v.stun) || 0, phy = parseInt(v.physical) || 0, pai = parseInt(v.pain_tolerance) || 0;
+//			lowP = pai < 0 ? 2 : 3;
+//			highPhy = pai > 0 ? phy - pai : phy;
+//			highStu = pai > 0 ? stu - pai : stu;
+//			pMod = phy > 0 ? (Math.floor(highPhy/lowP)) : 0;
+//			sMod = stu > 0 ? (Math.floor(highStu/lowP)) : 0;
+//			wou = Math.floor(-(pMod) + -(sMod));
+//			
+//			every 3 points damage = a wounds//
+
+//			High Paint tolerance = physical-1 / 3
+//			Lowe Paint TOlerance = physical / 3 - low pain tolerance
+			//Noram = physical / 3
+
 			setAttrs({wounds: wou});
 		});
 	};
@@ -531,7 +510,7 @@
 	on("clicked:cond_reset_physical clicked:cond_reset_stun", (eventinfo) => {
 		const attr = eventinfo.triggerName.split("_")[2];
 		setAttrs({
-			[`${attr}_damage`] : 0
+			[`${attr}`] : 0
 		});
 	});
 
