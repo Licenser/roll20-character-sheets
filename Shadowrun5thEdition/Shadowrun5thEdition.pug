@@ -1,4 +1,4 @@
-input(name='attr_version' type='hidden' value='3.04')
+input(name='attr_version' type='hidden' value='4.0')
 
 //- CHARACTER SHETE PAGE
 input.sheet_type(name='attr_sheet_type' type='hidden' value='pc')
@@ -568,11 +568,19 @@ include src/html/hidden.html
 //- SCRIPTS
 script(type="text/worker")
 
+	include src/js/attributes.js
+
 	include src/js/versioning.js
+
+	include src/js/helpers.js
+
+	include src/js/eventhandlers.js
 
 	include src/js/scripts.js
 
 	include src/js/importer.js
+
+	include src/js/importerUI.js
 
 //- CHUMMER IMPORTER
 include src/html/importer.html
