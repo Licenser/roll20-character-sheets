@@ -117,6 +117,21 @@ include src/pug/_variables.pug
 
 	//- CORE TAB
 	.core.pc-col
+		.core-combat
+			.header.right-header
+				h1(data-i18n='corecombatinfo')
+				.right-tri
+			.border-box
+				.pc-box.small-box
+					.row-long.cc-arm
+						h2(data-i18n="primaryarmor")
+						button()
+							span(name='attr_armor_name' title='@{soak}')
+						h3(data-i18n='rating')
+						button()
+							span(name='attr_armor_rating' title='@{armor_rating}')
+						.armor-buttons
+							button()
 		include src/core.html
 		.quality-box
 			.header.right-header
@@ -454,7 +469,7 @@ include src/pug/_variables.pug
 											option(data-i18n='ritualspellcasting' value='@{ritualspellcasting}' selected) Ritual Spellcasting
 										h3(data-i18n='specialization') specialization
 										label(data-i18n-title='specialization' title='specialization')
-											input(name='attr_spec' title=`@{${repeatingRitualSection}_spec}` type='checkbox' value='2')
+											input(name='attr_specialization' title=`@{${repeatingRitualSection}_specialization}` type='checkbox' value='2')
 										h3(data-i18n='modifier') modifier
 										label(data-i18n-title='modifier' title='modifier')
 											input(name='attr_dicepool_modifier' title=`@{${repeatingRitualSection}_dicepool_modifier}` type='number')

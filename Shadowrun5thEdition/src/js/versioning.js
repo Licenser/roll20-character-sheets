@@ -26,8 +26,26 @@ const fourpointzero = () => {
         update["physical"] = value.physical_damage || 0;
         update["stun"] = value.stun_damage || 0;
         update["matrix"] = value.matrix_con || 0;
+
         setAttrs(update);
-    });   
+    });
+
+    getSectionIDs("ritual", idarray => {
+        let ritualAttributes = [];
+        let update = {};
+
+        idarray.forEach(id => {
+            ritualAttributes.push(`repeating_ritual_${id}_spec`);
+        });
+
+        getAttrs(ritualAttributes, value => {
+            idarray.forEach(id => {
+                update[`repeating_ritual_${id}_specialization`] = v[`repeating_ritual_${id}_spec`]
+            }); 
+
+           setAttrs(update);
+        });
+    });
 };
 
 const onepointfour = () => {

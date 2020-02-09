@@ -1,20 +1,18 @@
 
 	const translations = () => {
-		let translations = [];
-		let attributes = ["attribute", "body", "agility", "reaction", "strength", "willpower", "logic", "intuition", "charisma", "edge", "none"];
-		attributes.forEach((attribute) => {
-			translations.push(getTranslationByKey(attribute));
-		});
-
+		const attributes = sheetAttribues.translationsAttributes;
+		const translations = getTranslations(attributes);
 		let attribute_roll = `?{${translations[0]}`;
+
 	    for (i = 1; i <= (attributes.length - 2); i += 1) {
 	    	attribute_roll +=  `|${translations[i]},@{${attributes[i]}}`;
 	    };
+
 	    attribute_roll += `|${translations[10]},0}`; //For None
 
 	    setAttrs({
 	    	attribute_roll: attribute_roll
-	    });	
+	    });
 	}	
 
 	const settingsToggle = (eventinfo) => {
@@ -28,53 +26,34 @@
 	};
 
 	//Calculate ATTRIBUTES
-	   ['body', 'agility', 'reaction', 'strength', 'willpower', 'logic', 'intuition','charisma','magic', 'resonance',
-	    ].forEach(attr => {
-	        // Attach listener
-	        on(`change:${attr}_base change:${attr}_modifier change:${attr}_temp change:${attr}_temp_flag`, () => {
-	            // Load attribute values
-	            getAttrs([`${attr}_base`, `${attr}_modifier`, `${attr}_temp`, `${attr}_temp_flag`], (v) => {
-	                // Do some math to calculate the total
-		            const bas = parseInt(v[`${attr}_base`]) || 0;
-		            const mod = parseInt(v[`${attr}_modifier`]) || 0;
-	              	const tem = (v[`${attr}_temp_flag`] === "on") ? parseInt(v[`${attr}_temp`]) || 0 : 0;
-	                const bon = mod + tem;
-	                const stat = bas + bon;
+	sheetAttribues.calculatedAttributes.forEach(attr => {
+        on(`change:${attr}_base change:${attr}_modifier change:${attr}_temp change:${attr}_temp_flag`, () => {
+            getAttrs([`${attr}_base`, `${attr}_modifier`, `${attr}_temp`, `${attr}_temp_flag`], v => {
+                v = processTempFlags(`${attr}_temp_flag`, `${attr}_temp`, v);
+                v = parseIntegers(v);
 
-	                // Update the finalized total
-	                setAttrs({
-	                    [attr]: stat,
-	                    [`display_${attr}`]: bon === 0 ? bas : `${bas} (${stat})`
-	                });
-	            });
-	        });
-	    });
+                const base = v[`${attr}_base`], bonus = calculateBonuses(v), total = base + bonus;
+
+                setAttrs({
+                    [attr]: total,
+                    [`display_${attr}`]: bonus === 0 ? base : `${base} (${total})`
+                });
+            });
+        });
+    });
 
 	//Calculaute limts
-		const update_limit = (type)  => {
-			let attrs = [`${type}_limit_modifier`, `${type}_limit_temp`, `${type}_limit_temp_flag`];
+		const update_limit = type => {
+			let attrs = [`${type}_limit_modifier`, `${type}_limit_temp`, `${type}_limit_temp_flag`].concat(sheetAttribues[`${type}Limits`]);
+			getAttrs(attrs, v => {
+				v = processTempFlags(`${type}_limit_temp_flag`, `${type}_limit_temp`, v);
+				v = parseIntegers(v);
 
-			if (type === "mental") {
-				attrs.push("intuition", "willpower", "logic");
-			} else if (type === "physical") {
-				attrs.push("body", "reaction", "strength");
-			} else {
-				attrs.push("essence", "willpower", "charisma");
-			};
+				const bonus = calculateBonuses(v), total = calculateLimitTotal(v, type);
 
-			getAttrs(attrs, (v) => {
-				const attr1 = attrs[3], attr2 = attrs[4], attr3 = attrs[5];
-				const stat1 = (attr1 === "essence") ? Math.ceil(v[`${attr1}`]) || 0 : parseInt(v[`${attr1}`]) || 0; //Essence, Intuition, Body
-				const stat2 = parseInt(v[`${attr2}`]) || 0; //Willpower, Reaction
-				const stat3 = parseInt(v[`${attr3}`]) || 0; //Logic, Strenght, Charisma
-
-				const mod = parseInt(v[`${type}_limit_modifier`]) || 0;
-				const tem = (v[`${type}_limit_temp_flag`] === "on") ? parseInt(v[`${type}_limit_temp`]) || 0 : 0;
-
-				const tot = ((stat1 + stat2 + (stat3 * 2))/3);
-				const update = Math.ceil(tot) + (mod + tem);
-
-				setAttrs({[`${type}_limit`]: update});
+				setAttrs({
+					[`${type}_limit`]: Math.ceil(total) + bonus
+			});
 			})
 		};
 
@@ -146,15 +125,17 @@
 	// COMMON ROLLS: MEOMORY, JUDGE INTETIONS, COMPOSURE, LIFT & CARRY, OVERFLOW, DEFENSE, & SOAK ROLLS
 	const update_common_rolls = (attrs) => {
 		getAttrs(attrs, (v) => {
-			const found = attrs.find((mod) => { return mod.includes("_modifier") });
+			const found = attrs.find(mod => { return mod.includes("_modifier") });
 			const name  = found.split("_modifier")[0];
 			let numbers = [];
 
 			//DEFENSE & SOAK HAVE TWO EXTRA ATTRIBUTES. TEMP IS NEEDED BUT ONLY IF THE FLAG IS CHECKED IN SETTINGS
-			const array = (name === "defense" || name === "soak") ? (v[`${name}_temp_flag`] === "on") ? attrs.splice(0, 4) : attrs.splice(0, 3) : attrs;
+			const array = name === "defense" || name === "soak" ? (v[`${name}_temp_flag`] === "on") ? attrs.splice(0, 4) : attrs.splice(0, 3) : attrs;
 
-			_.each(array, (attr) => { numbers.push(parseInt(v[`${attr}`]) || 0); });
-        	const add   = (a, b) => a + b, sum = numbers.reduce(add);
+			_.each(array, (attr) => { 
+				numbers.push(parseInt(v[`${attr}`]) || 0); 
+			});
+        	const add = (a, b) => a + b, sum = numbers.reduce(add);
 
 			setAttrs({[`${name}`]: sum});
 		});
@@ -176,7 +157,7 @@
 			let attrs = [`${track}_modifier`];
 			track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
 
-			getAttrs(attrs, (v) =>{
+			getAttrs(attrs, v =>{
 				const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
 				const mod = parseInt(v[`${track}_modifier`]) || 0;
 				let update = {};
@@ -231,30 +212,30 @@
 	};
 
 	//Calculate Initiatves
-		var update_initiative = () => {
-			getAttrs(["reaction", "intuition", "initiative_modifier", "initiative_temp", "initiative_temp_flag"], (v) => {
-				const rea = parseInt(v.reaction) || 0;
-				const int = parseInt(v.intuition) || 0;
-				const mod = parseInt(v.initiative_modifier) || 0;
-				const tem = (v.initiative_temp_flag === "on") ? parseInt(v.initiative_temp) || 0 : 0;
-				const bas = rea + int;
-				const tot = rea + int + mod + tem;
-				let update = {};
-				update["initiative_mod"] = tot;
-				update["display_initiative_mod"] = (mod != 0) ? `${bas} (${tot})` : bas;
-				setAttrs(update);
+		const update_initiative = () => {
+			getAttrs(["reaction", "intuition", "initiative_modifier", "initiative_temp", "initiative_temp_flag"], v => {
+				v = processTempFlags(`initiative_temp_flag`, `initiative_temp`, v);
+                v = parseIntegers(v);
+                const base = v.reaction + v.intuition, bonus = calculateBonuses(v), total = base + bonus;
+
+				setAttrs({
+					["initiative_mod"]: total,
+					["display_initiative_mod"]: bonus === 0 ? base : `${base} (${total})`
+				});
 			});
 		};
 
 		on("change:initiative_dice_modifier change:edge_toggle change:initiative_dice_temp change:initiative_dice_temp_flag", () => {
-			getAttrs(["initiative_dice_modifier", "edge_toggle", "initiative_dice_temp", "initiative_dice_temp_flag"], (v) =>{
-				const mod = parseInt(v.initiative_dice_modifier) || 0;
-				const tem = (v.initiative_dice_temp_flag === "on") ? parseInt(v.initiative_dice_temp) || 0 : 0;
-				const bas = mod + tem;
-				const tot = Math.min(bas+1,5);
-				edg = (v.edge_toggle == 0) ? tot : 5;
+			getAttrs(["initiative_dice_modifier", "edge_toggle", "initiative_dice_temp", "initiative_dice_temp_flag"], v =>{
+				const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
 
-				setAttrs({initiative_dice: edg});
+				v = processTempFlags(`initiative_dice_temp_flag`, `initiative_dice_temp`, v);
+				v = parseIntegers(v);
+
+				const bonus = calculateBonuses(v), total = Math.min(bonus+1,5);
+				setAttrs({
+					initiative_dice: edgeFlag ? 5 : total
+				});
 			});
 		});
 
@@ -317,13 +298,11 @@
 		});
 
 	//Edge toggle to include ! for exploding dice
-		on("change:edge_toggle", () => {
-			getAttrs(["edge_toggle"], (v) =>{
-				edg = (v.edge_toggle != 0) ? "!" : "";
-
-				setAttrs({explode_toggle: edg});
-			});
+	const edgeToggle = eventinfo => {
+		setAttrs({
+			explode_toggle: eventinfo.newValue != 0 ? "!" : ""
 		});
+	}
 
 	//Calculate Reset Condition Track
 		on("clicked:cond_reset", () => {
@@ -349,12 +328,12 @@
 			});
 		});	
 
-	on("clicked:cond_reset_physical clicked:cond_reset_stun", (eventinfo) => {
+	const resetConditionTrack = eventinfo => {
 		const attr = eventinfo.triggerName.split("_").pop();
 		setAttrs({
 			[`${attr}`] : 0
-		});
-	});
+		});	
+	}
 
 	//Weapon displays set into an Array
 		// Builder function to display details properly
@@ -674,13 +653,10 @@
 	        on(`change:${field}`, (eventInfo) => {
 	        	const source = eventInfo.sourceAttribute;
 	        	if (source.includes("dicepool") || source.includes("specialization")) {
-	        		getAttrs([`${field}_spec`, `${field}_dicepool_modifier`], (v) => {
-	        			const spec = parseInt(v[`${field}_spec`]) || 0;
-						const mod = parseInt(v[`${field}_dicepool_modifier`]) || 0;
-						const tot = spec + mod;
-
+	        		getAttrs([`${field}_specialization`, `${field}_dicepool_modifier`], v => {
+	        			v = parseIntegers(v);
 	                    setAttrs({
-	                        [`${field}_dicepool`]: tot
+	                        [`${field}_dicepool`]: v[`${field}_specialization`] + v[`${field}_dicepool_modifier`]
 	                    });
 	        		});
 	        	}  else  {

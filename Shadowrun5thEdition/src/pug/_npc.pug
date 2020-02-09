@@ -127,8 +127,23 @@
 					span(name=`attr_${attrName}`+'_limit' title='@{'+attrName+'_limit}')
 			
 			//- PAIN TOLERANCE
-			.rows.grunt.pain-tolerance
-				h2(data-i18n='paintolerance') Pain Tolerance
+			.grunt.pain-tolerance.settings
+				.rows
+					h2(data-i18n='high pain tolerance')
+					label(data-i18n-title="high pain tolerance")
+						input(type="number" name="attr_high_pain_tolerance" min="0" value="" placeholder="#" title="@{high_pain_tolerance}")
+				.rows
+					h2(data-i18n='low pain tolerance')
+					label(data-i18n-title="low pain tolerance")
+						input(type="checkbox" name="attr_low_pain_tolerance" value="2" title="@{low_pain_tolerance}")
+				.rows
+					h2(data-i18n='damage compensators')
+					label(data-i18n-title="damage compensators physical")
+						input(type="number" min="0" name="attr_damage_compensators_physical" value="" placeholder="1" title="@{damage_compensators_physical}")
+					span /
+					label(data-i18n-title="damage compensators stun")
+						input(type="number" min="0" name="attr_damage_compensators_stun" value="" placeholder="2" title="@{damage_compensators_stun}")
+
 
 			//- MATRIX ATTRIBUTES
 			.rows.vehicle

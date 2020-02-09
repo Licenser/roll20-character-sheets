@@ -139,3 +139,11 @@
 			update_wounds();
 		});
 	});
+
+	on("clicked:cond_reset_physical clicked:cond_reset_stun", (eventinfo) => {
+		resetConditionTrack(eventinfo);
+	});
+
+	on("change:edge_toggle", eventinfo => {
+		edgeToggle(eventinfo);
+	});
