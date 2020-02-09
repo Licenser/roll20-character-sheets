@@ -68,11 +68,11 @@
 				<input type="number" name="attr_stun_modifier" value="" placeholder="#" title="@{stun_modifier}" /><br />
 				<input type="hidden" name="attr_overflow" value="3" />
 				<label data-i18n="overflowmodifier">Overflow Modifier</label><input type="number" name="attr_overflow_modifier" value="" placeholder="#" title="@{overflow_modifier}" /><br />
-				<label data-i18n="high pain tolerance">High Pain Tolerance</label><input type="number" name="attr_high_pain_tolerance" value="0" placeholder="#" title="@{high_pain_tolerance}" /><br />
+				<label data-i18n="high pain tolerance">High Pain Tolerance</label><input type="number" name="attr_high_pain_tolerance" min="0" value="" placeholder="#" title="@{high_pain_tolerance}" /><br />
 				<label data-i18n="low pain tolerance">Low Pain Tolerance</label><input type="checkbox" name="attr_low_pain_tolerance" value="2" title="@{low_pain_tolerance}" /><br />
 				<label data-i18n="damage compensators">Damage Compensators (P/S): </label>
-				<input type="number" name="attr_damage_compensators_physical" value="0" placeholder="#" title="@{damage_compensators_physical}" /><span> / </span>
-				<input type="number" name="attr_damage_compensators_stun" value="0" placeholder="#" title="@{damage_compensators_stun}" />
+				<input type="number" min="0" name="attr_damage_compensators_physical" value="" placeholder="#" title="@{damage_compensators_physical}" /><span> / </span>
+				<input type="number" min="0" name="attr_damage_compensators_stun" value="" placeholder="#" title="@{damage_compensators_stun}" />
 			</div>
 			<div class="display">
 				<div class="con-track">

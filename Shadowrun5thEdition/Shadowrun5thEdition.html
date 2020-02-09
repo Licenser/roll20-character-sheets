@@ -768,11 +768,11 @@
 				<input type="number" name="attr_stun_modifier" value="" placeholder="#" title="@{stun_modifier}" /><br />
 				<input type="hidden" name="attr_overflow" value="3" />
 				<label data-i18n="overflowmodifier">Overflow Modifier</label><input type="number" name="attr_overflow_modifier" value="" placeholder="#" title="@{overflow_modifier}" /><br />
-				<label data-i18n="high pain tolerance">High Pain Tolerance</label><input type="number" name="attr_high_pain_tolerance" value="0" placeholder="#" title="@{high_pain_tolerance}" /><br />
+				<label data-i18n="high pain tolerance">High Pain Tolerance</label><input type="number" name="attr_high_pain_tolerance" min="0" value="" placeholder="#" title="@{high_pain_tolerance}" /><br />
 				<label data-i18n="low pain tolerance">Low Pain Tolerance</label><input type="checkbox" name="attr_low_pain_tolerance" value="2" title="@{low_pain_tolerance}" /><br />
 				<label data-i18n="damage compensators">Damage Compensators (P/S): </label>
-				<input type="number" name="attr_damage_compensators_physical" value="0" placeholder="#" title="@{damage_compensators_physical}" /><span> / </span>
-				<input type="number" name="attr_damage_compensators_stun" value="0" placeholder="#" title="@{damage_compensators_stun}" />
+				<input type="number" min="0" name="attr_damage_compensators_physical" value="" placeholder="#" title="@{damage_compensators_physical}" /><span> / </span>
+				<input type="number" min="0" name="attr_damage_compensators_stun" value="" placeholder="#" title="@{damage_compensators_stun}" />
 			</div>
 			<div class="display">
 				<div class="con-track">
@@ -3783,29 +3783,28 @@ const onepointthreefive = () => {
 		});
 
 	const update_wounds = () => {
-		console.log("WOUNDS!!");
-		getAttrs(sheetAttribues.woundCalculation, (v) => {
-			const painTolerance = parseInt(v.pain_tolerance) || 0; 
-			let update = {}
+		getAttrs(sheetAttribues.woundCalculation, v => {
 
-			["stun", "physical"].forEach(attr => {
-				const parsedAttr = parseInt(v[`${attr}`]) || 0;
+			console.log(v);
+
+			for (let [key, value] of Object.entries(v)) {
+	            v[key] = parseInt(value) || 0;
+	        }
+
+	        console.log(v);
+	       	const divisor  = v.low_pain_tolerance === 2 ? v.low_pain_tolerance : 3;
+	       	const highPain = v.high_pain_tolerance >= 1 ? v.high_pain_tolerance : 0;
+	       	let sum = 0;
+
+	       	["stun", "physical"].forEach(attr => {
+	       		let dividend = v[`${attr}`];
+	       		dividend -= highPain + v[`damage_compensators_${attr}`]
+	       		sum -= dividend > 0 ? Math.floor(dividend / divisor) : Math.floor(0 / divisor)
 			});
-//			const stu = parseInt(v.stun) || 0, phy = parseInt(v.physical) || 0, pai = parseInt(v.pain_tolerance) || 0;
-//			lowP = pai < 0 ? 2 : 3;
-//			highPhy = pai > 0 ? phy - pai : phy;
-//			highStu = pai > 0 ? stu - pai : stu;
-//			pMod = phy > 0 ? (Math.floor(highPhy/lowP)) : 0;
-//			sMod = stu > 0 ? (Math.floor(highStu/lowP)) : 0;
-//			wou = Math.floor(-(pMod) + -(sMod));
-//			
-//			every 3 points damage = a wounds//
 
-//			High Paint tolerance = physical-1 / 3
-//			Lowe Paint TOlerance = physical / 3 - low pain tolerance
-			//Noram = physical / 3
-
-			setAttrs({wounds: wou});
+			setAttrs({
+				wounds: sum
+			});
 		});
 	};
 

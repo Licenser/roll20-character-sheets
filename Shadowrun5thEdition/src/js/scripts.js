@@ -362,29 +362,28 @@
 		});
 
 	const update_wounds = () => {
-		console.log("WOUNDS!!");
-		getAttrs(sheetAttribues.woundCalculation, (v) => {
-			const painTolerance = parseInt(v.pain_tolerance) || 0; 
-			let update = {}
+		getAttrs(sheetAttribues.woundCalculation, v => {
 
-			["stun", "physical"].forEach(attr => {
-				const parsedAttr = parseInt(v[`${attr}`]) || 0;
+			console.log(v);
+
+			for (let [key, value] of Object.entries(v)) {
+	            v[key] = parseInt(value) || 0;
+	        }
+
+	        console.log(v);
+	       	const divisor  = v.low_pain_tolerance === 2 ? v.low_pain_tolerance : 3;
+	       	const highPain = v.high_pain_tolerance >= 1 ? v.high_pain_tolerance : 0;
+	       	let sum = 0;
+
+	       	["stun", "physical"].forEach(attr => {
+	       		let dividend = v[`${attr}`];
+	       		dividend -= highPain + v[`damage_compensators_${attr}`]
+	       		sum -= dividend > 0 ? Math.floor(dividend / divisor) : Math.floor(0 / divisor)
 			});
-//			const stu = parseInt(v.stun) || 0, phy = parseInt(v.physical) || 0, pai = parseInt(v.pain_tolerance) || 0;
-//			lowP = pai < 0 ? 2 : 3;
-//			highPhy = pai > 0 ? phy - pai : phy;
-//			highStu = pai > 0 ? stu - pai : stu;
-//			pMod = phy > 0 ? (Math.floor(highPhy/lowP)) : 0;
-//			sMod = stu > 0 ? (Math.floor(highStu/lowP)) : 0;
-//			wou = Math.floor(-(pMod) + -(sMod));
-//			
-//			every 3 points damage = a wounds//
 
-//			High Paint tolerance = physical-1 / 3
-//			Lowe Paint TOlerance = physical / 3 - low pain tolerance
-			//Noram = physical / 3
-
-			setAttrs({wounds: wou});
+			setAttrs({
+				wounds: sum
+			});
 		});
 	};
 
