@@ -141,9 +141,35 @@
 	});
 
 	on("clicked:cond_reset_physical clicked:cond_reset_stun", (eventinfo) => {
-		resetConditionTrack(eventinfo);
+		resetConditionTrack(eventinfo)
 	});
 
 	on("change:edge_toggle", eventinfo => {
-		edgeToggle(eventinfo);
+		edgeToggle(eventinfo)
 	});
+
+	on("change:device_rating change:matrix_modifier", () => {
+		updateMatrixMaximum()
+	});
+
+	on("change:intuition change:astral_mod_modifier", () => {
+		updateAstralInitiative()
+	});
+
+	on("change:initiative_dice_modifier change:edge_toggle change:initiative_dice_temp change:initiative_dice_temp_flag", () => {
+		updateInitiative()
+	});
+
+	on("change:astral_dice_modifier change:edge_toggle", () => {
+		updateAstralInitiativeDice()
+	});
+
+	on("change:host_rating change:data_processing change:pilot change:intuition change:matrix_mod_modifier change:level change:matrix_dice_modifier change:edge_toggle", () => {
+		updateMatrixInitiative()
+	});
+
+//	sheetAttribues.repeatingSkills.forEach(field => {
+//		on(`change:repeating_${field}`, eventinfo => { 
+//			const id = eventinfo.sourceAttribute.split(`_`)[2];
+//		});
+//    }); 

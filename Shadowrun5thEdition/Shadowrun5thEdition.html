@@ -29,7 +29,7 @@
       <input class="whisper-toggle" name="attr_edge_toggle" type="checkbox" value="@{edge}"/><span class="slider"></span>
     </label>
     <button name="d6" title="Roll D6s" type="roll" value="@{gm_toggle} &{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6>5)]]}}">L</button>
-    <input name="attr_tab" type="hidden" value="core"/>
+    <input name="attr_tab" type="hidden" value="options"/>
     <button class="pictos" name="act_tab_options" title="@{tab}" type="action">y</button>
     <button data-i18n="core" name="act_tab_core" type="action" title="@{tab}">core</button>
     <button data-i18n="arms" name="act_tab_arms" type="action" title="@{tab}">arms</button>
@@ -698,26 +698,7 @@
       </div>
     </div>
   </div>
-  <div class="core pc-col">
-    <div class="core-combat">
-      <div class="header right-header">
-        <h1 data-i18n="corecombatinfo"></h1>
-        <div class="right-tri"></div>
-      </div>
-      <div class="border-box">
-        <div class="pc-box small-box">
-          <div class="row-long cc-arm">
-            <h2 data-i18n="primaryarmor"></h2>
-            <button><span name="attr_armor_name" title="@{soak}"></span></button>
-            <h3 data-i18n="rating"></h3>
-            <button><span name="attr_armor_rating" title="@{armor_rating}"></span></button>
-            <div class="armor-buttons">
-              <button></button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><div class="pc-row">
+  <div class="core pc-col"><div class="pc-row">
 	<div class="header right-header">
 		<h1 data-i18n="corecombatinfo">Core Combat Info</h1>
 		<div class="right-tri">
@@ -2085,8 +2066,8 @@
 					<hr />
 					<div>
 						<h2 data-i18n="sheetselect">Sheet Select</h2><br />
-						<select name="attr_sheet_type" title="@{sheet_type}">
-							<option value="pc" data-i18n="pc">PC</option>
+						<select name="attr_sheet_type" title="@{sheet_type}" value='pc'>
+							<option value="pc" data-i18n="pc" selected>PC</option>
 							<option value="grunt" data-i18n="grunt">grunt</option>
 							<option value="host" data-i18n="host">Host</option>
 							<option value="sprite" data-i18n="sprite">Sprite</option>
@@ -2149,12 +2130,12 @@
       <input class="whisper-toggle" name="attr_edge_toggle" type="checkbox" value="@{edge}"/><span class="slider"></span>
     </label>
     <button name="d6" title="Roll D6s" type="roll" value="@{gm_toggle} &amp;{template:rolls}{{header=^{d6}}}{{base=^{d6}}}{{dice=[[(?{d6s|0}d6&gt;5)]]}}">L</button>
-    <select name="attr_sheet_type" title="Sheet Type">
+    <select name="attr_sheet_type" title="Sheet Type" value="pc">
       <option value="grunt" data-i18n="grunt">Grunt</option>
       <option value="host" data-i18n="host">Host</option>
       <option value="sprite" data-i18n="sprite">Sprite</option>
       <option value="vehicle" data-i18n="vehicle">Vehicle</option>
-      <option value="pc" data-i18n="pc">PC</option>
+      <option value="pc" data-i18n="pc" selected="selected">PC</option>
     </select>
     <input name="attr_stats_toggle" type="checkbox" value="settings" checked="checked"/><span class="pictos">y</span>
   </div>
@@ -2387,7 +2368,7 @@
         </label><span class="settings tiny-span">=</span><span name="attr_physical_max" title="@{physical_max}"></span><span>/</span><span name="attr_matrix_max" title="@{matrix_max}"></span>
       </div>
       <div class="rows host sprite">
-        <button data-i18n="conditionmonitorm" name="act_cond_reset" type="action">Condition Monitor (M)</button><span name="attr_matrix"></span>
+        <button data-i18n="conditionmonitorm" name="act_cond_reset" type="action">Condition Monitor (M)</button><span name="attr_matrix_max"></span>
       </div>
       <div class="rows grunt">
         <h2 data-i18n="physical">val</h2>
@@ -2403,20 +2384,20 @@
           <input name="attr_social_limit_modifier" placeholder="0" title="@{social_limit_modifier}" type="number" value="0"/>
         </label><span class="settings tiny-span">=</span><span name="attr_social_limit" title="@{social_limit}"></span>
       </div>
-      <div class="grunt pain-tolerance settings">
-        <div class="rows">
+      <div class="grunt pain-tolerance">
+        <div class="rows settings">
           <h2 data-i18n="high pain tolerance"></h2>
           <label data-i18n-title="high pain tolerance">
             <input type="number" name="attr_high_pain_tolerance" min="0" value="" placeholder="#" title="@{high_pain_tolerance}"/>
           </label>
         </div>
-        <div class="rows">
+        <div class="rows settings">
           <h2 data-i18n="low pain tolerance"></h2>
           <label data-i18n-title="low pain tolerance">
             <input type="checkbox" name="attr_low_pain_tolerance" value="2" title="@{low_pain_tolerance}"/>
           </label>
         </div>
-        <div class="rows">
+        <div class="rows settings">
           <h2 data-i18n="damage compensators"></h2>
           <label data-i18n-title="damage compensators physical">
             <input type="number" min="0" name="attr_damage_compensators_physical" value="" placeholder="1" title="@{damage_compensators_physical}"/>
@@ -3312,11 +3293,11 @@
 <input type="hidden" name="attr_matrix_dice" max="5" />
 <input type="hidden" name="attr_walk" value="12" />
 <input type="hidden" name="attr_run" value="24" />
-<input type="hidden" name="attr_physical" value="10" />
-<input type="hidden" name="attr_stun" value="10" />
+<input type="hidden" name="attr_physical" value="0" />
+<input type="hidden" name="attr_stun" value="0" />
 <input type="hidden" name="attr_physical_max" min="0" value="10" />
 <input type="hidden" name="attr_stun_max" min="0" value="10" />
-<input type="hidden" name="attr_matrix" value="10" />
+<input type="hidden" name="attr_matrix" value="0" />
 <input type="hidden" name="attr_matrix_max" min="8" value="10" />
 <input type="hidden" name="attr_defense" value="6" />
 
@@ -3488,9 +3469,11 @@ const onepointfour = () => {
 
 const onepointthreefive = () => {
     getAttrs(["sheet_type"], (v) => {
-        let update = {};
-        v.sheet_type === "goon" ? update["sheet_type"] = "grunt" : false;
-        setAttrs(update);
+        if (v.sheet_type === "goon") {
+            setAttrs({
+                ["sheet_type"]: "grunt" 
+            });
+        }
     });  
 };
   	const parseIntegers = numbers => {
@@ -3678,11 +3661,31 @@ const onepointthreefive = () => {
 	});
 
 	on("clicked:cond_reset_physical clicked:cond_reset_stun", (eventinfo) => {
-		resetConditionTrack(eventinfo);
+		resetConditionTrack(eventinfo)
 	});
 
 	on("change:edge_toggle", eventinfo => {
-		edgeToggle(eventinfo);
+		edgeToggle(eventinfo)
+	});
+
+	on("change:device_rating change:matrix_modifier", () => {
+		updateMatrixMaximum()
+	});
+
+	on("change:intuition change:astral_mod_modifier", () => {
+		updateAstralInitiative()
+	});
+
+	on("change:initiative_dice_modifier change:edge_toggle change:initiative_dice_temp change:initiative_dice_temp_flag", () => {
+		updateInitiative()
+	});
+
+	on("change:astral_dice_modifier change:edge_toggle", () => {
+		updateAstralInitiativeDice()
+	});
+
+	on("change:host_rating change:data_processing change:pilot change:intuition change:matrix_mod_modifier change:level change:matrix_dice_modifier change:edge_toggle", () => {
+		updateMatrixInitiative()
 	});
 	const translations = () => {
 		const attributes = sheetAttribues.translationsAttributes;
@@ -3838,43 +3841,41 @@ const onepointthreefive = () => {
 		};
 
 	//Update condition tracks
-		const update_track = (track) => {
-			let attrs = [`${track}_modifier`];
-			track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
+	const update_track = track => {
+		let attrs = [`${track}_modifier`];
+		track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
 
-			getAttrs(attrs, v =>{
-				const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
-				const mod = parseInt(v[`${track}_modifier`]) || 0;
-				let update = {};
+		getAttrs(attrs, v =>{
+			const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
+			const mod = parseInt(v[`${track}_modifier`]) || 0;
+			let update = {};
 
-				if (track === "stun" || v["sheet_type"] === "pc" || v["sheet_type"] === "grunt") {
-					tot = Math.ceil(stat/2) + 8 + mod;
-				} else if (v["sheet_type"] === "vehicle" && v["flag_drone"]  === "drone") {
-					tot = (Math.ceil(stat/2) + 6 + mod);
-				} else if (v["sheet_type"] === "vehicle") {
-					tot = (Math.ceil(stat/2) + 12 + mod);
-				} else {
-					tot = 0; //Sprites don't have Stun or Physical track
-				};
+			if (track === "stun" || v["sheet_type"] === "pc" || v["sheet_type"] === "grunt") {
+				tot = Math.ceil(stat/2) + 8 + mod;
+			} else if (v["sheet_type"] === "vehicle" && v["flag_drone"]  === "drone") {
+				tot = (Math.ceil(stat/2) + 6 + mod);
+			} else if (v["sheet_type"] === "vehicle") {
+				tot = (Math.ceil(stat/2) + 12 + mod);
+			} else {
+				tot = 0; //Sprites don't have Stun or Physical track
+			};
 
-				update[`${track}_max`] = tot;
+			update[`${track}_max`] = tot;
 
-				setAttrs(update, {silent:true});
-			});
-		};
+			setAttrs(update, {silent:true});
+		});
+	};
 
 	//Calculate Device Rating Track
-	on("change:device_rating change:matrix_modifier", () => {
-		getAttrs(["device_rating","matrix_modifier","matrix"], (v) =>{
-			const dev = parseInt(v.device_rating) || 0, mod = parseInt(v.matrix_modifier) || 0;
-			const dam = parseInt(v.matrix) || 0;
-			const tot = Math.ceil(dev/2) + 8 + mod;
-			const current = (dam > 0) ? dam : tot;
+	const updateMatrixMaximum = () => {
+		getAttrs(["device_rating","matrix_modifier"], (v) => {
+			v = parseIntegers(v);
 
-			setAttrs({matrix: current});
-			setAttrs({matrix_max: tot});
+			setAttrs({
+				matrix_max: Math.ceil(v.device_rating/2) + 8 + v.matrix_modifier
+			});
 		});
-	});
+	};
 
 	const update_wounds = () => {
 		getAttrs(sheetAttribues.woundCalculation, v => {
@@ -3897,121 +3898,93 @@ const onepointthreefive = () => {
 	};
 
 	//Calculate Initiatves
-		const update_initiative = () => {
-			getAttrs(["reaction", "intuition", "initiative_modifier", "initiative_temp", "initiative_temp_flag"], v => {
-				v = processTempFlags(`initiative_temp_flag`, `initiative_temp`, v);
-                v = parseIntegers(v);
-                const base = v.reaction + v.intuition, bonus = calculateBonuses(v), total = base + bonus;
+	const update_initiative = () => {
+		getAttrs(["reaction", "intuition", "initiative_modifier", "initiative_temp", "initiative_temp_flag"], v => {
+			v = processTempFlags(`initiative_temp_flag`, `initiative_temp`, v);
+            v = parseIntegers(v);
+            const base = v.reaction + v.intuition, bonus = calculateBonuses(v), total = base + bonus;
 
-				setAttrs({
-					["initiative_mod"]: total,
-					["display_initiative_mod"]: bonus === 0 ? base : `${base} (${total})`
-				});
-			});
-		};
-
-		on("change:initiative_dice_modifier change:edge_toggle change:initiative_dice_temp change:initiative_dice_temp_flag", () => {
-			getAttrs(["initiative_dice_modifier", "edge_toggle", "initiative_dice_temp", "initiative_dice_temp_flag"], v =>{
-				const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
-
-				v = processTempFlags(`initiative_dice_temp_flag`, `initiative_dice_temp`, v);
-				v = parseIntegers(v);
-
-				const bonus = calculateBonuses(v), total = Math.min(bonus+1,5);
-				setAttrs({
-					initiative_dice: edgeFlag ? 5 : total
-				});
+			setAttrs({
+				["initiative_mod"]: total,
+				["display_initiative_mod"]: bonus === 0 ? base : `${base} (${total})`
 			});
 		});
+	};
 
-		//Calculate Astral Initiatve
-		on("change:intuition change:astral_mod_modifier", () => {
-			getAttrs(["intuition", "astral_mod_modifier"], (v) => {
-				const int = parseInt(v.intuition) || 0;
-				const mod = parseInt(v.astral_mod_modifier) || 0;
-				const bas = int * 2;
-				const tot = (int * 2) + mod;
-				let update = {};
+	const updateInitiative = () => {
+		getAttrs(["initiative_dice_modifier", "edge_toggle", "initiative_dice_temp", "initiative_dice_temp_flag"], v => {
+			const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
 
-				update["astral_mod"] = tot;
-				update["display_astral_mod"] = (mod != 0) ? `${bas} (${tot})` : bas;
+			v = processTempFlags(`initiative_dice_temp_flag`, `initiative_dice_temp`, v);
+			v = parseIntegers(v);
 
-				setAttrs(update);
+			const bonus = calculateBonuses(v), total = Math.min(bonus+1,5);
+			setAttrs({
+				initiative_dice: edgeFlag ? 5 : total
 			});
 		});
+	};
 
-		on("change:astral_dice_modifier change:edge_toggle", () => {
-			getAttrs(["astral_dice_modifier", "edge_toggle"], (v) =>{
-				var mod = parseInt(v.astral_dice_modifier) || 0;
-				var tot = Math.min(mod+3,5);
-				edg = (v.edge_toggle == 0) ? tot : 5;
+	//Calculate Astral Initiatve
+	const updateAstralInitiative = () => {
+		getAttrs(["intuition", "astral_mod_modifier"], v => {
+			v = parseIntegers(v);
+			const base = v.intuition * 2, bonus = v.astral_mod_modifier, total = base + bonus;
 
-				setAttrs({astral_dice: edg});
+			setAttrs({
+				["astral_mod"]: total,
+				["display_astral_mod"]: bonus === 0 ? base : `${base} (${total})`
 			});
 		});
+	};
+
+	const updateAstralInitiativeDice = () => {
+		getAttrs(["astral_dice_modifier", "edge_toggle"], v => {
+			const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
+			const bonus = parseInt(v.astral_dice_modifier) || 0;
+
+			setAttrs({
+				astral_dice: edgeFlag ? 5 : Math.min(bonus+3,5)
+			});
+		});
+	};
 
 	//Calculate Matrix Initiatve.
-		on("change:host_rating change:data_processing change:pilot change:intuition change:matrix_mod_modifier change:level change:matrix_dice_modifier change:edge_toggle", () => {
-			getAttrs(["sheet_type", "data_processing", "pilot", "intuition", "matrix_mod_modifier", "host_rating", "level", "matrix_dice_modifier", "edge_toggle"], (v) => {
-				const dat = parseInt(v.data_processing) || 0;
-				const pil = parseInt(v.pilot) || 0;
-				const int = parseInt(v.intuition) || 0;
-				const mat = parseInt(v.matrix_mod_modifier) || 0;
-				const hos = parseInt(v.host_rating) || 0;
-				const lev = parseInt(v.level) || 0;
-				const dic = parseInt(v.matrix_dice_modifier) || 0;
-				let update = {};
+	const updateMatrixInitiative = () => {
+		getAttrs(["sheet_type", "data_processing", "pilot", "intuition", "matrix_mod_modifier", "host_rating", "level", "matrix_dice_modifier", "edge_toggle"], v => {
+			const sheetType = v.sheet_type;
+			const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
 
-				dice = 	(v.sheet_type === "grunt" && v.edge_toggle == 0) ? 4 + dic : 
-						((v.sheet_type === "grunt" && v.edge_toggle != 0) ? 5 :
-						4);
+			v = parseIntegers(v);
 
-				tot = (v.sheet_type === "vehicle") ? dat + pil :
-					  (v.sheet_type === "host") ? dat + hos :
-					  (v.sheet_type === "sprite") ? dat + lev + mat :
-					  dat + int + mat;
+			let base = v.data_processing;
+			base += sheetType === "sprite" ? v.level : sheetType === "vehicle" ? v.pilot : sheetType === "host" ? v.host_rating : v.intuition;
 
-				bas = (v.sheet_type === "sprite") ? dat + lev : dat + int ;
+			const total = base + v.matrix_mod_modifier;
 
-				update["matrix_mod"] = tot;
-				update["matrix_dice"] = dice;
-
-				update["display_matrix_mod"] = (mat != 0) ? `${bas} (${tot})` : tot;
-
-				setAttrs(update);
+			setAttrs({
+				["matrix_mod"]: total,
+				["matrix_dice"]: sheetType === "grunt" && edgeFlag ? 5 : sheetType === "grunt" && !edgeFlag ? 4 + v.matrix_dice_modifier : 4,
+				["display_matrix_mod"]: v.matrix_mod_modifier === 0 ? base : `${base} (${total})`
 			});
 		});
+	};
 
 	//Edge toggle to include ! for exploding dice
 	const edgeToggle = eventinfo => {
 		setAttrs({
 			explode_toggle: eventinfo.newValue != 0 ? "!" : ""
 		});
-	}
+	};
 
 	//Calculate Reset Condition Track
-		on("clicked:cond_reset", () => {
-			getAttrs(["sheet_type","physical_max","stun_max", "matrix_max"], (v) => {
-				var phy = parseInt(v.physical_max) || 0;
-				var stun = parseInt(v.stun_max) || 0;
-				var mat = parseInt(v.matrix_max) || 0;
-				let update = {};
-
-				if (v.sheet_type === "grunt" || v.sheet_type === "pc") {
-					update["physical"] = phy;
-					update["stun"] = stun;
-				} else if (v.sheet_type === "sprite") {
-					update["matrix"] = mat;
-				} else if (v.sheet_type === "vehicle") {
-					update["physical"] = phy;
-					update["matrix"] = mat;
-				} else {
-					return "Not a grunt or vehicle";
-				};
-
-				setAttrs(update);
-			});
-		});	
+	on("clicked:cond_reset", () => {
+		setAttrs({
+			physical: 0,
+			stun: 0,
+			matrix: 0
+		});
+	});	
 
 	const resetConditionTrack = eventinfo => {
 		const attr = eventinfo.triggerName.split("_").pop();
@@ -4020,22 +3993,22 @@ const onepointthreefive = () => {
 		});	
 	}
 
-	//Weapon displays set into an Array
-		// Builder function to display details properly
-		// Note that since undefined are falsey if there's no label or sign we can leave the parameters blank
-		function repeatingStringBuilder(v, keyBase) {
-		    return function(key, label, sign) {
-		        // fetch the attr from v checking if it has a value
-		        const val = v[`${keyBase}${key}`];
-		        if (!val) return '';
+//Weapon displays set into an Array
+	// Builder function to display details properly
+	// Note that since undefined are falsey if there's no label or sign we can leave the parameters blank
+	function repeatingStringBuilder(v, keyBase) {
+	    return function(key, label, sign) {
+	        // fetch the attr from v checking if it has a value
+	        const val = v[`${keyBase}${key}`];
+	        if (!val) return '';
 
-		        // Apply the sign if needed
-		        const disp = sign && val > 0 ? `+${val}` : val;
+	        // Apply the sign if needed
+	        const disp = sign && val > 0 ? `+${val}` : val;
 
-		        // Apply label if needed
-		        return label ? `${label} ${disp}` : disp;
-		    }
-		}
+	        // Apply label if needed
+	        return label ? `${label} ${disp}` : disp;
+	    }
+	}
 
 	on("change:repeating_weapon", () => {
 		const source = "repeating_weapon_weapon";
@@ -4164,92 +4137,94 @@ const onepointthreefive = () => {
 		});
 
 	//REFACTORED Skills
-	  	['repeating_active','repeating_knowledge','repeating_language'].forEach(field => {
-	        on(`change:${field}`, (eventinfo) => { 
-				const source = eventinfo.sourceAttribute;
-				const type   = eventinfo.sourceType;
+  	['repeating_active','repeating_knowledge','repeating_language'].forEach(field => {
+        on(`change:${field}`, eventinfo => { 
+			const source = eventinfo.sourceAttribute;
+			const type   = eventinfo.sourceType;
 
-	        	if (source.includes("rating")) {
-	        		getAttrs([`${field}_rating`, `${field}_rating_modifier`], (v) => {
-	        			const bas = parseInt(v[`${field}_rating`]) || 0;
-						const mod = parseInt(v[`${field}_rating_modifier`]) || 0;
-						const tot = bas + mod;
-	                    setAttrs({
-	                        [`${field}_dicepool`]: tot,
-	                        [`${field}_display_rating`]: (mod === 0) ? bas : `${bas} (${tot})`
-	                    });
-	        		});
-	        	} else if (source.includes("attribute") && type === "player") {
-	        		getAttrs([`${source}`], (v) => {
-						const attribute   = v[`${source}`].slice(2, -1);
-						const translation = getTranslationByKey(`${attribute}`);
-	        			setAttrs({
-	                       [`${field}_display_attribute`]: translation
-	                    });
-	        		});
-	        	} else if (source.includes("limit") && type === "player") {
-	        		const limit = eventinfo.newValue.slice(2, -1);
-	        		if (eventinfo.newValue === "none") {
-	        			setAttrs({
-		                   [`${field}_display_limit`]: ""
-		                });
-	        		} else {
-						const translation = getTranslationByKey(`${limit}`);
-	        			setAttrs({
-	                       [`${field}_display_limit`]: `${translation} ${eventinfo.newValue}`
-	                    });
-	        		}
-	        	} else if (source.includes("specialization") && type === "player")  {	
-	        		getAttrs([`${source}`], (v) => {
-						const bas   = v[`${source}`];
-						const size  = bas.length;
-						let display = (size > 0 && size <= 20) ? `(${bas})` : (size > 20 ) ? "(" + bas.slice(0, 20) + "...)" : " ";
-	        			setAttrs({
-	                       [`${field}_display_specialization`]: display
-	                    });
-	        		});
-	        	} else if (source.includes("skill")) {
-	                getAttrs([`${source}`], (v) => {
-						const bas   = v[`${source}`];
-						const size  = bas.length;
-						let display = (size > 0 && size <= 20) ? bas : (size > 20 ) ? bas.slice(0, 20) + "..." : " ";
-	                    setAttrs({
-	                       [`${field}_display`]: display
-	                    });
+			console.log(eventinfo);
+
+        	if (source.includes("rating")) {
+        		getAttrs([`${field}_rating`, `${field}_rating_modifier`], (v) => {
+        			const bas = parseInt(v[`${field}_rating`]) || 0;
+					const mod = parseInt(v[`${field}_rating_modifier`]) || 0;
+					const tot = bas + mod;
+                    setAttrs({
+                        [`${field}_dicepool`]: tot,
+                        [`${field}_display_rating`]: (mod === 0) ? bas : `${bas} (${tot})`
+                    });
+        		});
+        	} else if (source.includes("attribute") && type === "player") {
+        		getAttrs([`${source}`], (v) => {
+					const attribute   = v[`${source}`].slice(2, -1);
+					const translation = getTranslationByKey(`${attribute}`);
+        			setAttrs({
+                       [`${field}_display_attribute`]: translation
+                    });
+        		});
+        	} else if (source.includes("limit") && type === "player") {
+        		const limit = eventinfo.newValue.slice(2, -1);
+        		if (eventinfo.newValue === "none") {
+        			setAttrs({
+	                   [`${field}_display_limit`]: ""
 	                });
-	            } else if (source.includes("dicepool")) {
-	                getAttrs([`${source}`, `${field}_skill`], (v) => {
-						const skill     = v[`${field}_skill`];
-						let lowercase   = skill.toLowerCase();
-						let removeGroup = (lowercase.includes("group")) ? lowercase.slice(0, -6) : lowercase;
-						let skillSet    = (removeGroup.includes(" ")) ? removeGroup.replace(/ /g,"") : removeGroup;
-	                    setAttrs({
-	                       [`${skillSet}`]: v[`${source}`]
-	                    });
-	                });
-	        	}  else  {
-	        		console.log(`Change to ${field} did not set attr`);
-	        	};
-	        });
-	    }); 
+        		} else {
+					const translation = getTranslationByKey(`${limit}`);
+        			setAttrs({
+                       [`${field}_display_limit`]: `${translation} ${eventinfo.newValue}`
+                    });
+        		}
+        	} else if (source.includes("specialization") && type === "player")  {	
+        		getAttrs([`${source}`], (v) => {
+					const bas   = v[`${source}`];
+					const size  = bas.length;
+					let display = (size > 0 && size <= 20) ? `(${bas})` : (size > 20 ) ? "(" + bas.slice(0, 20) + "...)" : " ";
+        			setAttrs({
+                       [`${field}_display_specialization`]: display
+                    });
+        		});
+        	} else if (source.includes("skill") && type === "player") {
+                getAttrs([`${source}`], (v) => {
+					const bas   = v[`${source}`];
+					const size  = bas.length;
+					let display = (size > 0 && size <= 20) ? bas : (size > 20 ) ? bas.slice(0, 20) + "..." : " ";
+                    setAttrs({
+                       [`${field}_display`]: display
+                    });
+                });
+            } else if (source.includes("dicepool") && type === "player") {
+                getAttrs([`${source}`, `${field}_skill`], (v) => {
+					const skill     = v[`${field}_skill`];
+					let lowercase   = skill.toLowerCase();
+					let removeGroup = (lowercase.includes("group")) ? lowercase.slice(0, -6) : lowercase;
+					let skillSet    = (removeGroup.includes(" ")) ? removeGroup.replace(/ /g,"") : removeGroup;
+                    setAttrs({
+                       [`${skillSet}`]: v[`${source}`]
+                    });
+                });
+        	}  else  {
+        		console.log(`Change to ${field} did not set attr`);
+        	};
+        });
+    }); 
 
 
-	   	//Setting the Default attribute name for default skill
-		on("change:default_attribute", (eventinfo) => {
-			getAttrs(["default_display"], (v) => {
-				const display   = (v.default_display);
-				let update      = {};
+   	//Setting the Default attribute name for default skill
+	on("change:default_attribute", (eventinfo) => {
+		getAttrs(["default_display"], v => {
+			const display   = (v.default_display);
+			let update      = {};
 
-				//This sets a hidden input with the Attribute name so the roll template can use it to indicate what attribute was rolled
-				const attribute   = eventinfo.newValue.slice(2, -1);
-				const translation = getTranslationByKey(`${attribute}`);
-				if (translation != display) {
-					setAttrs({
-						default_display: translation
-					});
-				};
-			});
+			//This sets a hidden input with the Attribute name so the roll template can use it to indicate what attribute was rolled
+			const attribute   = eventinfo.newValue.slice(2, -1);
+			const translation = getTranslationByKey(`${attribute}`);
+			if (translation != display) {
+				setAttrs({
+					default_display: translation
+				});
+			};
 		});
+	});
 
 	//REFACTORED Range & MELEE UPDATES
 	   ['repeating_range','repeating_melee'].forEach(weap => {

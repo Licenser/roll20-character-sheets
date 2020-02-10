@@ -62,8 +62,10 @@ const onepointfour = () => {
 
 const onepointthreefive = () => {
     getAttrs(["sheet_type"], (v) => {
-        let update = {};
-        v.sheet_type === "goon" ? update["sheet_type"] = "grunt" : false;
-        setAttrs(update);
+        if (v.sheet_type === "goon") {
+            setAttrs({
+                ["sheet_type"]: "grunt" 
+            });
+        }
     });  
 };

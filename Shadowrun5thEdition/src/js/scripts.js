@@ -153,43 +153,41 @@
 		};
 
 	//Update condition tracks
-		const update_track = (track) => {
-			let attrs = [`${track}_modifier`];
-			track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
+	const update_track = track => {
+		let attrs = [`${track}_modifier`];
+		track === "stun" ? attrs.push("willpower") : attrs.push("body", "sheet_type", "flag_drone");
 
-			getAttrs(attrs, v =>{
-				const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
-				const mod = parseInt(v[`${track}_modifier`]) || 0;
-				let update = {};
+		getAttrs(attrs, v =>{
+			const stat = parseInt(v[`${attrs[1]}`]) || 0; //Willpower or Body
+			const mod = parseInt(v[`${track}_modifier`]) || 0;
+			let update = {};
 
-				if (track === "stun" || v["sheet_type"] === "pc" || v["sheet_type"] === "grunt") {
-					tot = Math.ceil(stat/2) + 8 + mod;
-				} else if (v["sheet_type"] === "vehicle" && v["flag_drone"]  === "drone") {
-					tot = (Math.ceil(stat/2) + 6 + mod);
-				} else if (v["sheet_type"] === "vehicle") {
-					tot = (Math.ceil(stat/2) + 12 + mod);
-				} else {
-					tot = 0; //Sprites don't have Stun or Physical track
-				};
+			if (track === "stun" || v["sheet_type"] === "pc" || v["sheet_type"] === "grunt") {
+				tot = Math.ceil(stat/2) + 8 + mod;
+			} else if (v["sheet_type"] === "vehicle" && v["flag_drone"]  === "drone") {
+				tot = (Math.ceil(stat/2) + 6 + mod);
+			} else if (v["sheet_type"] === "vehicle") {
+				tot = (Math.ceil(stat/2) + 12 + mod);
+			} else {
+				tot = 0; //Sprites don't have Stun or Physical track
+			};
 
-				update[`${track}_max`] = tot;
+			update[`${track}_max`] = tot;
 
-				setAttrs(update, {silent:true});
-			});
-		};
+			setAttrs(update, {silent:true});
+		});
+	};
 
 	//Calculate Device Rating Track
-	on("change:device_rating change:matrix_modifier", () => {
-		getAttrs(["device_rating","matrix_modifier","matrix"], (v) =>{
-			const dev = parseInt(v.device_rating) || 0, mod = parseInt(v.matrix_modifier) || 0;
-			const dam = parseInt(v.matrix) || 0;
-			const tot = Math.ceil(dev/2) + 8 + mod;
-			const current = (dam > 0) ? dam : tot;
+	const updateMatrixMaximum = () => {
+		getAttrs(["device_rating","matrix_modifier"], (v) => {
+			v = parseIntegers(v);
 
-			setAttrs({matrix: current});
-			setAttrs({matrix_max: tot});
+			setAttrs({
+				matrix_max: Math.ceil(v.device_rating/2) + 8 + v.matrix_modifier
+			});
 		});
-	});
+	};
 
 	const update_wounds = () => {
 		getAttrs(sheetAttribues.woundCalculation, v => {
@@ -212,121 +210,93 @@
 	};
 
 	//Calculate Initiatves
-		const update_initiative = () => {
-			getAttrs(["reaction", "intuition", "initiative_modifier", "initiative_temp", "initiative_temp_flag"], v => {
-				v = processTempFlags(`initiative_temp_flag`, `initiative_temp`, v);
-                v = parseIntegers(v);
-                const base = v.reaction + v.intuition, bonus = calculateBonuses(v), total = base + bonus;
+	const update_initiative = () => {
+		getAttrs(["reaction", "intuition", "initiative_modifier", "initiative_temp", "initiative_temp_flag"], v => {
+			v = processTempFlags(`initiative_temp_flag`, `initiative_temp`, v);
+            v = parseIntegers(v);
+            const base = v.reaction + v.intuition, bonus = calculateBonuses(v), total = base + bonus;
 
-				setAttrs({
-					["initiative_mod"]: total,
-					["display_initiative_mod"]: bonus === 0 ? base : `${base} (${total})`
-				});
-			});
-		};
-
-		on("change:initiative_dice_modifier change:edge_toggle change:initiative_dice_temp change:initiative_dice_temp_flag", () => {
-			getAttrs(["initiative_dice_modifier", "edge_toggle", "initiative_dice_temp", "initiative_dice_temp_flag"], v =>{
-				const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
-
-				v = processTempFlags(`initiative_dice_temp_flag`, `initiative_dice_temp`, v);
-				v = parseIntegers(v);
-
-				const bonus = calculateBonuses(v), total = Math.min(bonus+1,5);
-				setAttrs({
-					initiative_dice: edgeFlag ? 5 : total
-				});
+			setAttrs({
+				["initiative_mod"]: total,
+				["display_initiative_mod"]: bonus === 0 ? base : `${base} (${total})`
 			});
 		});
+	};
 
-		//Calculate Astral Initiatve
-		on("change:intuition change:astral_mod_modifier", () => {
-			getAttrs(["intuition", "astral_mod_modifier"], (v) => {
-				const int = parseInt(v.intuition) || 0;
-				const mod = parseInt(v.astral_mod_modifier) || 0;
-				const bas = int * 2;
-				const tot = (int * 2) + mod;
-				let update = {};
+	const updateInitiative = () => {
+		getAttrs(["initiative_dice_modifier", "edge_toggle", "initiative_dice_temp", "initiative_dice_temp_flag"], v => {
+			const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
 
-				update["astral_mod"] = tot;
-				update["display_astral_mod"] = (mod != 0) ? `${bas} (${tot})` : bas;
+			v = processTempFlags(`initiative_dice_temp_flag`, `initiative_dice_temp`, v);
+			v = parseIntegers(v);
 
-				setAttrs(update);
+			const bonus = calculateBonuses(v), total = Math.min(bonus+1,5);
+			setAttrs({
+				initiative_dice: edgeFlag ? 5 : total
 			});
 		});
+	};
 
-		on("change:astral_dice_modifier change:edge_toggle", () => {
-			getAttrs(["astral_dice_modifier", "edge_toggle"], (v) =>{
-				var mod = parseInt(v.astral_dice_modifier) || 0;
-				var tot = Math.min(mod+3,5);
-				edg = (v.edge_toggle == 0) ? tot : 5;
+	//Calculate Astral Initiatve
+	const updateAstralInitiative = () => {
+		getAttrs(["intuition", "astral_mod_modifier"], v => {
+			v = parseIntegers(v);
+			const base = v.intuition * 2, bonus = v.astral_mod_modifier, total = base + bonus;
 
-				setAttrs({astral_dice: edg});
+			setAttrs({
+				["astral_mod"]: total,
+				["display_astral_mod"]: bonus === 0 ? base : `${base} (${total})`
 			});
 		});
+	};
+
+	const updateAstralInitiativeDice = () => {
+		getAttrs(["astral_dice_modifier", "edge_toggle"], v => {
+			const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
+			const bonus = parseInt(v.astral_dice_modifier) || 0;
+
+			setAttrs({
+				astral_dice: edgeFlag ? 5 : Math.min(bonus+3,5)
+			});
+		});
+	};
 
 	//Calculate Matrix Initiatve.
-		on("change:host_rating change:data_processing change:pilot change:intuition change:matrix_mod_modifier change:level change:matrix_dice_modifier change:edge_toggle", () => {
-			getAttrs(["sheet_type", "data_processing", "pilot", "intuition", "matrix_mod_modifier", "host_rating", "level", "matrix_dice_modifier", "edge_toggle"], (v) => {
-				const dat = parseInt(v.data_processing) || 0;
-				const pil = parseInt(v.pilot) || 0;
-				const int = parseInt(v.intuition) || 0;
-				const mat = parseInt(v.matrix_mod_modifier) || 0;
-				const hos = parseInt(v.host_rating) || 0;
-				const lev = parseInt(v.level) || 0;
-				const dic = parseInt(v.matrix_dice_modifier) || 0;
-				let update = {};
+	const updateMatrixInitiative = () => {
+		getAttrs(["sheet_type", "data_processing", "pilot", "intuition", "matrix_mod_modifier", "host_rating", "level", "matrix_dice_modifier", "edge_toggle"], v => {
+			const sheetType = v.sheet_type;
+			const edgeFlag = v.edge_toggle === "@{edge}" ? true : false;
 
-				dice = 	(v.sheet_type === "grunt" && v.edge_toggle == 0) ? 4 + dic : 
-						((v.sheet_type === "grunt" && v.edge_toggle != 0) ? 5 :
-						4);
+			v = parseIntegers(v);
 
-				tot = (v.sheet_type === "vehicle") ? dat + pil :
-					  (v.sheet_type === "host") ? dat + hos :
-					  (v.sheet_type === "sprite") ? dat + lev + mat :
-					  dat + int + mat;
+			let base = v.data_processing;
+			base += sheetType === "sprite" ? v.level : sheetType === "vehicle" ? v.pilot : sheetType === "host" ? v.host_rating : v.intuition;
 
-				bas = (v.sheet_type === "sprite") ? dat + lev : dat + int ;
+			const total = base + v.matrix_mod_modifier;
 
-				update["matrix_mod"] = tot;
-				update["matrix_dice"] = dice;
-
-				update["display_matrix_mod"] = (mat != 0) ? `${bas} (${tot})` : tot;
-
-				setAttrs(update);
+			setAttrs({
+				["matrix_mod"]: total,
+				["matrix_dice"]: sheetType === "grunt" && edgeFlag ? 5 : sheetType === "grunt" && !edgeFlag ? 4 + v.matrix_dice_modifier : 4,
+				["display_matrix_mod"]: v.matrix_mod_modifier === 0 ? base : `${base} (${total})`
 			});
 		});
+	};
 
 	//Edge toggle to include ! for exploding dice
 	const edgeToggle = eventinfo => {
 		setAttrs({
 			explode_toggle: eventinfo.newValue != 0 ? "!" : ""
 		});
-	}
+	};
 
 	//Calculate Reset Condition Track
-		on("clicked:cond_reset", () => {
-			getAttrs(["sheet_type","physical_max","stun_max", "matrix_max"], (v) => {
-				var phy = parseInt(v.physical_max) || 0;
-				var stun = parseInt(v.stun_max) || 0;
-				var mat = parseInt(v.matrix_max) || 0;
-				let update = {};
-
-				if (v.sheet_type === "grunt" || v.sheet_type === "pc") {
-					update["physical"] = phy;
-					update["stun"] = stun;
-				} else if (v.sheet_type === "sprite") {
-					update["matrix"] = mat;
-				} else if (v.sheet_type === "vehicle") {
-					update["physical"] = phy;
-					update["matrix"] = mat;
-				} else {
-					return "Not a grunt or vehicle";
-				};
-
-				setAttrs(update);
-			});
-		});	
+	on("clicked:cond_reset", () => {
+		setAttrs({
+			physical: 0,
+			stun: 0,
+			matrix: 0
+		});
+	});	
 
 	const resetConditionTrack = eventinfo => {
 		const attr = eventinfo.triggerName.split("_").pop();
@@ -335,22 +305,22 @@
 		});	
 	}
 
-	//Weapon displays set into an Array
-		// Builder function to display details properly
-		// Note that since undefined are falsey if there's no label or sign we can leave the parameters blank
-		function repeatingStringBuilder(v, keyBase) {
-		    return function(key, label, sign) {
-		        // fetch the attr from v checking if it has a value
-		        const val = v[`${keyBase}${key}`];
-		        if (!val) return '';
+//Weapon displays set into an Array
+	// Builder function to display details properly
+	// Note that since undefined are falsey if there's no label or sign we can leave the parameters blank
+	function repeatingStringBuilder(v, keyBase) {
+	    return function(key, label, sign) {
+	        // fetch the attr from v checking if it has a value
+	        const val = v[`${keyBase}${key}`];
+	        if (!val) return '';
 
-		        // Apply the sign if needed
-		        const disp = sign && val > 0 ? `+${val}` : val;
+	        // Apply the sign if needed
+	        const disp = sign && val > 0 ? `+${val}` : val;
 
-		        // Apply label if needed
-		        return label ? `${label} ${disp}` : disp;
-		    }
-		}
+	        // Apply label if needed
+	        return label ? `${label} ${disp}` : disp;
+	    }
+	}
 
 	on("change:repeating_weapon", () => {
 		const source = "repeating_weapon_weapon";
@@ -479,92 +449,91 @@
 		});
 
 	//REFACTORED Skills
-	  	['repeating_active','repeating_knowledge','repeating_language'].forEach(field => {
-	        on(`change:${field}`, (eventinfo) => { 
-				const source = eventinfo.sourceAttribute;
-				const type   = eventinfo.sourceType;
-
-	        	if (source.includes("rating")) {
-	        		getAttrs([`${field}_rating`, `${field}_rating_modifier`], (v) => {
-	        			const bas = parseInt(v[`${field}_rating`]) || 0;
-						const mod = parseInt(v[`${field}_rating_modifier`]) || 0;
-						const tot = bas + mod;
-	                    setAttrs({
-	                        [`${field}_dicepool`]: tot,
-	                        [`${field}_display_rating`]: (mod === 0) ? bas : `${bas} (${tot})`
-	                    });
-	        		});
-	        	} else if (source.includes("attribute") && type === "player") {
-	        		getAttrs([`${source}`], (v) => {
-						const attribute   = v[`${source}`].slice(2, -1);
-						const translation = getTranslationByKey(`${attribute}`);
-	        			setAttrs({
-	                       [`${field}_display_attribute`]: translation
-	                    });
-	        		});
-	        	} else if (source.includes("limit") && type === "player") {
-	        		const limit = eventinfo.newValue.slice(2, -1);
-	        		if (eventinfo.newValue === "none") {
-	        			setAttrs({
-		                   [`${field}_display_limit`]: ""
-		                });
-	        		} else {
-						const translation = getTranslationByKey(`${limit}`);
-	        			setAttrs({
-	                       [`${field}_display_limit`]: `${translation} ${eventinfo.newValue}`
-	                    });
-	        		}
-	        	} else if (source.includes("specialization") && type === "player")  {	
-	        		getAttrs([`${source}`], (v) => {
-						const bas   = v[`${source}`];
-						const size  = bas.length;
-						let display = (size > 0 && size <= 20) ? `(${bas})` : (size > 20 ) ? "(" + bas.slice(0, 20) + "...)" : " ";
-	        			setAttrs({
-	                       [`${field}_display_specialization`]: display
-	                    });
-	        		});
-	        	} else if (source.includes("skill")) {
-	                getAttrs([`${source}`], (v) => {
-						const bas   = v[`${source}`];
-						const size  = bas.length;
-						let display = (size > 0 && size <= 20) ? bas : (size > 20 ) ? bas.slice(0, 20) + "..." : " ";
-	                    setAttrs({
-	                       [`${field}_display`]: display
-	                    });
+  	sheetAttribues.repeatingSkills.forEach(field => {
+        on(`change:repeating_${field}`, eventinfo => { 
+			const source = eventinfo.sourceAttribute;
+			const type   = eventinfo.sourceType;
+        	if (source.includes("rating")) {
+        		getAttrs([`${field}_rating`, `${field}_rating_modifier`], (v) => {
+        			const bas = parseInt(v[`${field}_rating`]) || 0;
+					const mod = parseInt(v[`${field}_rating_modifier`]) || 0;
+					const tot = bas + mod;
+                    setAttrs({
+                        [`${field}_dicepool`]: tot,
+                        [`${field}_display_rating`]: (mod === 0) ? bas : `${bas} (${tot})`
+                    });
+        		});
+        	} else if (source.includes("attribute") && type === "player") {
+        		getAttrs([`${source}`], (v) => {
+					const attribute   = v[`${source}`].slice(2, -1);
+					const translation = getTranslationByKey(`${attribute}`);
+        			setAttrs({
+                       [`${field}_display_attribute`]: translation
+                    });
+        		});
+        	} else if (source.includes("limit") && type === "player") {
+        		const limit = eventinfo.newValue.slice(2, -1);
+        		if (eventinfo.newValue === "none") {
+        			setAttrs({
+	                   [`${field}_display_limit`]: ""
 	                });
-	            } else if (source.includes("dicepool")) {
-	                getAttrs([`${source}`, `${field}_skill`], (v) => {
-						const skill     = v[`${field}_skill`];
-						let lowercase   = skill.toLowerCase();
-						let removeGroup = (lowercase.includes("group")) ? lowercase.slice(0, -6) : lowercase;
-						let skillSet    = (removeGroup.includes(" ")) ? removeGroup.replace(/ /g,"") : removeGroup;
-	                    setAttrs({
-	                       [`${skillSet}`]: v[`${source}`]
-	                    });
-	                });
-	        	}  else  {
-	        		console.log(`Change to ${field} did not set attr`);
-	        	};
-	        });
-	    }); 
+        		} else {
+					const translation = getTranslationByKey(`${limit}`);
+        			setAttrs({
+                       [`${field}_display_limit`]: `${translation} ${eventinfo.newValue}`
+                    });
+        		}
+        	} else if (source.includes("specialization") && type === "player")  {	
+        		getAttrs([`${source}`], (v) => {
+					const bas   = v[`${source}`];
+					const size  = bas.length;
+					let display = (size > 0 && size <= 20) ? `(${bas})` : (size > 20 ) ? "(" + bas.slice(0, 20) + "...)" : " ";
+        			setAttrs({
+                       [`${field}_display_specialization`]: display
+                    });
+        		});
+        	} else if (source.includes("skill") && type === "player") {
+                getAttrs([`${source}`], (v) => {
+					const bas   = v[`${source}`];
+					const size  = bas.length;
+					let display = (size > 0 && size <= 20) ? bas : (size > 20 ) ? bas.slice(0, 20) + "..." : " ";
+                    setAttrs({
+                       [`${field}_display`]: display
+                    });
+                });
+            } else if (source.includes("dicepool") && type === "player") {
+                getAttrs([`${source}`, `${field}_skill`], (v) => {
+					const skill     = v[`${field}_skill`];
+					let lowercase   = skill.toLowerCase();
+					let removeGroup = (lowercase.includes("group")) ? lowercase.slice(0, -6) : lowercase;
+					let skillSet    = (removeGroup.includes(" ")) ? removeGroup.replace(/ /g,"") : removeGroup;
+                    setAttrs({
+                       [`${skillSet}`]: v[`${source}`]
+                    });
+                });
+        	}  else  {
+        		console.log(`Change to ${field} did not set attr`);
+        	};
+        });
+    }); 
 
 
-	   	//Setting the Default attribute name for default skill
-		on("change:default_attribute", (eventinfo) => {
-			getAttrs(["default_display"], (v) => {
-				const display   = (v.default_display);
-				let update      = {};
+   	//Setting the Default attribute name for default skill
+	on("change:default_attribute", (eventinfo) => {
+		getAttrs(["default_display"], v => {
+			const display   = (v.default_display);
+			let update      = {};
 
-				//This sets a hidden input with the Attribute name so the roll template can use it to indicate what attribute was rolled
-				const attribute   = eventinfo.newValue.slice(2, -1);
-				const translation = getTranslationByKey(`${attribute}`);
-				if (translation != display) {
-					setAttrs({
-						default_display: translation
-					});
-				};
-			});
+			//This sets a hidden input with the Attribute name so the roll template can use it to indicate what attribute was rolled
+			const attribute   = eventinfo.newValue.slice(2, -1);
+			const translation = getTranslationByKey(`${attribute}`);
+			if (translation != display) {
+				setAttrs({
+					default_display: translation
+				});
+			};
 		});
+	});
 
 	//REFACTORED Range & MELEE UPDATES
 	   ['repeating_range','repeating_melee'].forEach(weap => {
